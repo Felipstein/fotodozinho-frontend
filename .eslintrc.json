@@ -40,9 +40,6 @@
     ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "arrow-parens": "error",
-    "comma-dangle": "error",
-    "padded-blocks": "error",
-    "no-unused-vars": "error"
+    "react/react-in-jsx-scope": "off"
   }
 }
