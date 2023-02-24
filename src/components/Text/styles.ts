@@ -4,6 +4,7 @@ import { TextProps } from './types';
 
 const baseFontSizeStyle = css<TextProps>`
   font-size: ${({ theme, size }) => theme.size.text[size || 'md']};
+  font-weight: ${({ weight }) => weight};
 `;
 
 export const SlotStyled = styled(Slot)<TextProps>`
