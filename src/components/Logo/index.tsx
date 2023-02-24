@@ -1,8 +1,9 @@
 import logo from '../../assets/images/logo.png';
+import { LogoTypes } from './types';
 
-export const Logo = () => {
+export const Logo: React.FC<LogoTypes> = ({ scale = 1 }) => {
 
   return (
-    <img src={logo} alt="Foto do Zinho Logo" width={362} height={181} />
+    <img src={logo} alt="Foto do Zinho Logo" width={362 * scale} height={181 * scale} />
   );
 };
