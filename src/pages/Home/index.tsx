@@ -8,8 +8,18 @@ export const Home: React.FC = () => {
     <S.Container>
       <h1>Que tal registrar sua <strong>história</strong> para sempre?</h1>
 
-      <Text size='xlg' weight={500}>É sempre bom revivermos nossos melhores momentos com uma foto.</Text>
-      <Text size='xlg' weight={500}>Viva o <strong>momento</strong>, nós o <strong>registramos</strong>!</Text>
+      <div className="subtitle">
+        <Text size='xlg' weight={500} asChild>
+          <p>
+            É sempre bom revivermos nossos melhores momentos com uma foto.
+          </p>
+        </Text>
+        <Text size='xlg' weight={500} asChild>
+          <p>
+            Viva o <strong>momento</strong>, nós o <strong>registramos</strong>!
+          </p>
+        </Text>
+      </div>
 
       <Logo />
     </S.Container>

@@ -15,4 +15,12 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.colors.blue[500]};
     }
   }
+
+  .subtitle {
+    margin-bottom: 3.8rem;
+
+    p {
+      text-align: center;
+    }
+  }
 `;
