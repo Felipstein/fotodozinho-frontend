@@ -22,6 +22,10 @@ export default createGlobalStyle`
     height: 100vh;
   }
 
+  #root {
+    height: 100%;
+  }
+
   h1 {
     font-size: ${({ theme }) => theme.size.heading.lg};
   }
