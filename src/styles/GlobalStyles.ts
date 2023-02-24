@@ -18,6 +18,8 @@ export default createGlobalStyle`
 
     background-color: ${({ theme }) => theme.colors.gray[50]};
     color: ${({ theme }) => theme.colors.gray[900]};
+
+    height: 100vh;
   }
 
   h1 {
