@@ -8,7 +8,11 @@ export const Container = styled.div`
 
   height: 100%;
 
-  h1 strong {
-    color: ${({ theme }) => theme.colors.blue[500]};
+  h1 {
+    margin-bottom: 3.4rem;
+
+    strong {
+      color: ${({ theme }) => theme.colors.blue[500]};
+    }
   }
 `;

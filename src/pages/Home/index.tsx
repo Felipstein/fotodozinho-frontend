@@ -1,3 +1,4 @@
+import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
 import * as S from './styles';
 
@@ -9,6 +10,8 @@ export const Home: React.FC = () => {
 
       <Text size='xlg' weight={500}>É sempre bom revivermos nossos melhores momentos com uma foto.</Text>
       <Text size='xlg' weight={500}>Viva o <strong>momento</strong>, nós o <strong>registramos</strong>!</Text>
+
+      <Logo />
     </S.Container>
   );
 };
