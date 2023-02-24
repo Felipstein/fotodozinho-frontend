@@ -9,6 +9,7 @@ declare module 'styled-components' {
 
     size: {
       text: {
+        xlg: string;
         lg: string;
         md: string;
         sm: string;

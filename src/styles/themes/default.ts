@@ -8,6 +8,7 @@ export default {
 
   size: {
     text: {
+      xlg: '2.4rem',
       lg: '1.8rem',
       md: '1.6rem',
       sm: '1.4rem',
