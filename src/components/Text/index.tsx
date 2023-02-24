@@ -1,16 +1,18 @@
-import { Slot } from '@radix-ui/react-slot';
 import { ReactNode } from 'react';
 
-interface TextProps {
+import * as S from './styles';
+
+export interface TextProps {
   asChild?: boolean;
+  size?: 'lg' | 'md' | 'sm' | 'xsm' | 'xxsm' | 'xxxsm';
   children: ReactNode;
 }
 
-export const Text: React.FC<TextProps> = ({ asChild = false, children }) => {
-  const Comp = asChild ? Slot : 'span';
+export const Text: React.FC<TextProps> = ({ asChild = false, size = 'md', children }) => {
+  const Comp = asChild ? S.SlotStyled : S.SpanStyled;
 
   return (
-    <Comp>
+    <Comp size={size}>
       {children}
     </Comp>
   );

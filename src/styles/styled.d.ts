@@ -5,20 +5,21 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     font: {
       family: string;
-      size: {
-        text: {
-          lg: string;
-          md: string;
-          sm: string;
-          xsm: string;
-          xxsm: string;
-          xxxsm: string;
-        };
-        heading: {
-          lg: string;
-          md: string;
-          sm: string;
-        };
+    };
+
+    size: {
+      text: {
+        lg: string;
+        md: string;
+        sm: string;
+        xsm: string;
+        xxsm: string;
+        xxxsm: string;
+      };
+      heading: {
+        lg: string;
+        md: string;
+        sm: string;
       };
     };
 

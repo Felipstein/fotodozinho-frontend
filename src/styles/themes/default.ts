@@ -4,20 +4,21 @@ export default {
 
   font: {
     family: 'Inter, sans-serif',
-    size: {
-      text: {
-        lg: '1.8rem',
-        md: '1.6rem',
-        sm: '1.4rem',
-        xsm: '1.2rem',
-        xxsm: '1rem',
-        xxxsm: '.8rem',
-      },
-      heading: {
-        lg: '3.6rem',
-        md: '3.2rem',
-        sm: '2.4rem',
-      },
+  },
+
+  size: {
+    text: {
+      lg: '1.8rem',
+      md: '1.6rem',
+      sm: '1.4rem',
+      xsm: '1.2rem',
+      xxsm: '1rem',
+      xxxsm: '.8rem',
+    },
+    heading: {
+      lg: '3.6rem',
+      md: '3.2rem',
+      sm: '2.4rem',
     },
   },
 

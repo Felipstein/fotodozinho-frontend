@@ -14,22 +14,22 @@ export default createGlobalStyle`
 
   body {
     font-family: ${({ theme }) => theme.font.family};
-    font-size: ${({ theme }) => theme.font.size.text.md};
+    font-size: ${({ theme }) => theme.size.text.md};
 
     background-color: ${({ theme }) => theme.colors.gray[50]};
     color: ${({ theme }) => theme.colors.gray[900]};
   }
 
   h1 {
-    font-size: ${({ theme }) => theme.font.size.heading.lg};
+    font-size: ${({ theme }) => theme.size.heading.lg};
   }
 
   h2 {
-    font-size: ${({ theme }) => theme.font.size.heading.md};
+    font-size: ${({ theme }) => theme.size.heading.md};
   }
 
   h3 {
-    font-size: ${({ theme }) => theme.font.size.heading.sm};
+    font-size: ${({ theme }) => theme.size.heading.sm};
   }
 
 `;
