@@ -1,55 +1,38 @@
 import styled, { css } from 'styled-components';
 import { ButtonProps, ButtonVariants } from './types';
 
-const variants: Record<ButtonVariants, (danger: boolean) => any> = {
-  primary: (danger: boolean) => css`
-    ${({ theme }) => css`
-      ${danger ? css`
-        background-color: ${theme.colors.red[400]};
-        color: ${theme.colors.white};
+type ButtonVariantFn = (danger: boolean) => ReturnType<typeof css>;
 
-        &:hover {
-          background-color: ${theme.colors.red[300]};
-        }
+const primaryVariant: ButtonVariantFn = (danger: boolean) => css`
+${({ theme }) => css`
+    background-color: ${danger ? theme.colors.red[400] : theme.colors.blue[400]};
+    color: ${theme.colors.white};
 
-        &:active {
-          background-color: ${theme.colors.red[100]};
-          color: ${theme.colors.red[400]};
-        }
-      ` : css`
-        background-color: ${theme.colors.blue[400]};
-        color: ${theme.colors.white};
+    &:hover {
+      background-color: ${danger ? theme.colors.red[300] : theme.colors.blue[300]};
+    }
 
-        &:hover {
-          background-color: ${theme.colors.blue[300]};
-        }
+    &:active {
+      background-color: ${danger ? theme.colors.red[100] : theme.colors.blue[200]};
+      color: ${danger ? theme.colors.red[400] : theme.colors.blue[400]};
+    }
+  `};
+`;
 
-        &:active {
-          background-color: ${theme.colors.blue[200]};
-          color: ${theme.colors.blue[400]};
-        }
-      `}
-    `};
-  `,
-  secondary: (danger: boolean) => css`
-  ${({ theme }) => css`
-      ${danger ? css`
-        background-color: transparent;
-        color: ${theme.colors.red[400]};
+const secondaryVariant: ButtonVariantFn = (danger: boolean) => css`
+${({ theme }) => css`
+    background-color: transparent;
+    color: ${danger ? theme.colors.red[400] : theme.colors.blue[500]};
 
-        &:hover {
-          color: ${theme.colors.red[300]};
-        }
-      ` : css`
-        background-color: transparent;
-        color: ${theme.colors.blue[500]};
+    &:hover {
+      color: ${danger ? theme.colors.red[300] : theme.colors.blue[300]};
+    }
+  `};
+`;
 
-        &:hover {
-          color: ${theme.colors.blue[300]};
-        }
-      `}
-    `};
-  `,
+const variants: Record<ButtonVariants, ButtonVariantFn> = {
+  primary: primaryVariant,
+  secondary: secondaryVariant,
 };
 
 export const ButtonStyled = styled.button<ButtonProps>`
