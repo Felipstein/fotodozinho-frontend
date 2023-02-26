@@ -23,4 +23,15 @@ export const Container = styled.div`
       text-align: center;
     }
   }
+
+  .actions {
+    display: flex;
+    gap: 1.6rem;
+
+    margin-top: 4.8rem;
+  }
+
+  .sub-actions {
+    margin-top: 3.2rem;
+  }
 `;

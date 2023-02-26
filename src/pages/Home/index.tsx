@@ -1,3 +1,4 @@
+import { Button } from '../../components/Button';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
 import * as S from './styles';
@@ -22,6 +23,22 @@ export const Home: React.FC = () => {
       </div>
 
       <Logo />
+
+      <div className="actions">
+        <Button>
+          Ver nossos serviços
+        </Button>
+
+        <Button variant='secondary'>
+          Entrar em contato
+        </Button>
+      </div>
+
+      <div className="sub-actions">
+        <Button>
+          Ver tabela de preços para revelação de foto
+        </Button>
+      </div>
     </S.Container>
   );
 };
