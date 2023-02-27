@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Button } from '../../components/Button';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
@@ -36,8 +37,8 @@ export const Home: React.FC = () => {
       </div>
 
       <div className="sub-actions">
-        <LabelButton to='url aqui' target=''>
-          Navegar!
+        <LabelButton to='/prices' target='navigate'>
+          Ver tabela de preços para revelação de foto
         </LabelButton>
       </div>
     </S.Container>
