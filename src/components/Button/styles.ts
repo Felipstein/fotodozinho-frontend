@@ -61,9 +61,10 @@ export const ButtonStyled = styled.button<ButtonProps>`
   cursor: pointer;
 
   border: none;
-  outline: 0;
+  outline: none;
 
   &:disabled {
-    pointer-events: none;
+    opacity: 0.8;
+    cursor: default;
   }
 `;
