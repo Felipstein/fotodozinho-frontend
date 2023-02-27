@@ -1,4 +1,5 @@
 import { Button } from '../../components/Button';
+import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
 import * as S from './styles';
@@ -35,9 +36,9 @@ export const Home: React.FC = () => {
       </div>
 
       <div className="sub-actions">
-        <Button>
-          Ver tabela de preços para revelação de foto
-        </Button>
+        <LabelButton to='url aqui' target=''>
+          Navegar!
+        </LabelButton>
       </div>
     </S.Container>
   );
