@@ -12,13 +12,20 @@ export const StyledAnchor = styled.a`
     content: "";
     position: absolute;
     height: 2px;
+    border-radius: 4px;
     bottom: 0;
     left: 0;
-    background-color: ${({ theme }) => theme.colors.gray[900]};
-    transition: width 0.2s ease-in-out;
+    background-color: ${({ theme }) => theme.colors.gray[600]};
+    width: 100%;
+    transform: scaleX(0);
+    transition: transform 0.2s ease-in-out;
   }
 
-  &:hover::after {
-    width: 100%;
+  &:hover {
+    color: ${({ theme }) => theme.colors.gray[600]};
+
+    &::after {
+      transform: scaleX(1);
+    }
   }
 `;
