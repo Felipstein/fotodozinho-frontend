@@ -59,6 +59,14 @@ declare module 'styled-components' {
       };
     };
 
+    animations: {
+      durations: {
+        sh: string;
+        md: string;
+        lg: string;
+      };
+    };
+
   }
 
 }

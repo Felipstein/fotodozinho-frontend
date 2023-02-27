@@ -58,4 +58,12 @@ export default {
     },
   },
 
+  animations: {
+    durations: {
+      sh: '0.125s',
+      md: '0.2s',
+      lg: '0.4s',
+    },
+  },
+
 } as DefaultTheme;
