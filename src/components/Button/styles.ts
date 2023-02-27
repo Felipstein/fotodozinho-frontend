@@ -9,37 +9,29 @@ interface ButtonVariantProps {
 type ButtonVariantFn = (buttonVariantProps: ButtonVariantProps) => ReturnType<typeof css>;
 
 const primaryVariant: ButtonVariantFn = ({ danger, disabled }) => css`
-${({ theme }) => css`
-  ${disabled ? css`
-      background-color: ${theme.colors.gray[200]};
-      color: ${theme.colors.gray[50]};
-  ` : css`
-      background-color: ${danger ? theme.colors.red[400] : theme.colors.blue[400]};
-      color: ${theme.colors.white};
+  ${({ theme }) => css`
+    background-color: ${disabled ? theme.colors.gray[200] : (danger ? theme.colors.red[400] : theme.colors.blue[400])};
+    color: ${disabled ? theme.colors.gray[50] : theme.colors.white};
 
-      &:hover {
-        background-color: ${danger ? theme.colors.red[300] : theme.colors.blue[300]};
-      }
+    &:hover {
+      background-color: ${disabled ? '' : (danger ? theme.colors.red[300] : theme.colors.blue[300])};
+    }
 
-      &:active {
-        background-color: ${danger ? theme.colors.red[100] : theme.colors.blue[200]};
-        color: ${danger ? theme.colors.red[400] : theme.colors.blue[400]};
-      }
-    `};
+    &:active {
+      background-color: ${disabled ? '' : (danger ? theme.colors.red[100] : theme.colors.blue[200])};
+      color: ${disabled ? '' : (danger ? theme.colors.red[400] : theme.colors.blue[400])};
+    }
   `}
 `;
 
 const secondaryVariant: ButtonVariantFn = ({ danger, disabled }) => css`
-${({ theme }) => css`
-  ${disabled ? css`
-      background-color: transparent;
-      color: ${theme.colors.gray[200]};
-  ` : css`
+  ${({ theme }) => css`
+    background-color: transparent;
+    color: ${disabled ? theme.colors.gray[200] : (danger ? theme.colors.red[400] : theme.colors.blue[500])};
 
-      &:hover {
-        color: ${danger ? theme.colors.red[300] : theme.colors.blue[300]};
-      }
-    `}
+    &:hover {
+      color: ${disabled ? '' : (danger ? theme.colors.red[300] : theme.colors.blue[300])};
+    }
   `};
 `;
 
