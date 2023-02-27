@@ -25,11 +25,11 @@ export const Home: React.FC = () => {
       <Logo />
 
       <div className="actions">
-        <Button disabled>
+        <Button>
           Ver nossos serviços
         </Button>
 
-        <Button variant='secondary' disabled>
+        <Button variant='secondary'>
           Entrar em contato
         </Button>
       </div>

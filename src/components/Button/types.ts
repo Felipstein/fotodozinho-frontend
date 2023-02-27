@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 export type ButtonVariants = 'primary' | 'secondary';
 
@@ -7,5 +7,6 @@ export interface ButtonProps {
   variant?: ButtonVariants;
   danger?: boolean;
   disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
 }
