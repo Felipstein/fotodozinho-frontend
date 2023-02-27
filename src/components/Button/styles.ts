@@ -55,6 +55,9 @@ export const ButtonStyled = styled.button<ButtonProps>`
   border: none;
   outline: none;
 
+  transition-property: background-color, color;
+  transition: ${({ theme }) => theme.animations.durations.sh} ease-in-out;
+
   &:disabled {
     opacity: 0.8;
     cursor: default;

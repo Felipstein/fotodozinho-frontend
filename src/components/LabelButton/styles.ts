@@ -18,7 +18,7 @@ export const StyledAnchor = styled.a`
     background-color: ${({ theme }) => theme.colors.gray[600]};
     width: 100%;
     transform: scaleX(0);
-    transition: transform 0.2s ease-in-out;
+    transition: transform ${({ theme }) => theme.animations.durations.md} ease-in-out;
   }
 
   &:hover {
