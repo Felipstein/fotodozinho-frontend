@@ -9,5 +9,7 @@ export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  width?: string;
+  height?: string;
   children: ReactNode;
 }

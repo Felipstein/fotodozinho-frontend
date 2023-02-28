@@ -41,11 +41,21 @@ const variants: Record<ButtonVariants, ButtonVariantFn> = {
 };
 
 export const ButtonStyled = styled.button<ButtonProps>`
+  position: relative;
+
   display: flex;
   align-items: center;
   gap: 0.2rem;
 
   ${({ variant = 'primary', danger = false, disabled = false }) => variants[variant]({ danger, disabled })};
+
+  ${({ width }) => width && css`
+    width: ${width};
+  `};
+
+  ${({ height }) => height && css`
+    height: ${height};
+  `};
 
   font-family: ${({ theme }) => theme.font.family};
   font-size: ${({ theme }) => theme.size.text.md};
@@ -65,5 +75,20 @@ export const ButtonStyled = styled.button<ButtonProps>`
   &:disabled {
     opacity: 0.8;
     cursor: default;
+  }
+
+  ${({ loading }) => loading && css`
+    .content-container {
+      visibility: hidden;
+    }
+  `};
+
+  .loading-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
   }
 `;
