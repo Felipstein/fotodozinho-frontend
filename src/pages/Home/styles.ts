@@ -43,4 +43,24 @@ export const Container = styled.div`
   .sub-actions {
     margin-top: 3.2rem;
   }
+
+  @media screen and (max-width: 696px) {
+    h1 {
+      font-size: ${({ theme }) => theme.size.heading.md};
+    }
+
+    p {
+      font-size: ${({ theme }) => theme.size.text.lg};
+    }
+  }
+
+  @media screen and (max-width: 558px) {
+    h1 {
+      font-size: ${({ theme }) => theme.size.heading.sm};
+    }
+
+    p {
+      font-size: ${({ theme }) => theme.size.text.md};
+    }
+  }
 `;
