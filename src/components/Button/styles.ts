@@ -47,7 +47,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   font-size: ${({ theme }) => theme.size.text.md};
   font-weight: 600;
 
-  padding: 1.6rem 1.2rem;
+  padding: 1.4rem 1.6rem;
   border-radius: 8px;
 
   cursor: pointer;
