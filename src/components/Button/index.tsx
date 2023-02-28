@@ -6,7 +6,7 @@ import { Loading } from '../Loading';
 
 export const Button: React.FC<ButtonProps> = ({ type, variant, danger, disabled, loading = true, onClick, children }) => {
   return (
-    <ClickableScale>
+    <ClickableScale disabled={disabled || loading}>
       <S.ButtonStyled
         type={type}
         variant={variant}
