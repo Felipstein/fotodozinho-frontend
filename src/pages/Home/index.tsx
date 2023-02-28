@@ -3,6 +3,7 @@ import { Button } from '../../components/Button';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { Tooltip } from '../../components/Tooltip';
 import * as S from './styles';
 
 export const Home: React.FC = () => {
@@ -31,9 +32,11 @@ export const Home: React.FC = () => {
           Ver nossos serviços
         </Button>
 
-        <Button variant='secondary'>
-          Entrar em contato
-        </Button>
+        <Tooltip tooltipMessage='AA'>
+          <Button variant='secondary'>
+            Entrar em contato
+          </Button>
+        </Tooltip>
       </div>
 
       <div className="sub-actions">

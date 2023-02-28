@@ -5,7 +5,7 @@ import { TooltipProps } from './types';
 export const Tooltip: React.FC<TooltipProps> = ({ tooltipMessage, children }) => {
   return (
     <RadixTooltip.Provider>
-      <RadixTooltip.Root>
+      <RadixTooltip.Root delayDuration={300}>
         <RadixTooltip.Trigger asChild>
           {children}
         </RadixTooltip.Trigger>
