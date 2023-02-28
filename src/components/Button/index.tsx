@@ -2,6 +2,7 @@ import { ButtonProps } from './types';
 
 import * as S from './styles';
 import { ClickableScale } from '../shared/ClickableScale';
+import { WarnIcon } from '../../icons/WarnIcon';
 
 export const Button: React.FC<ButtonProps> = ({ type, variant, danger, disabled, onClick, children }) => {
   return (
@@ -13,6 +14,7 @@ export const Button: React.FC<ButtonProps> = ({ type, variant, danger, disabled,
         disabled={disabled}
         onClick={onClick}
       >
+        <WarnIcon />
         {children}
       </S.ButtonStyled>
     </ClickableScale>

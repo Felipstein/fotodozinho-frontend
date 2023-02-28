@@ -41,6 +41,10 @@ const variants: Record<ButtonVariants, ButtonVariantFn> = {
 };
 
 export const ButtonStyled = styled.button<ButtonProps>`
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+
   ${({ variant = 'primary', danger = false, disabled = false }) => variants[variant]({ danger, disabled })};
 
   font-family: ${({ theme }) => theme.font.family};
