@@ -7,6 +7,7 @@ export interface ButtonProps {
   variant?: ButtonVariants;
   danger?: boolean;
   disabled?: boolean;
+  loading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   children: ReactNode;
 }
