@@ -1,8 +1,8 @@
-import { ButtonProps } from './types';
-
-import * as S from './styles';
 import { ClickableScale } from '../shared/ClickableScale';
 import { WarnIcon } from '../../icons/WarnIcon';
+
+import { ButtonProps } from './types';
+import * as S from './styles';
 
 export const Button: React.FC<ButtonProps> = ({ type, variant, danger, disabled, onClick, children }) => {
   return (
