@@ -10,6 +10,7 @@ export const PageContainer = styled.div`
 
 export const Container = styled.div`
   flex: 1;
+  margin-top: 6.4rem;
 
   display: flex;
   flex-direction: column;
