@@ -2,6 +2,7 @@ import { ClickableScale } from '../shared/ClickableScale';
 
 import { ButtonProps } from './types';
 import * as S from './styles';
+import { Loading } from '../Loading';
 
 export const Button: React.FC<ButtonProps> = ({ type, variant, danger, disabled, loading = true, onClick, children }) => {
   return (
@@ -15,6 +16,7 @@ export const Button: React.FC<ButtonProps> = ({ type, variant, danger, disabled,
         onClick={onClick}
       >
         {!loading && children}
+        {loading && <Loading />}
       </S.ButtonStyled>
     </ClickableScale>
   );
