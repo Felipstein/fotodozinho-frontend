@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
+export const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 6.4rem;
+
+  height: 100%;
+`;
+
 export const Container = styled.div`
+  flex: 1;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  height: 100%;
 
   h1 {
     margin-bottom: 3.4rem;
