@@ -1,5 +1,10 @@
+import { FigmaIcon } from '../../icons/FigmaIcon';
+import { GitHubIcon } from '../../icons/GitHubIcon';
+import { LinkedInIcon } from '../../icons/LinkedInIcon';
+
 import { IconButton } from '../IconButton';
 import { Text } from '../Text';
+
 import * as S from './styles';
 
 export const Footer: React.FC = () => {
@@ -10,10 +15,10 @@ export const Footer: React.FC = () => {
         <Text size='xsm'>By Felipe Oliveira</Text>
         <div className="links">
           <IconButton>
-            A
+            <GitHubIcon />
           </IconButton>
           <IconButton>
-            B
+            <LinkedInIcon />
           </IconButton>
         </div>
       </S.BlockAbout>
@@ -22,16 +27,16 @@ export const Footer: React.FC = () => {
         <Text size='xsm'>© 2022 - 2023 Equipe Foto do Zinho.</Text>
         <div className="links">
           <IconButton>
-            A
+            <GitHubIcon />
           </IconButton>
           <IconButton>
-            B
+            <GitHubIcon />
           </IconButton>
           <IconButton>
-            C
+            <LinkedInIcon />
           </IconButton>
           <IconButton>
-            D
+            <FigmaIcon />
           </IconButton>
         </div>
       </S.BlockAbout>
