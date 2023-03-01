@@ -13,8 +13,6 @@ export default {
       md: '1.6rem',
       sm: '1.4rem',
       xsm: '1.2rem',
-      xxsm: '1rem',
-      xxxsm: '.8rem',
     },
     heading: {
       lg: '3.6rem',

@@ -1,8 +1,8 @@
 import { IconDefaultProps } from './icons.types';
 
-export const FigmaIcon: React.FC<IconDefaultProps> = ({ color = 'currentColor' }) => {
+export const FigmaIcon: React.FC<IconDefaultProps> = ({ size = 32, color = 'currentColor' }) => {
   return (
-    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20.25 20.25C22.5972 20.25 24.5 18.3472 24.5 16C24.5 13.6528 22.5972 11.75 20.25 11.75C17.9028 11.75 16 13.6528 16 16C16 18.3472 17.9028 20.25 20.25 20.25Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M16 11.75V3.25H11.75C10.6228 3.25 9.54183 3.69777 8.7448 4.4948C7.94777 5.29183 7.5 6.37283 7.5 7.5C7.5 8.62717 7.94777 9.70817 8.7448 10.5052C9.54183 11.3022 10.6228 11.75 11.75 11.75H16Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
       <path d="M16 20.25V11.75H11.75C10.6228 11.75 9.54183 12.1978 8.7448 12.9948C7.94777 13.7918 7.5 14.8728 7.5 16C7.5 17.1272 7.94777 18.2082 8.7448 19.0052C9.54183 19.8022 10.6228 20.25 11.75 20.25H16Z" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

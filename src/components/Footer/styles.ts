@@ -18,6 +18,11 @@ export const BlockAbout = styled.div`
   flex: 1;
 
   color: ${({ theme }) => theme.colors.gray[300]};
+
+  .links {
+    display: flex;
+    align-items: flex-end;
+  }
 `;
 
 export const Separator = styled.div`

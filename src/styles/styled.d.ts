@@ -14,8 +14,6 @@ declare module 'styled-components' {
         md: string;
         sm: string;
         xsm: string;
-        xxsm: string;
-        xxxsm: string;
       };
       heading: {
         lg: string;
