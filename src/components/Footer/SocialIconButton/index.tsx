@@ -11,7 +11,12 @@ export const SocialIconButton: React.FC<SocialIconButtonProps> = ({ label, to, i
     return (
       <S.Container>
         {label}
-        <IconButton size={24} customStyles={{ color: theme.colors.gray[300] }}>
+        <IconButton
+          size={24}
+          customStyles={{ color: theme.colors.gray[300] }}
+          to={to}
+          target='redirect_to_new_page'
+        >
           {icon}
         </IconButton>
       </S.Container>
@@ -19,7 +24,12 @@ export const SocialIconButton: React.FC<SocialIconButtonProps> = ({ label, to, i
   }
 
   return (
-    <IconButton size={24} customStyles={{ color: theme.colors.gray[300] }}>
+    <IconButton
+      size={24}
+      customStyles={{ color: theme.colors.gray[300] }}
+      to={to}
+      target='redirect_to_new_page'
+    >
       {icon}
     </IconButton>
   );

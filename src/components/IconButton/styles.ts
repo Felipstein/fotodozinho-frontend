@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { IconButtonProps } from './types';
 
-export const ButtonStyled = styled.button<IconButtonProps>`
+export const BaseStyles = styled.div<IconButtonProps>`
   padding: 0.6rem;
 
   color: ${({ theme, customStyles }) => customStyles?.color || theme.colors.gray[900]};
