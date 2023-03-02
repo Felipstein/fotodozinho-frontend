@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+
 import { DynamicLinkLogicProps, DynamicLinkLogicTarget } from './types';
+import * as S from './styles';
 
 const targetMapper: Record<DynamicLinkLogicTarget, React.HTMLAttributeAnchorTarget> = {
   navigate: '',
@@ -10,15 +12,15 @@ const targetMapper: Record<DynamicLinkLogicTarget, React.HTMLAttributeAnchorTarg
 export const DynamicLinkLogic: React.FC<DynamicLinkLogicProps> = ({ to, target = 'navigate', children }) => {
   if(target === 'navigate') {
     return (
-      <Link to={to}>
+      <S.ResetLinkStyled to={to}>
         {children}
-      </Link>
+      </S.ResetLinkStyled>
     );
   }
 
   return (
-    <Link to={to} target={targetMapper[target]} rel='noopener noreferrer'>
+    <S.ResetLinkStyled to={to} target={targetMapper[target]} rel='noopener noreferrer'>
       {children}
-    </Link>
+    </S.ResetLinkStyled>
   );
 };
