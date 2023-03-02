@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-export const StyledAnchor = styled.a`
+import { DynamicLinkLogic } from '../shared/DynamicLinkLogic';
+
+export const LinkStyled = styled(DynamicLinkLogic)`
   position: relative;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.gray[900]};

@@ -1,7 +1,7 @@
-export type CustomLabelButtonTarget = 'navigate' | 'redirect' | 'redirect_to_new_page';
+import { DynamicLinkLogicTarget } from '../shared/DynamicLinkLogic/types';
 
 export interface LabelButtonProps {
   to: string;
-  target?: CustomLabelButtonTarget;
+  target?: DynamicLinkLogicTarget;
   children: string;
 }
