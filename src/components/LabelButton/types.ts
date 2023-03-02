@@ -1,7 +1,7 @@
-import { DynamicLinkLogicTarget } from '../shared/DynamicLinkLogic/types';
+import { LinkTarget } from '../../shared/LinkTarget';
 
 export interface LabelButtonProps {
   to: string;
-  target?: DynamicLinkLogicTarget;
+  target?: LinkTarget;
   children: string;
 }

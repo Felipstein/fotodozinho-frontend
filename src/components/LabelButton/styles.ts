@@ -1,8 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { DynamicLinkLogic } from '../shared/DynamicLinkLogic';
-
-export const LinkStyled = styled(DynamicLinkLogic)`
+export const LinkStyled = styled(Link)`
   position: relative;
   font-weight: 400;
   color: ${({ theme }) => theme.colors.gray[900]};
