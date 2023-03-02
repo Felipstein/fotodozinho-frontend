@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-
 import { DynamicLinkLogicProps, DynamicLinkLogicTarget } from './types';
 import * as S from './styles';
 
