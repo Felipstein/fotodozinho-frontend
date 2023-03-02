@@ -15,7 +15,7 @@ export const SocialIconButton: React.FC<SocialIconButtonProps> = ({ label, to, i
           size={24}
           customStyles={{ color: theme.colors.gray[300] }}
           to={to}
-          target='redirect_to_new_page'
+          linkTarget='redirect_to_new_page'
         >
           {icon}
         </IconButton>
@@ -28,7 +28,7 @@ export const SocialIconButton: React.FC<SocialIconButtonProps> = ({ label, to, i
       size={24}
       customStyles={{ color: theme.colors.gray[300] }}
       to={to}
-      target='redirect_to_new_page'
+      linkTarget='redirect_to_new_page'
     >
       {icon}
     </IconButton>

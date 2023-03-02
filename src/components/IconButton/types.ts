@@ -1,5 +1,5 @@
 import { MouseEventHandler, ReactElement } from 'react';
-import { DynamicLinkLogicTarget } from '../shared/DynamicLinkLogic/types';
+import { LinkTarget } from '../../shared/LinkTarget';
 
 export interface IconButtonProps {
   size?: number;
@@ -11,6 +11,6 @@ export interface IconButtonProps {
   };
   onClick?: MouseEventHandler<HTMLButtonElement>;
   to?: string;
-  target?: DynamicLinkLogicTarget;
+  linkTarget?: LinkTarget;
   children: ReactElement;
 }

@@ -39,7 +39,7 @@ export const Home: React.FC = () => {
         </div>
 
         <div className="sub-actions">
-          <LabelButton to='/prices' target='navigate'>
+          <LabelButton to='/prices' linkTarget='navigate'>
             Ver tabela de preços para revelação de foto
           </LabelButton>
         </div>
