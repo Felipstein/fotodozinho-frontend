@@ -24,7 +24,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, 
   }
 
   return ReactDOM.createPortal(
-    <S.Container>
+    <S.Container isLeaving={false}>
       <div className="centered">
         <Logo isWhite scale={0.65} />
         <Text size='lg'>Sempre registrando a sua História</Text>

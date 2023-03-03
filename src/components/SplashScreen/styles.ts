@@ -1,6 +1,26 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 
-export const Container = styled.div`
+const show = keyframes`
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+  `;
+
+const hidden = keyframes`
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+`;
+
+export const Container = styled.div<{ isLeaving: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,6 +32,12 @@ export const Container = styled.div`
   align-items: center;
 
   background-color: ${({ theme }) => theme.colors.blue[500]};
+
+  animation: ${show} 0.8s ease-out;
+
+  ${({ isLeaving }) => isLeaving && css`
+    animation: ${hidden} 0.8s ease-in;
+  `}
 
   .centered {
     flex: 1;
