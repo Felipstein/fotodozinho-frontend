@@ -65,6 +65,10 @@ declare module 'styled-components' {
       };
     };
 
+    shadows: {
+      soft: string;
+    };
+
   }
 
 }
