@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 
 import { IconButtonProps } from './types';
 
-export const LinkStyled = styled(Link)<IconButtonProps>`
+const BaseStyles = css<IconButtonProps>`
   padding: 0.6rem;
 
   color: ${({ theme, customStyles }) => customStyles?.color || theme.colors.gray[900]};
@@ -30,4 +30,12 @@ export const LinkStyled = styled(Link)<IconButtonProps>`
       background-color: ${customStyles?.backgroundColorPressed || theme.colors.gray[300]};
     }
   `};
+`;
+
+export const LinkStyled = styled(Link)`
+  ${BaseStyles}
+  `;
+
+export const ButtonStyled = styled.button`
+  ${BaseStyles}
 `;

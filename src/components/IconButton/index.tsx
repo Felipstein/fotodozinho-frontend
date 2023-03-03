@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+
+import { targetMapper } from '../../shared/LinkTarget';
 
 import { IconButtonProps } from './types';
 import * as S from './styles';
-import { targetMapper } from '../../shared/LinkTarget';
 
 export const IconButton: React.FC<IconButtonProps> = ({ size = 32, customStyles, to, linkTarget = 'navigate', onClick, children }) => {
   const icon = React.Children.only(children);
@@ -11,7 +11,6 @@ export const IconButton: React.FC<IconButtonProps> = ({ size = 32, customStyles,
   if(to) {
     return linkTarget === 'navigate' ? (
       <S.LinkStyled
-        as={Link}
         size={size}
         customStyles={customStyles}
         to={to}
@@ -20,7 +19,6 @@ export const IconButton: React.FC<IconButtonProps> = ({ size = 32, customStyles,
       </S.LinkStyled>
     ) : (
       <S.LinkStyled
-        as={Link}
         size={size}
         customStyles={customStyles}
         to={to}
@@ -32,13 +30,13 @@ export const IconButton: React.FC<IconButtonProps> = ({ size = 32, customStyles,
   }
 
   return (
-    <S.LinkStyled
+    <S.ButtonStyled
       as='button'
       size={size}
       customStyles={customStyles}
       onClick={onClick}
     >
       {React.cloneElement(icon, { size })}
-    </S.LinkStyled>
+    </S.ButtonStyled>
   );
 };
