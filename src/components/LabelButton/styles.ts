@@ -8,6 +8,7 @@ export const LinkStyled = styled(Link)`
   text-decoration: none;
   font-size: 1.4rem;
   padding-bottom: 2px;
+  transition: color ${({ theme }) => theme.animations.durations.sh} ease-in-out;
 
   &::after {
     content: "";
@@ -19,7 +20,9 @@ export const LinkStyled = styled(Link)`
     background-color: ${({ theme }) => theme.colors.gray[600]};
     width: 100%;
     transform: scaleX(0);
-    transition: transform ${({ theme }) => theme.animations.durations.md} ease-in-out;
+    transition:
+      transform ${({ theme }) => theme.animations.durations.md} ease-in-out,
+      background-color ${({ theme}) => theme.animations.durations.sh} ease-in-out;
   }
 
   &:hover {
@@ -27,6 +30,14 @@ export const LinkStyled = styled(Link)`
 
     &::after {
       transform: scaleX(1);
+    }
+  }
+
+  &:active {
+    color: ${({ theme }) => theme.colors.blue[400]};
+
+    &::after {
+      background-color: ${({ theme }) => theme.colors.blue[400]};
     }
   }
 `;
