@@ -7,9 +7,11 @@ import { Logo } from '../Logo';
 import { Text } from '../Text';
 import { Loading } from '../Loading';
 import { useTheme } from 'styled-components';
+import { useAnimatedUnmount } from '../../hooks/useAnimatedUnmount';
 
 export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, loadingMessage }) => {
   const theme = useTheme();
+  const { shouldRender, animatedElementRef } = useAnimatedUnmount(visible);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -19,12 +21,12 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, 
     };
   }, []);
 
-  if(!visible) {
+  if(!shouldRender) {
     return null;
   }
 
   return ReactDOM.createPortal(
-    <S.Container isLeaving={false}>
+    <S.Container ref={animatedElementRef} isLeaving={!visible}>
       <div className="centered">
         <Logo isWhite scale={0.65} />
         <Text size='lg'>Sempre registrando a sua História</Text>

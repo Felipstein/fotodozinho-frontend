@@ -33,10 +33,10 @@ export const Container = styled.div<{ isLeaving: boolean }>`
 
   background-color: ${({ theme }) => theme.colors.blue[500]};
 
-  animation: ${show} 0.8s ease-out;
+  animation: ${show} 0.8s ease-out forwards;
 
   ${({ isLeaving }) => isLeaving && css`
-    animation: ${hidden} 0.8s ease-in;
+    animation: ${hidden} 0.8s ease-in forwards;
   `}
 
   .centered {
