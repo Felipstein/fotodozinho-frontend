@@ -5,22 +5,22 @@ import { targetMapper } from '../../shared/LinkTarget';
 import { IconButtonProps } from './types';
 import * as S from './styles';
 
-export const IconButton: React.FC<IconButtonProps> = ({ size = 32, customStyles, to, linkTarget = 'navigate', onClick, children }) => {
+export const IconButton: React.FC<IconButtonProps> = ({ size = 32, to, color, linkTarget = 'navigate', onClick, children }) => {
   const icon = React.Children.only(children);
 
   if(to) {
     return linkTarget === 'navigate' ? (
       <S.LinkStyled
+        color={color}
         size={size}
-        customStyles={customStyles}
         to={to}
       >
         {React.cloneElement(icon, { size })}
       </S.LinkStyled>
     ) : (
       <S.LinkStyled
+        color={color}
         size={size}
-        customStyles={customStyles}
         to={to}
         target={targetMapper[linkTarget]}
       >
@@ -31,9 +31,9 @@ export const IconButton: React.FC<IconButtonProps> = ({ size = 32, customStyles,
 
   return (
     <S.ButtonStyled
+      color={color}
       as='button'
       size={size}
-      customStyles={customStyles}
       onClick={onClick}
     >
       {React.cloneElement(icon, { size })}

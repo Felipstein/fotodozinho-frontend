@@ -3,12 +3,7 @@ import { LinkTarget } from '../../shared/LinkTarget';
 
 export interface IconButtonProps {
   size?: number;
-  customStyles?: {
-    color?: string;
-    colorPressed?: string;
-    backgroundColorHovered?: string;
-    backgroundColorPressed?: string;
-  };
+  color?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   to?: string;
   linkTarget?: LinkTarget;
