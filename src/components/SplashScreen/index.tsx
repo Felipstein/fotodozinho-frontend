@@ -22,7 +22,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, loadingMess
   return ReactDOM.createPortal(
     <S.Container>
       <div className="centered">
-        <Logo scale={0.65} />
+        <Logo isWhite scale={0.65} />
         <Text size='lg'>Sempre registrando a sua História</Text>
         {loadingMessage && (
           <div className="loading-message">
