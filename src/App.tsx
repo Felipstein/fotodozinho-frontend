@@ -9,7 +9,7 @@ export function App() {
   return (
     <ThemeProvider theme={_default}>
       <GlobalStyles />
-      <SplashScreen visible />
+      <SplashScreen visible isLoading />
       <BrowserRouter>
         <Routes />
       </BrowserRouter>

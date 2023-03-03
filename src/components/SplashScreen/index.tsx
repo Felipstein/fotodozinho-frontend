@@ -5,8 +5,12 @@ import * as S from './styles';
 import { useEffect } from 'react';
 import { Logo } from '../Logo';
 import { Text } from '../Text';
+import { Loading } from '../Loading';
+import { useTheme } from 'styled-components';
 
-export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, loadingMessage }) => {
+export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, loadingMessage }) => {
+  const theme = useTheme();
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
@@ -24,6 +28,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, loadingMess
       <div className="centered">
         <Logo isWhite scale={0.65} />
         <Text size='lg'>Sempre registrando a sua História</Text>
+        {(isLoading || loadingMessage) && (
+          <Loading size={42} color={theme.colors.white} />
+        )}
         {loadingMessage && (
           <div className="loading-message">
             <Text size='sm'>{loadingMessage}</Text>
