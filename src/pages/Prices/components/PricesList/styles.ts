@@ -1,12 +1,6 @@
 import styled from 'styled-components';
+import { SwiperSlide } from 'swiper/react';
 
-export const Container = styled.div`
-  display: flex;
-  gap: 1.2rem;
-
-  overflow: hidden;
-
-  & > * {
-    flex-shrink: 0;
-  }
+export const SwiperSlideStyled = styled(SwiperSlide)`
+  width: fit-content;
 `;
