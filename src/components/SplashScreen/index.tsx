@@ -1,14 +1,14 @@
-import ReactDOM from 'react-dom';
-
-import { SplashScreenProps } from './types';
-import * as S from './styles';
 import { useEffect } from 'react';
+import { useTheme } from 'styled-components';
+
+import { useAnimatedUnmount } from '../../hooks/useAnimatedUnmount';
 import { Logo } from '../Logo';
 import { Text } from '../Text';
 import { Loading } from '../Loading';
-import { useTheme } from 'styled-components';
-import { useAnimatedUnmount } from '../../hooks/useAnimatedUnmount';
 import { ReactPortal } from '../ReactPortal';
+
+import { SplashScreenProps } from './types';
+import * as S from './styles';
 
 export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, loadingMessage }) => {
   const theme = useTheme();
