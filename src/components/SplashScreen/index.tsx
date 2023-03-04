@@ -15,7 +15,9 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, 
   const { shouldRender, animatedElementRef } = useAnimatedUnmount(visible);
 
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    if(visible) {
+      document.body.style.overflow = 'hidden';
+    }
 
     return () => {
       document.body.style.overflow = 'auto';
