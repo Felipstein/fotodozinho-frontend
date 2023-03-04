@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { APIError } from '../errors/APIError';
 
 interface ServiceResponse<T> {
-  data: T | null;
+  data: T extends undefined ? T | null : T;
   isLoading: boolean;
   error: string | null;
 }

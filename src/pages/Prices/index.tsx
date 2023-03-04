@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 import { Loading } from '../../components/Loading';
 import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
+import { useService } from '../../hooks/useService';
 import { printPriceService } from '../../services/print-prices';
 import { PrintPrice } from '../../types/PrintPrice';
 import { PricesList } from './components/PricesList';
@@ -11,27 +12,11 @@ import { PricesList } from './components/PricesList';
 import * as S from './styles';
 
 export const Prices: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [printPrices, setPrintPrices] = useState<PrintPrice[]>([]);
-
-  useEffect(() => {
-    async function loadPrintPrices() {
-      try {
-        setError(null);
-        setIsLoading(true);
-
-        const printPrices = await printPriceService.getPrintPrices();
-        setPrintPrices(printPrices);
-      } catch (err: any) {
-        setError('Falha ao carregar os preços');
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    loadPrintPrices();
-  }, []);
+  const {
+    data: printPrices,
+    isLoading,
+    error,
+  } = useService<PrintPrice[]>(printPriceService.getPrintPrices);
 
   return (
     <S.Container>

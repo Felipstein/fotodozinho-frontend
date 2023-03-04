@@ -6,8 +6,6 @@ class PrintPriceService {
   async getPrintPrices(): Promise<PrintPrice[]> {
     const printPrices = await api.get('/print-prices');
 
-    console.log(printPrices);
-
     return printPrices;
   }
 
