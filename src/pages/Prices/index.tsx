@@ -6,7 +6,6 @@ import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
 import { printPriceService } from '../../services/print-prices';
 import { PrintPrice } from '../../types/PrintPrice';
-import { delay } from '../../utils/delay';
 import { PricesList } from './components/PricesList';
 
 import * as S from './styles';
@@ -20,12 +19,9 @@ export const Prices: React.FC = () => {
     async function loadPrintPrices() {
       try {
         setIsLoading(true);
-        await delay(1500);
 
         const printPrices = await printPriceService.getPrintPrices();
         setPrintPrices(printPrices);
-
-        throw new Error('Test');
       } catch (err: any) {
         setError('Falha ao carregar os preços');
       } finally {
@@ -54,10 +50,14 @@ export const Prices: React.FC = () => {
           <Loading size={32} />
         )}
 
-        {!error && !isLoading && (
+        {!error && !isLoading && printPrices.length > 0 && (
           <div className="prices-list-container">
             <PricesList printPrices={printPrices} />
           </div>
+        )}
+
+        {!error && !isLoading && printPrices.length === 0 && (
+          <Text style={{ opacity: 0.8 }} weight={500}>Nenhum preço encontrado</Text>
         )}
 
         <div className="actions">

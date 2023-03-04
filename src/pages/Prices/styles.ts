@@ -20,11 +20,8 @@ export const Container = styled.div`
       align-items: center;
     }
 
-    .prices-list {
-      list-style: none;
-
-      display: flex;
-      gap: 1.2rem;
+    .prices-list-container {
+      width: 70%;
     }
 
     .actions {
