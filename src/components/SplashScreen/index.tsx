@@ -22,7 +22,7 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, 
     return () => {
       document.body.style.overflow = 'auto';
     };
-  }, []);
+  }, [visible]);
 
   if(!shouldRender) {
     return null;
