@@ -9,7 +9,7 @@ export const SimpleHeader: React.FC = () => {
         <Logo scale={0.45} />
       </div>
       <div className="actions">
-        <Button>
+        <Button type='navigate' to='/app'>
           Ver nossos serviços
         </Button>
 

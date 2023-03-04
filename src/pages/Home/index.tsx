@@ -29,7 +29,7 @@ export const Home: React.FC = () => {
         <Logo />
 
         <div className="actions">
-          <Button>
+          <Button type='navigate' to='/app'>
             Ver nossos serviços
           </Button>
 
