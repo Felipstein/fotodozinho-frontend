@@ -1,41 +1,40 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
+import { Loading } from '../../components/Loading';
 import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
+import { printPriceService } from '../../services/print-prices';
 import { PrintPrice } from '../../types/PrintPrice';
+import { delay } from '../../utils/delay';
 import { PricesList } from './components/PricesList';
 
 import * as S from './styles';
 
 export const Prices: React.FC = () => {
-  const [printPrices] = useState<PrintPrice[]>([
-    {
-      id: Math.random().toString(),
-      length: 'Polaroide',
-      price: 5.5,
-    },
-    {
-      id: Math.random().toString(),
-      length: '10x15',
-      price: 5,
-    },
-    {
-      id: Math.random().toString(),
-      length: '15x20',
-      price: 10,
-    },
-    {
-      id: Math.random().toString(),
-      length: '15x21',
-      price: 10,
-    },
-    {
-      id: Math.random().toString(),
-      length: '20x30',
-      price: 15,
-    },
-  ]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [printPrices, setPrintPrices] = useState<PrintPrice[]>([]);
+
+  useEffect(() => {
+    async function loadPrintPrices() {
+      try {
+        setIsLoading(true);
+        await delay(1500);
+
+        const printPrices = await printPriceService.getPrintPrices();
+        setPrintPrices(printPrices);
+
+        throw new Error('Test');
+      } catch (err: any) {
+        setError('Falha ao carregar os preços');
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    loadPrintPrices();
+  }, []);
 
   return (
     <S.Container>
@@ -47,9 +46,19 @@ export const Prices: React.FC = () => {
           <Text size='lg'>Tabela de preços</Text>
         </header>
 
-        <div className="prices-list-container">
-          <PricesList printPrices={printPrices} />
-        </div>
+        {!isLoading && error && (
+          <Text style={{ color: 'red' }} weight={500}>Falha ao carregar os preços</Text>
+        )}
+
+        {isLoading && (
+          <Loading size={32} />
+        )}
+
+        {!error && !isLoading && (
+          <div className="prices-list-container">
+            <PricesList printPrices={printPrices} />
+          </div>
+        )}
 
         <div className="actions">
           <Text>Que tal revelar algumas fotos? É simples e rápido!</Text>

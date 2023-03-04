@@ -1,4 +1,4 @@
-import { formatCurrency } from '../../../../services/formatCurrency';
+import { formatCurrency } from '../../../../utils/formatCurrency';
 
 import { PriceCardProps } from './types';
 import * as S from './styles';
