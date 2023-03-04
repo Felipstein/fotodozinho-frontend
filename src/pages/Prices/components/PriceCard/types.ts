@@ -1,4 +1,5 @@
+import { PrintPrice } from '../../../../types/PrintPrice';
+
 export interface PriceCardProps {
-  length: string;
-  price: number;
+  printPrice: PrintPrice;
 }
