@@ -49,7 +49,7 @@ export const Prices: React.FC = () => {
         <div className="actions">
           <Text>Que tal revelar algumas fotos? É simples e rápido!</Text>
 
-          <Button>
+          <Button type='navigate' to='/app/print'>
             Revelar agora!
           </Button>
         </div>

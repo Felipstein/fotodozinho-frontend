@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { ButtonProps, ButtonVariants } from './types';
 
@@ -40,7 +41,7 @@ const variants: Record<ButtonVariants, ButtonVariantFn> = {
   secondary: secondaryVariant,
 };
 
-export const ButtonStyled = styled.button<ButtonProps>`
+export const BaseStyles = css<ButtonProps>`
   position: relative;
 
   display: flex;
@@ -60,6 +61,7 @@ export const ButtonStyled = styled.button<ButtonProps>`
   font-family: ${({ theme }) => theme.font.family};
   font-size: ${({ theme }) => theme.size.text.md};
   font-weight: 600;
+  text-decoration: none;
 
   padding: 1.4rem 1.6rem;
   border-radius: 8px;
@@ -91,4 +93,12 @@ export const ButtonStyled = styled.button<ButtonProps>`
 
     display: flex;
   }
+`;
+
+export const ButtonStyled = styled.button`
+  ${BaseStyles}
+`;
+
+export const LinkStyled = styled(Link)`
+  ${BaseStyles}
 `;
