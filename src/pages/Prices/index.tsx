@@ -18,6 +18,7 @@ export const Prices: React.FC = () => {
   useEffect(() => {
     async function loadPrintPrices() {
       try {
+        setError(null);
         setIsLoading(true);
 
         const printPrices = await printPriceService.getPrintPrices();
