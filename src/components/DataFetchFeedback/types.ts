@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
 import { DataFetchFeedbackHookProps } from '../../hooks/useDataFetchFeedback';
 
-export interface DataFetchFeedbackProps extends DataFetchFeedbackHookProps {
+export interface DataFetchFeedbackProps {
   dataName?: string;
   onTryAgain?: () => void;
+  dataFetchHookProps: DataFetchFeedbackHookProps;
   children: ReactNode;
 }

@@ -1,4 +1,5 @@
 import { Button } from '../../components/Button';
+import { DataFetchFeedback } from '../../components/DataFetchFeedback';
 import { FailedToFetchData } from '../../components/FailedToFetchData';
 import { Footer } from '../../components/Footer';
 import { Loading } from '../../components/Loading';
@@ -21,12 +22,6 @@ export const Prices: React.FC = () => {
     fetchDataAgain,
   } = useService<PrintPrice[]>(printPriceService.getPrintPrices);
 
-  const {
-    isFailedToFetch: isFailedToLoadPrices,
-    isDataArrayEmpty: isPrintPricesEmpty,
-    canRenderData: hasPrintPrices,
-  } = useDataFetchFeedback({ data: printPrices, isLoading, error });
-
   return (
     <S.Container>
       <SimpleHeader />
@@ -37,23 +32,19 @@ export const Prices: React.FC = () => {
           <Text size='lg'>Tabela de preços</Text>
         </header>
 
-        {isFailedToLoadPrices && (
-          <FailedToFetchData dataName='preços' onTryAgain={fetchDataAgain} />
-        )}
-
         {isLoading && (
           <Loading size={32} />
         )}
 
-        {hasPrintPrices && (
+        <DataFetchFeedback
+          dataName='preços'
+          onTryAgain={fetchDataAgain}
+          dataFetchHookProps={{ data: printPrices, error, isLoading }}
+        >
           <div className="prices-list-container">
             <PricesList printPrices={printPrices} />
           </div>
-        )}
-
-        {isPrintPricesEmpty && (
-          <NoDataFound dataName='preços' onTryAgain={fetchDataAgain} />
-        )}
+        </DataFetchFeedback>
 
         <div className="actions">
           <Text>Que tal revelar algumas fotos? É simples e rápido!</Text>
