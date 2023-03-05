@@ -1,4 +1,5 @@
 import { Button } from '../../components/Button';
+import { FailedToFetchData } from '../../components/FailedToFetchData';
 import { Footer } from '../../components/Footer';
 import { Loading } from '../../components/Loading';
 import { SimpleHeader } from '../../components/SimpleHeader';
@@ -17,6 +18,8 @@ export const Prices: React.FC = () => {
     error,
   } = useService<PrintPrice[]>(printPriceService.getPrintPrices);
 
+  const isFailedToLoadPrices = !isLoading && error;
+
   return (
     <S.Container>
       <SimpleHeader />
@@ -27,8 +30,8 @@ export const Prices: React.FC = () => {
           <Text size='lg'>Tabela de preços</Text>
         </header>
 
-        {!isLoading && error && (
-          <Text style={{ color: 'red' }} weight={500}>Falha ao carregar os preços</Text>
+        {isFailedToLoadPrices && (
+          <FailedToFetchData dataName='preços' />
         )}
 
         {isLoading && (
