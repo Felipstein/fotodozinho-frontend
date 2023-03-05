@@ -11,7 +11,7 @@ export const NoDataFound: React.FC<NoDataFoundProps> = ({ dataName, onTryAgain }
       <div className="details">
         <Text>Não temos nenhuma informação {dataName ? `sobre ${dataName}` : ''} para mostrar no momento...</Text>
         {onTryAgain && (
-          <Button>
+          <Button onClick={onTryAgain}>
             Buscar informações novamente
           </Button>
         )}

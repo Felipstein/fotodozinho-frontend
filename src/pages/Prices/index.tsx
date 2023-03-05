@@ -5,6 +5,7 @@ import { Loading } from '../../components/Loading';
 import { NoDataFound } from '../../components/NoDataFound';
 import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
+import { useDataFetchFeedback } from '../../hooks/useDataFetchFeedback';
 import { useService } from '../../hooks/useService';
 import { printPriceService } from '../../services/print-prices';
 import { PrintPrice } from '../../types/PrintPrice';
@@ -20,8 +21,11 @@ export const Prices: React.FC = () => {
     fetchDataAgain,
   } = useService<PrintPrice[]>(printPriceService.getPrintPrices);
 
-  const isFailedToLoadPrices = !isLoading && error;
-  const isPrintPricesEmpty = !error && !isLoading && printPrices.length === 0;
+  const {
+    isFailedToFetch: isFailedToLoadPrices,
+    isDataArrayEmpty: isPrintPricesEmpty,
+    canRenderData: hasPrintPrices,
+  } = useDataFetchFeedback({ data: printPrices, isLoading, error });
 
   return (
     <S.Container>
@@ -41,7 +45,7 @@ export const Prices: React.FC = () => {
           <Loading size={32} />
         )}
 
-        {!error && !isLoading && printPrices.length > 0 && (
+        {hasPrintPrices && (
           <div className="prices-list-container">
             <PricesList printPrices={printPrices} />
           </div>
