@@ -130,9 +130,12 @@ export class API {
 
   private buildError(err: Error | AxiosError | unknown) {
     if(err instanceof AxiosError && err.response) {
+      console.error(`(${err.response.status || 'Código de status desconhecido'}): Falha ao realizar uma requisição: ${err}`);
+
       return new APIError(err.response?.data.message || 'Um erro ocorreu dentro dos nossos servidores. Por favor, tente novamente mais tarde.', err.status || 500);
     }
 
+    console.error(`(Erro interno do cliente) Falha ao realizar uma requisição: ${err}`);
     return new Error('Um erro ocorreu na sua aplicação, por favor, tente novamente. Caso o erro persistir, tente mais tarde ou entre em contato conosco.');
   }
 
