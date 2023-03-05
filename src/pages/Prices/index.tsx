@@ -1,12 +1,9 @@
 import { Button } from '../../components/Button';
 import { DataFetchFeedback } from '../../components/DataFetchFeedback';
-import { FailedToFetchData } from '../../components/FailedToFetchData';
 import { Footer } from '../../components/Footer';
 import { Loading } from '../../components/Loading';
-import { NoDataFound } from '../../components/NoDataFound';
 import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
-import { useDataFetchFeedback } from '../../hooks/useDataFetchFeedback';
 import { useService } from '../../hooks/useService';
 import { printPriceService } from '../../services/print-prices';
 import { PrintPrice } from '../../types/PrintPrice';
