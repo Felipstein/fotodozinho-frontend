@@ -17,13 +17,13 @@ export const FailedToFetchData: React.FC<FailedToFetchDataProps> = ({ dataName, 
 
   return (
     <S.Container>
-      <SmileyXEyes size={140} />
+      <SmileyXEyes size={128} />
       <div className="details">
         <Text>
           Oops, algo deu errado!
           {' '}
           <strong>
-            Não foi possível carregar as informações {dataName ? `sobre ${dataName} ` : ''}neste momento
+            Não foi possível carregar as informações {dataName ? `sobre ${dataName}` : ''} neste momento
           </strong>.{' '}
           {getTryAgainMessage()}
         </Text>
