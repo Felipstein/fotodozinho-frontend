@@ -1,4 +1,4 @@
-interface DataFetchFeedbackProps {
+export interface DataFetchFeedbackHookProps {
   isLoading: boolean;
   error: string | null;
   data: any;
