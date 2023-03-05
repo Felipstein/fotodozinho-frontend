@@ -68,4 +68,8 @@ export default {
     soft: '4px 4px 12px rgba(0, 0, 0, 0.06)',
   },
 
+  blurs: {
+    md: '1.5px',
+  },
+
 } as DefaultTheme;

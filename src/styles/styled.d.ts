@@ -69,6 +69,10 @@ declare module 'styled-components' {
       soft: string;
     };
 
+    blurs: {
+      md: string;
+    }
+
   }
 
 }
