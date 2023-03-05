@@ -2,6 +2,7 @@ import { Button } from '../../components/Button';
 import { FailedToFetchData } from '../../components/FailedToFetchData';
 import { Footer } from '../../components/Footer';
 import { Loading } from '../../components/Loading';
+import { NoDataFound } from '../../components/NoDataFound';
 import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
 import { useService } from '../../hooks/useService';
@@ -20,6 +21,7 @@ export const Prices: React.FC = () => {
   } = useService<PrintPrice[]>(printPriceService.getPrintPrices);
 
   const isFailedToLoadPrices = !isLoading && error;
+  const isPrintPricesEmpty = !error && !isLoading && printPrices.length === 0;
 
   return (
     <S.Container>
@@ -45,8 +47,8 @@ export const Prices: React.FC = () => {
           </div>
         )}
 
-        {!error && !isLoading && printPrices.length === 0 && (
-          <Text style={{ opacity: 0.8 }} weight={500}>Nenhum preço encontrado</Text>
+        {isPrintPricesEmpty && (
+          <NoDataFound dataName='preços' onTryAgain={fetchDataAgain} />
         )}
 
         <div className="actions">
