@@ -16,6 +16,7 @@ export const Prices: React.FC = () => {
     data: printPrices,
     isLoading,
     error,
+    fetchDataAgain,
   } = useService<PrintPrice[]>(printPriceService.getPrintPrices);
 
   const isFailedToLoadPrices = !isLoading && error;
@@ -31,7 +32,7 @@ export const Prices: React.FC = () => {
         </header>
 
         {isFailedToLoadPrices && (
-          <FailedToFetchData dataName='preços' />
+          <FailedToFetchData dataName='preços' onTryAgain={fetchDataAgain} />
         )}
 
         {isLoading && (
