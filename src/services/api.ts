@@ -34,7 +34,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -44,7 +44,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -54,7 +54,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -64,7 +64,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -74,7 +74,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -84,7 +84,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -94,7 +94,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -104,7 +104,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -114,7 +114,7 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
@@ -124,16 +124,16 @@ export class API {
 
       return response.data;
     } catch (err: Error | AxiosError | unknown) {
-      throw this.handleError(err);
+      throw this.buildError(err);
     }
   }
 
-  private handleError(err: Error | AxiosError | unknown) {
+  private buildError(err: Error | AxiosError | unknown) {
     if(err instanceof AxiosError && err.response) {
-      throw new APIError(err.response?.data.message || 'Um erro ocorreu dentro dos nossos servidores. Por favor, tente novamente mais tarde.', err.status || 500);
+      return new APIError(err.response?.data.message || 'Um erro ocorreu dentro dos nossos servidores. Por favor, tente novamente mais tarde.', err.status || 500);
     }
 
-    throw new Error('Um erro ocorreu na sua aplicação, por favor, tente novamente. Caso o erro persistir, tente mais tarde ou entre em contato conosco.');
+    return new Error('Um erro ocorreu na sua aplicação, por favor, tente novamente. Caso o erro persistir, tente mais tarde ou entre em contato conosco.');
   }
 
 }
