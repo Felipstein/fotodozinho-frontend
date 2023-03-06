@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Container as CheckBoxContainer } from '../../components/CheckBox/styles';
+
 export const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -13,7 +15,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  max-width: 45rem;
+  max-width: 40rem;
   margin: auto;
   margin-top: 6.4rem;
 
@@ -47,18 +49,28 @@ export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
 
+  max-width: 100%;
+
   .inputs {
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
 
-    margin-bottom: 0.4rem;
+    margin-bottom: 1.6rem;
   }
 
   .sub-actions {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+
+    ${CheckBoxContainer} + ${CheckBoxContainer} {
+      margin-top: 1.2rem;
+    }
+
+    .label-button {
+      margin-top: 0.4rem;
+    }
   }
 
   .actions {

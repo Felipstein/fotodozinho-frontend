@@ -62,7 +62,6 @@ export const HiddedCheckBox = styled.input.attrs({ type: 'checkbox' })`
 `;
 
 export const LabelStyled = styled.label`
-  line-height: 0;
   cursor: inherit;
 
   span {

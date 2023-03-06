@@ -29,7 +29,7 @@ export const CheckBox: React.FC<CheckBoxProps> = ({ label, checked = false }) =>
       </S.CheckBoxStyled>
 
       <S.LabelStyled>
-        <Text size={'sm'}>
+        <Text size='sm'>
           {label}
         </Text>
       </S.LabelStyled>
