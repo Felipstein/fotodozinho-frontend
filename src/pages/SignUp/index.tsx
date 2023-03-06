@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '../../components/Button';
 import { CheckBox } from '../../components/CheckBox';
 import { Footer } from '../../components/Footer';
@@ -6,16 +7,21 @@ import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
+import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
 
 export const SignUp: React.FC = () => {
+  const [isModalOpened, setIsModalOpened] = useState(false);
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
   }
 
   return (
     <S.PageContainer>
+      <TermsModal isOpened={isModalOpened} />
+
       <S.Container>
         <header>
           <Logo scale={0.625} />
@@ -68,7 +74,7 @@ export const SignUp: React.FC = () => {
               />
 
               <div className="label-button">
-                <LabelButton>
+                <LabelButton onClick={() => setIsModalOpened(true)}>
                   Ver os Termos de Serviço e Uso
                 </LabelButton>
               </div>
@@ -82,7 +88,7 @@ export const SignUp: React.FC = () => {
 
         <div className="sub-actions">
           <LabelButton $isBlueVariant to='/login'>
-          Já possuo uma conta
+            Já possuo uma conta
           </LabelButton>
         </div>
       </S.Container>
