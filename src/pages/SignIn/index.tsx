@@ -5,8 +5,6 @@ import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
-import { EyeIcon } from '../../icons/EyeIcon';
-import { SmileyXEyesIcon } from '../../icons/SmileyXEyesIcon';
 import * as S from './styles';
 
 export const SignIn: React.FC = () => {
