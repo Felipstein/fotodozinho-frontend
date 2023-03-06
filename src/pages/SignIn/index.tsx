@@ -40,20 +40,6 @@ export const SignIn: React.FC = () => {
               onRightIconClick={() => console.log('Oi')}
             />
 
-            <Input
-              label='Teste 1'
-              name='teste1'
-              type='text'
-              placeholder='*********'
-              leftIcon={<SmileySad />}
-            />
-
-            <Input
-              name='teste2'
-              type='text'
-              placeholder='*********'
-            />
-
             <Button type='submit'>Fazer login</Button>
           </S.FormStyled>
         </div>
