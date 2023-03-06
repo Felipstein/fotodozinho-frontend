@@ -41,4 +41,8 @@ export const Container = styled.div`
   }
 `;
 
-export const FormStyled = styled.form``;
+export const FormStyled = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+`;
