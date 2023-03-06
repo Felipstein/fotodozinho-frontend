@@ -4,7 +4,6 @@ import { Input } from '../../components/Input';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
-import { SmileySad } from '../../icons/SmileySad';
 import { SmileyXEyes } from '../../icons/SmileyXEyes';
 import * as S from './styles';
 
