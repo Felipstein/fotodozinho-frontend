@@ -1,6 +1,6 @@
 import { IconDefaultProps } from './icons.types';
 
-export const SmileySad: React.FC<IconDefaultProps> = ({ color = 'currentColor', size = 32 }) => {
+export const SmileySadIcon: React.FC<IconDefaultProps> = ({ color = 'currentColor', size = 32 }) => {
   return (
     <svg width={size} height={size} viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.2625 15C18.5439 15.3151 18.8886 15.5672 19.2742 15.7398C19.6598 15.9124 20.0775 16.0016 20.5 16.0016C20.9224 16.0016 21.3401 15.9124 21.7257 15.7398C22.1113 15.5672 22.456 15.3151 22.7374 15" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>

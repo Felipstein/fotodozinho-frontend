@@ -1,4 +1,4 @@
-import { SmileyXEyes } from '../../icons/SmileyXEyes';
+import { SmileyXEyesIcon } from '../../icons/SmileyXEyesIcon';
 import { Button } from '../Button';
 import { Text } from '../Text';
 
@@ -17,7 +17,7 @@ export const FailedToFetchData: React.FC<FailedToFetchDataProps> = ({ dataName, 
 
   return (
     <S.Container>
-      <SmileyXEyes size={128} />
+      <SmileyXEyesIcon size={128} />
       <div className="details">
         <Text>
           Oops, algo deu errado!

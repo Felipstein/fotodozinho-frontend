@@ -4,7 +4,7 @@ import { Input } from '../../components/Input';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
-import { SmileyXEyes } from '../../icons/SmileyXEyes';
+import { SmileyXEyesIcon } from '../../icons/SmileyXEyesIcon';
 import * as S from './styles';
 
 export const SignIn: React.FC = () => {
@@ -35,7 +35,7 @@ export const SignIn: React.FC = () => {
               name='password'
               type='password'
               placeholder='*********'
-              rightIcon={<SmileyXEyes />}
+              rightIcon={<SmileyXEyesIcon />}
               onRightIconClick={() => console.log('Oi')}
             />
 
