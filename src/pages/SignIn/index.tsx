@@ -1,4 +1,5 @@
 import { Button } from '../../components/Button';
+import { CheckBox } from '../../components/CheckBox';
 import { Footer } from '../../components/Footer';
 import { Input } from '../../components/Input';
 import { LabelButton } from '../../components/LabelButton';
@@ -39,15 +40,7 @@ export const SignIn: React.FC = () => {
             </div>
 
             <div className="sub-actions">
-              <div className="check-box">
-                <input
-                  name='remember-me'
-                  type='checkbox'
-                />
-                <label htmlFor='remember-me'>
-                  Mantenha-me logado
-                </label>
-              </div>
+              <CheckBox label='Mantenha-me logado' />
 
               <LabelButton $isBlueVariant to='/forgot-password'>
                 Esqueci a senha
