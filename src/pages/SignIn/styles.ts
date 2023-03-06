@@ -35,14 +35,36 @@ export const Container = styled.div`
       font-weight: 600;
     }
 
-    .form-container {
-      margin-bottom: 1.6rem;
-    }
+  }
+
+  .form-container {
+    margin-bottom: 1.6rem;
   }
 `;
 
 export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    margin-bottom: 0.4rem;
+  }
+
+  .sub-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+
+    margin-top: 3.6rem;
+  }
 `;

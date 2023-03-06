@@ -23,20 +23,40 @@ export const SignIn: React.FC = () => {
 
         <div className="form-container">
           <S.FormStyled noValidate onSubmit={handleSubmit}>
-            <Input
-              label='E-mail'
-              name='email'
-              type='email'
-              placeholder='exemplo@gmail.com'
-            />
+            <div className="inputs">
+              <Input
+                label='E-mail'
+                name='email'
+                type='email'
+                placeholder='exemplo@gmail.com'
+              />
 
-            <PasswordInput
-              label='Senha'
-              name='password'
-              placeholder='Sua senha aqui'
-            />
+              <PasswordInput
+                label='Senha'
+                name='password'
+                placeholder='Sua senha aqui'
+              />
+            </div>
 
-            <Button type='submit'>Fazer login</Button>
+            <div className="sub-actions">
+              <div className="check-box">
+                <input
+                  name='remember-me'
+                  type='checkbox'
+                />
+                <label htmlFor='remember-me'>
+                  Mantenha-me logado
+                </label>
+              </div>
+
+              <LabelButton $isBlueVariant to='/forgot-password'>
+                Esqueci a senha
+              </LabelButton>
+            </div>
+
+            <div className="actions">
+              <Button type='submit'>Fazer login</Button>
+            </div>
           </S.FormStyled>
         </div>
 
