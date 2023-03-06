@@ -46,6 +46,7 @@ export const BaseStyles = css<ButtonProps>`
 
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.2rem;
 
   ${({ variant = 'primary', danger = false, disabled = false }) => variants[variant]({ danger, disabled })};
