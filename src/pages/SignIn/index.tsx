@@ -3,7 +3,9 @@ import { Footer } from '../../components/Footer';
 import { Input } from '../../components/Input';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
+import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
+import { EyeIcon } from '../../icons/EyeIcon';
 import { SmileyXEyesIcon } from '../../icons/SmileyXEyesIcon';
 import * as S from './styles';
 
@@ -30,13 +32,10 @@ export const SignIn: React.FC = () => {
               placeholder='exemplo@gmail.com'
             />
 
-            <Input
+            <PasswordInput
               label='Senha'
               name='password'
-              type='password'
-              placeholder='*********'
-              rightIcon={<SmileyXEyesIcon />}
-              onRightIconClick={() => console.log('Oi')}
+              placeholder='Sua senha aqui'
             />
 
             <Button type='submit'>Fazer login</Button>
