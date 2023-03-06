@@ -68,7 +68,7 @@ export const SignUp: React.FC = () => {
               />
 
               <div className="label-button">
-                <LabelButton to='#'>
+                <LabelButton>
                   Ver os Termos de Serviço e Uso
                 </LabelButton>
               </div>
