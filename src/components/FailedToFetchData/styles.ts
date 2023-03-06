@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: center;
 
   width: 60%;
+  max-width: 75rem;
 
   svg {
     color: ${({ theme }) => theme.colors.gray[200]};
