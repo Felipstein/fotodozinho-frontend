@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Scrollbar } from '../../../../../components/Scrollbar';
 
 export const Container = styled.div`
   display: flex;
@@ -40,6 +41,8 @@ export const Modal = styled.div`
       font-family: ${({ theme }) => theme.font.family};
       color: ${({ theme }) => theme.colors.gray[600]};
     }
+
+    ${Scrollbar}
   }
 
   footer {
