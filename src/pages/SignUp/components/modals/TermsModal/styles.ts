@@ -3,9 +3,14 @@ import styled from 'styled-components';
 import { Scrollbar } from '../../../../../components/Scrollbar';
 
 export const ContentContainer = styled.div`
-  header {
-    width: 100%;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+  width: 72.8rem;
+
+  height: 95vh;
+  max-height: 70rem;
 
   main {
     border-radius: 8px;

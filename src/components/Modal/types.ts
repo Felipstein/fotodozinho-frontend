@@ -1,8 +1,9 @@
 import { ReactNode } from 'react';
-
 export interface ModalProps {
+  isOpened: boolean;
+  closeOnClickInOverlay?: boolean;
   containerId?: string;
   hasOverlay?: boolean;
-  onClickInOverlay?: () => void;
+  zIndexModal?: number;
   children: ReactNode;
 }

@@ -14,13 +14,17 @@ import * as S from './styles';
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
+  function handleCloseModal() {
+    setIsModalOpened(false);
+  }
+
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
   }
 
   return (
     <S.PageContainer>
-      <TermsModal isOpened={isModalOpened} />
+      <TermsModal isOpened={isModalOpened} onClose={handleCloseModal} />
 
       <S.Container>
         <header>

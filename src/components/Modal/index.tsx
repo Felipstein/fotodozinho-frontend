@@ -1,17 +1,21 @@
 import React from 'react';
 
 import { Overlay } from '../Overlay';
+import { ReactPortal } from '../ReactPortal';
 
 import { ModalProps } from './types';
 import * as S from './styles';
-import { ReactPortal } from '../ReactPortal';
 
-export const Modal: React.FC<ModalProps> = ({ containerId = 'modal-root', hasOverlay = true, onClickInOverlay, children }) => {
+export const Modal: React.FC<ModalProps> = ({ isOpened, containerId = 'modal-root', hasOverlay = true, zIndexModal, children }) => {
+  if(!isOpened) {
+    return null;
+  }
+
   const OverlayWrapper = hasOverlay ? Overlay : React.Fragment;
 
   return (
     <ReactPortal containerId={containerId}>
-      <OverlayWrapper onClick={onClickInOverlay}>
+      <OverlayWrapper zIndex={zIndexModal}>
         <S.Container>
           <S.Modal>
             {children}

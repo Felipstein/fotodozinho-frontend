@@ -5,13 +5,10 @@ import { Modal } from '../../../../../components/Modal';
 import { TermsModalProps } from './types';
 import * as S from './styles';
 
-export const TermsModal: React.FC<TermsModalProps> = ({ isOpened }) => {
-  if(!isOpened) {
-    return null;
-  }
+export const TermsModal: React.FC<TermsModalProps> = ({ isOpened, onClose }) => {
 
   return (
-    <Modal>
+    <Modal isOpened={isOpened}>
       <S.ContentContainer>
         <header>
           <h3>Termos de Serviço e Uso e etc.</h3>
@@ -53,19 +50,19 @@ Ao utilizar a aplicação Foto do Zinho, você concorda com estes termos de serv
 
         <footer>
           <Text size='sm'>
-                  Gostaria de lembrar que a aplicação passa apenas de um estudo de caso meu!
+            Gostaria de lembrar que a aplicação passa apenas de um estudo de caso meu!
           </Text>
           <Text size='sm'>
-                  Todos esses termos foram criados apenas como modelo de estudo no desenvolvimento da aplicação Foto do Zinho e, garanto por meio disso que a aplicação <strong>não envolve nada com dinheiro, aquisição ou consumo real de produtos</strong>. Estará bem claro ao decorrer do uso da aplicação.
+            Todos esses termos foram criados apenas como modelo de estudo no desenvolvimento da aplicação Foto do Zinho e, garanto por meio disso que a aplicação     <strong>não envolve nada com dinheiro, aquisição ou consumo real de produtos</strong>. Estará bem claro ao decorrer do uso da aplicação.
           </Text>
           <Text size='sm'>
-                  Obrigado pela vossa compreensão :)
+            Obrigado pela vossa compreensão :)
           </Text>
         </footer>
 
         <div className="actions">
-          <Button>
-                  Entendido
+          <Button onClick={onClose}>
+            Entendido
           </Button>
         </div>
       </S.ContentContainer>
