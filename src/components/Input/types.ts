@@ -5,4 +5,5 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
   onRightIconClick?: () => void;
+  errorFeedback?: string;
 }

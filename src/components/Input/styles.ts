@@ -1,4 +1,6 @@
-import styled, { css } from 'styled-components';
+import { Slot } from '@radix-ui/react-slot';
+import styled, { css, DefaultTheme } from 'styled-components';
+import { Text } from '../Text';
 
 export const Container = styled.div`
   width: 40rem;
@@ -14,7 +16,25 @@ export const LabelStyled = styled.label`
   }
 `;
 
-export const FieldBox = styled.div<{ isFocused: boolean }>`
+function getBorderColor({ theme, isFocused, hasError }: { theme: DefaultTheme, isFocused: boolean, hasError: boolean }) {
+  const { colors } = theme;
+
+  if(hasError) {
+    if(isFocused) {
+      return colors.red[200];
+    }
+
+    return colors.red[400];
+  }
+
+  if(isFocused) {
+    return colors.gray[600];
+  }
+
+  return colors.gray[300];
+}
+
+export const FieldBox = styled.div<{ isFocused: boolean, hasError: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -27,7 +47,7 @@ export const FieldBox = styled.div<{ isFocused: boolean }>`
 
   transition: border-color ${({ theme }) => theme.animations.durations.sh} ease-in-out;
 
-  border: 2px solid ${({ theme, isFocused }) => isFocused ? theme.colors.gray[600] : theme.colors.gray[300]};
+  border: 2px solid ${getBorderColor};
 `;
 
 export const InputStyled = styled.input`
@@ -77,4 +97,14 @@ export const RightIconContainer = styled.span<{ hasAction: boolean }>`
       color: ${theme.colors.gray[400]};
     }
   `};
+`;
+
+export const ErrorFeedbackContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  color: ${({ theme }) => theme.colors.red[400]};
+
+  margin-top: 0.4rem;
 `;

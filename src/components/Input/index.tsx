@@ -4,8 +4,9 @@ import { Text } from '../Text';
 
 import { InputProps } from './types';
 import * as S from './styles';
+import { WarnIcon } from '../../icons/WarnIcon';
 
-export const Input: React.FC<InputProps> = ({ label, leftIcon, rightIcon, onRightIconClick, name, ...props }) => {
+export const Input: React.FC<InputProps> = ({ label, leftIcon, rightIcon, onRightIconClick, name, errorFeedback, ...props }) => {
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -34,7 +35,7 @@ export const Input: React.FC<InputProps> = ({ label, leftIcon, rightIcon, onRigh
           </Text>
         </S.LabelStyled>
       )}
-      <S.FieldBox isFocused={isFocused} >
+      <S.FieldBox isFocused={isFocused} hasError={Boolean(errorFeedback)}>
         {leftIcon && (
           <S.LeftIconContainer onClick={handleLeftIconClick}>
             {React.cloneElement(leftIcon, { size: '2.7rem' })}
@@ -57,6 +58,14 @@ export const Input: React.FC<InputProps> = ({ label, leftIcon, rightIcon, onRigh
           </S.RightIconContainer>
         )}
       </S.FieldBox>
+      {errorFeedback && (
+        <S.ErrorFeedbackContainer>
+          <WarnIcon size={18} />
+          <Text size='sm' weight='500'>
+            {errorFeedback}
+          </Text>
+        </S.ErrorFeedbackContainer>
+      )}
     </S.Container>
   );
 };
