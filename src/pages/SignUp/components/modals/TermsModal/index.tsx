@@ -1,10 +1,9 @@
-import { Overlay } from '../../../../../components/Overlay';
-import { ReactPortal } from '../../../../../components/ReactPortal';
+import { Button } from '../../../../../components/Button';
+import { Text } from '../../../../../components/Text';
+import { Modal } from '../../../../../components/Modal';
 
 import { TermsModalProps } from './types';
 import * as S from './styles';
-import { Button } from '../../../../../components/Button';
-import { Text } from '../../../../../components/Text';
 
 export const TermsModal: React.FC<TermsModalProps> = ({ isOpened }) => {
   if(!isOpened) {
@@ -12,18 +11,16 @@ export const TermsModal: React.FC<TermsModalProps> = ({ isOpened }) => {
   }
 
   return (
-    <ReactPortal containerId='modal-root'>
-      <Overlay>
-        <S.Container>
-          <S.Modal>
-            <header>
-              <h3>Termos de Serviço e Uso e etc.</h3>
-            </header>
+    <Modal>
+      <S.ContentContainer>
+        <header>
+          <h3>Termos de Serviço e Uso e etc.</h3>
+        </header>
 
-            <main>
-              <Text asChild>
-                <pre>
-                  {`Última atualização: 20 de fevereiro de 2023
+        <main>
+          <Text asChild>
+            <pre>
+              {`Última atualização: 20 de fevereiro de 2023
 
 Ao utilizar a aplicação Foto do Zinho, você concorda com os seguintes termos de serviço e uso. Leia atentamente antes de utilizar nossos serviços.
 
@@ -50,30 +47,28 @@ Ao utilizar a aplicação Foto do Zinho, você concorda com os seguintes termos 
 5.1. O Foto do Zinho não se responsabiliza por eventuais danos causados ao usuário ou a terceiros decorrentes do uso da aplicação.
 5.2. Em caso de dúvidas ou sugestões, entre em contato conosco através dos canais disponíveis na aplicação.
 Ao utilizar a aplicação Foto do Zinho, você concorda com estes termos de serviço e uso.`}
-                </pre>
-              </Text>
-            </main>
+            </pre>
+          </Text>
+        </main>
 
-            <footer>
-              <Text size='sm'>
-                Gostaria de lembrar que a aplicação passa apenas de um estudo de caso meu!
-              </Text>
-              <Text size='sm'>
-                Todos esses termos foram criados apenas como modelo de estudo no desenvolvimento da aplicação Foto do Zinho e, garanto por meio disso que a aplicação <strong>não envolve nada com dinheiro, aquisição ou consumo real de produtos</strong>. Estará bem claro ao decorrer do uso da aplicação.
-              </Text>
-              <Text size='sm'>
-                Obrigado pela vossa compreensão :)
-              </Text>
-            </footer>
+        <footer>
+          <Text size='sm'>
+                  Gostaria de lembrar que a aplicação passa apenas de um estudo de caso meu!
+          </Text>
+          <Text size='sm'>
+                  Todos esses termos foram criados apenas como modelo de estudo no desenvolvimento da aplicação Foto do Zinho e, garanto por meio disso que a aplicação <strong>não envolve nada com dinheiro, aquisição ou consumo real de produtos</strong>. Estará bem claro ao decorrer do uso da aplicação.
+          </Text>
+          <Text size='sm'>
+                  Obrigado pela vossa compreensão :)
+          </Text>
+        </footer>
 
-            <div className="actions">
-              <Button>
-                Entendido
-              </Button>
-            </div>
-          </S.Modal>
-        </S.Container>
-      </Overlay>
-    </ReactPortal>
+        <div className="actions">
+          <Button>
+                  Entendido
+          </Button>
+        </div>
+      </S.ContentContainer>
+    </Modal>
   );
 };
