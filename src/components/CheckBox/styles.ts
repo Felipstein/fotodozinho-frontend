@@ -25,6 +25,7 @@ export const CheckBoxStyled = styled.label<{ checked: boolean }>`
 
   ${({ checked }) => checked && css`
     background-color: ${({ theme }) => theme.colors.blue[400]};
+    border-color: ${({ theme }) => theme.colors.blue[400]};
 
     .check-icon {
       visibility: visible;
@@ -52,6 +53,7 @@ export const Container = styled.div<{ checked: boolean }>`
 
       ${({ checked }) => checked && css`
         background-color: ${({ theme }) => theme.colors.blue[300]};
+        border-color: ${({ theme }) => theme.colors.blue[300]};
       `};
     }
   }
