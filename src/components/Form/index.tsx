@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { HTMLInputTypeAttribute, useState } from 'react';
 
 import { Button } from '../../components/Button';
 import { CheckBox } from '../../components/CheckBox';
@@ -8,14 +8,64 @@ import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { formatPhone } from '../../utils/formatPhone';
 import { isEmailValid } from '../../utils/isEmailValid';
 
+interface Field {
+  name: string;
+  label?: string;
+  type: HTMLInputTypeAttribute;
+  placeholder?: string;
+  required: boolean;
+}
+
 export const Form: React.FC = () => {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [notifyServicesByEmail, setNotifyServicesByEmail] = useState<boolean>(false);
-  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+  const [fields, setFields] = useState<Field[]>([
+    {
+      name: 'name',
+      label: 'Nome',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'email',
+      label: 'E-mail',
+      type: 'email',
+      placeholder: 'exemplo@exemplo.com',
+      required: true,
+    },
+    {
+      name: 'phone',
+      label: 'Telefone',
+      type: 'text',
+      required: false,
+    },
+    {
+      name: 'password',
+      label: 'Senha',
+      type: 'password',
+      placeholder: 'Sua senha aqui',
+      required: true,
+    },
+    {
+      name: 'confirmPassword',
+      label: 'Confirmar senha',
+      type: 'password',
+      placeholder: 'Confirme sua senha aqui',
+      required: true,
+    },
+    {
+      name: 'notifyServicesByEmail',
+      label: 'Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.',
+      type: 'checkbox',
+      required: true,
+    },
+    {
+      name: 'acceptTerms',
+      label: 'Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.',
+      type: 'checkbox',
+      required: true,
+    },
+  ]);
+
+  const [values, setValues] = useState<>();
 
   const {
     setError,
@@ -94,6 +144,21 @@ export const Form: React.FC = () => {
 
   return (
     <form noValidate onSubmit={handleSubmit}>
+      {fields.map(field => {
+        if(field.type === 'password') {
+          return (
+            <PasswordInput
+              key={field.name}
+              label={field.required ? `${field.label} *` : field.label}
+              name={field.name}
+              placeholder={field.placeholder}
+              value={password}
+              onChange={handlePasswordChange}
+              errorFeedback={getErrorFeedback('password')}
+            />
+          );
+        }
+      })}
       <Input
         label='Nome *'
         name='name'
