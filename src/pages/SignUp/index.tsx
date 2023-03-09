@@ -26,7 +26,6 @@ export const SignUp: React.FC = () => {
       type: 'email',
       placeholder: 'exemplo@exemplo.com',
       required: true,
-      initialValue: 'test@test.test',
     },
     {
       name: 'phone',
@@ -53,7 +52,6 @@ export const SignUp: React.FC = () => {
       label: 'Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.',
       type: 'checkbox',
       required: true,
-      initialValue: true,
     },
     {
       name: 'acceptTerms',
