@@ -6,6 +6,7 @@ export interface Field {
   type: HTMLInputTypeAttribute;
   placeholder?: string;
   required: boolean;
+  initialValue?: any;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
   onRightIconClick?: () => void;

@@ -11,7 +11,13 @@ import { FormProps } from './types';
 
 export const Form: React.FC<FormProps> = ({ fields, children }) => {
   const [values, setValues] = useState<Record<string, any>>(() => {
+    const values: Record<string, any> = {};
 
+    fields.forEach(field => {
+      values[field.name] = field.initialValue ?? (field.type === 'checkbox' ? false : '');
+    });
+
+    return values;
   });
 
   const {
