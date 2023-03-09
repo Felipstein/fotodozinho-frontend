@@ -29,10 +29,20 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+
+    console.log(values);
   }
 
-  function handleInputChange(event: React.ChangeEvent) {
-    console.log(event.target);
+  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const { target } = event;
+
+    const fieldName = target.name;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+
+    setValues(prevState => ({
+      ...prevState,
+      [fieldName]: value,
+    }));
   }
 
   function handleCheckboxChange(fieldName: string, newState: boolean) {
