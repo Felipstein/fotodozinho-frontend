@@ -8,16 +8,12 @@ import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
+import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { formatPhone } from '../../utils/formatPhone';
 import { isEmailValid } from '../../utils/isEmailValid';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
-
-interface FieldErrorFeedback {
-  fieldName: string;
-  feedback: string;
-}
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -30,32 +26,14 @@ export const SignUp: React.FC = () => {
   const [notifyServicesByEmail, setNotifyServicesByEmail] = useState<boolean>(false);
   const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
 
-  const [fieldsErrors, setFieldsErrors] = useState<FieldErrorFeedback[]>([]);
+  const {
+    setError,
+    removeError,
+    getErrorFeedback,
+    hasErrors,
+  } = useFieldsErrors();
 
-  const isFormValid = (name && email && password && confirmPassword && acceptTerms) && fieldsErrors.length === 0;
-
-  function setError({ fieldName, feedback }: FieldErrorFeedback) {
-
-    setFieldsErrors(prevState => {
-      const index = prevState.findIndex(field => field.fieldName === fieldName);
-
-      if(index !== -1) {
-        prevState.splice(index, 1);
-      }
-
-      return [...prevState, { fieldName, feedback }];
-    });
-  }
-
-  function removeError(fieldName: string) {
-    setFieldsErrors(prevState => prevState.filter(field => field.fieldName !== fieldName));
-  }
-
-  function getErrorFeedback(fieldName: string) {
-    const fieldError = fieldsErrors.find(field => field.fieldName === fieldName);
-
-    return fieldError?.feedback;
-  }
+  const isFormValid = (name && email && password && confirmPassword && acceptTerms) && !hasErrors;
 
   function handleCloseModal() {
     setIsModalOpened(false);
