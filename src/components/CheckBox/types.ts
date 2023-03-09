@@ -1,6 +1,5 @@
-import { InputHTMLAttributes } from 'react';
-
-export interface CheckBoxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface CheckBoxProps  {
   label: string;
   checked?: boolean;
+  onChange?: (newState: boolean) => void;
 }

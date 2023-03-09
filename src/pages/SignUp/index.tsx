@@ -27,8 +27,12 @@ export const SignUp: React.FC = () => {
   const [phone, setPhone] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [notifyServicesByEmail, setNotifyServicesByEmail] = useState<boolean>(false);
+  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
 
   const [fieldsErrors, setFieldsErrors] = useState<FieldErrorFeedback[]>([]);
+
+  const isFormValid = (name && email && password && confirmPassword && acceptTerms) && fieldsErrors.length === 0;
 
   function setError({ fieldName, feedback }: FieldErrorFeedback) {
 
@@ -185,10 +189,14 @@ export const SignUp: React.FC = () => {
             <div className="sub-actions">
               <CheckBox
                 label='Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.'
+                checked={notifyServicesByEmail}
+                onChange={setNotifyServicesByEmail}
               />
 
               <CheckBox
                 label='Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.'
+                checked={acceptTerms}
+                onChange={setAcceptTerms}
               />
 
               <div className="label-button">
@@ -199,7 +207,12 @@ export const SignUp: React.FC = () => {
             </div>
 
             <div className="actions">
-              <Button type='submit'>Cadastrar</Button>
+              <Button
+                type='submit'
+                disabled={!isFormValid}
+              >
+                Cadastrar
+              </Button>
             </div>
           </S.FormStyled>
         </div>

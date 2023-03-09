@@ -1,14 +1,19 @@
+import { useState } from 'react';
+
 import { Text } from '../Text';
+import { CheckIcon } from '../../icons/CheckIcon';
 
 import { CheckBoxProps } from './types';
 import * as S from './styles';
-import { useState } from 'react';
-import { CheckIcon } from '../../icons/CheckIcon';
 
-export const CheckBox: React.FC<CheckBoxProps> = ({ label, checked = false }) => {
+export const CheckBox: React.FC<CheckBoxProps> = ({ label, checked = false, onChange }) => {
   const [isChecked, setIsChecked] = useState(checked);
 
   function handleToggleChecked() {
+    if(onChange) {
+      onChange(!isChecked);
+    }
+
     setIsChecked(prevState => !prevState);
   }
 
