@@ -8,6 +8,8 @@ import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
+import { formatPhone } from '../../utils/formatPhone';
+import { isEmailValid } from '../../utils/isEmailValid';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
@@ -76,6 +78,8 @@ export const SignUp: React.FC = () => {
 
     if(!value) {
       setError({ fieldName: 'email', feedback: 'E-mail é obrigatório' });
+    } else if(!isEmailValid(value)) {
+      setError({ fieldName: 'email', feedback: 'E-mail inválido' });
     } else {
       removeError('email');
     }
@@ -86,7 +90,7 @@ export const SignUp: React.FC = () => {
   function handlePhoneChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value } = event.target;
 
-    setPhone(value);
+    setPhone(formatPhone(value));
   }
 
   function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -94,6 +98,8 @@ export const SignUp: React.FC = () => {
 
     if(!value) {
       setError({ fieldName: 'password', feedback: 'Senha é obrigatória' });
+    } else if(value.length < 8) {
+      setError({ fieldName: 'password', feedback: 'Sua senha deve ter no mínimo 8 caracteres' });
     } else {
       removeError('password');
     }
@@ -106,6 +112,8 @@ export const SignUp: React.FC = () => {
 
     if(!value) {
       setError({ fieldName: 'confirmPassword', feedback: 'Confirmar senha é obrigatória' });
+    } else if(password !== value) {
+      setError({ fieldName: 'confirmPassword', feedback: 'As senhas não coincidem' });
     } else {
       removeError('confirmPassword');
     }
