@@ -45,8 +45,13 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     }));
   }
 
-  function handleCheckboxChange(fieldName: string, newState: boolean) {
+  console.log(values);
 
+  function handleCheckboxChange(fieldName: string, newState: boolean) {
+    setValues(prevState => ({
+      ...prevState,
+      [fieldName]: newState,
+    }));
   }
 
   // function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -107,6 +112,10 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
           />
         );
       })}
+
+      <Button type='submit'>
+        Enviar
+      </Button>
     </form>
   );
 };
