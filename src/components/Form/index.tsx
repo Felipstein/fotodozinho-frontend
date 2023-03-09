@@ -46,6 +46,16 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     const fieldName = target.name;
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
+    const field = fields.find(field => field.name === fieldName);
+
+    if(field && ['text', 'password', 'email'].includes(field?.type) && field.required) {
+      if(!value) {
+        setError({ fieldName, feedback: 'Campo obrigatório' });
+      } else {
+        removeError(fieldName);
+      }
+    }
+
     setFieldValue(fieldName, value);
   }
 
@@ -54,18 +64,6 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
   function handleCheckboxChange(fieldName: string, newState: boolean) {
     setFieldValue(fieldName, newState);
   }
-
-  // function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-  //   const { value } = event.target;
-
-  //   if(!value) {
-  //     setError({ fieldName: 'name', feedback: 'Nome é obrigatório' });
-  //   } else {
-  //     removeError('name');
-  //   }
-
-  //   setName(value);
-  // }
 
   return (
     <form noValidate onSubmit={handleSubmit}>
