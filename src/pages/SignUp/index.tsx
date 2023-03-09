@@ -136,7 +136,7 @@ export const SignUp: React.FC = () => {
           <S.FormStyled noValidate onSubmit={handleSubmit}>
             <div className="inputs">
               <Input
-                label='Nome'
+                label='Nome *'
                 name='name'
                 type='text'
                 value={name}
@@ -145,7 +145,7 @@ export const SignUp: React.FC = () => {
               />
 
               <Input
-                label='E-mail'
+                label='E-mail *'
                 name='email'
                 type='email'
                 placeholder='exemplo@gmail.com'
@@ -164,7 +164,7 @@ export const SignUp: React.FC = () => {
               />
 
               <PasswordInput
-                label='Senha'
+                label='Senha *'
                 name='password'
                 placeholder='Sua senha aqui'
                 value={password}
@@ -173,7 +173,7 @@ export const SignUp: React.FC = () => {
               />
 
               <PasswordInput
-                label='Confirmar senha'
+                label='Confirmar senha *'
                 name='confirmPassword'
                 placeholder='Confirme sua senha aqui'
                 value={confirmPassword}
