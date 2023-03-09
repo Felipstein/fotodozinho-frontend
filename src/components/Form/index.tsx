@@ -8,7 +8,7 @@ import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { formatPhone } from '../../utils/formatPhone';
 import { isEmailValid } from '../../utils/isEmailValid';
 
-export const SignUp: React.FC = () => {
+export const Form: React.FC = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
