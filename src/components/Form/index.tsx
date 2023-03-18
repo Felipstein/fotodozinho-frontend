@@ -67,54 +67,7 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
 
   return (
     <form noValidate onSubmit={handleSubmit}>
-      {fields.map(field => {
-        if(field.type === 'password') {
-          return (
-            <PasswordInput
-              key={field.name}
-              label={field.required ? `${field.label} *` : field.label}
-              name={field.name}
-              placeholder={field.placeholder}
-              leftIcon={field.leftIcon}
-              value={values[field.name]}
-              onChange={handleInputChange}
-              errorFeedback={getErrorFeedback(field.name)}
-            />
-          );
-        }
-
-        if(field.type === 'checkbox') {
-          return (
-            <CheckBox
-              key={field.name}
-              label={field.label}
-              name={field.name}
-              checked={values[field.name]}
-              onChange={(newState) => handleCheckboxChange(field.name, newState)}
-            />
-          );
-        }
-
-        return (
-          <Input
-            key={field.name}
-            label={field.required ? `${field.label} *` : field.label}
-            type={field.type}
-            name={field.name}
-            placeholder={field.placeholder}
-            leftIcon={field.leftIcon}
-            rightIcon={field.rightIcon}
-            onRightIconClick={field.onRightIconClick}
-            value={values[field.name]}
-            onChange={handleInputChange}
-            errorFeedback={getErrorFeedback(field.name)}
-          />
-        );
-      })}
-
-      <Button type='submit'>
-        Enviar
-      </Button>
+      {children}
     </form>
   );
 };
