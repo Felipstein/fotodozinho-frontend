@@ -1,6 +1,6 @@
 import { HTMLInputTypeAttribute, ReactElement } from 'react';
 
-export interface Field {
+export interface FieldProps {
   name: string;
   label?: string;
   type: HTMLInputTypeAttribute;

@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
-import { Field } from './Field/types';
+import { FieldProps } from './Field/types';
 
 export interface FormProps {
-  fields: Field[];
+  fields: FieldProps[];
   children: ReactNode;
 }
 

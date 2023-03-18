@@ -1,7 +1,7 @@
 import { CheckBox } from '../../CheckBox';
 import { Input } from '../../Input';
 import { PasswordInput } from '../../PasswordInput';
-import { Field as FieldProps } from './types';
+import { FieldProps } from './types';
 
 export const Field: React.FC<FieldProps> = ({
   name,
