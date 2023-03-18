@@ -2,6 +2,7 @@ import React, { isValidElement, useCallback, useMemo, useState } from 'react';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
+import { FieldSpecificer } from './FieldSpecifier';
 
 import { FormProps } from './types';
 
@@ -63,7 +64,7 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
 
     const childrensMapped = React.Children.toArray(children).map(child => {
 
-      if(isValidElement(child) && child.type === Field) {
+      if(isValidElement(child) && child.type === FieldSpecificer) {
 
         const fieldName = child.props.name;
 

@@ -4,7 +4,8 @@ import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 import { Form } from '../../components/Form';
 import { Field } from '../../components/Form/Field';
-import { Field as FieldProps } from '../../components/Form/Field/types';
+import { FieldProps } from '../../components/Form/Field/types';
+import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
@@ -81,15 +82,15 @@ export const SignUp: React.FC = () => {
         <div className="form-container">
           <Form fields={fields}>
 
-            <Field name='email' />
+            <FieldSpecificer name='email' />
 
             <Button type='submit'>
               Cadastrar
             </Button>
 
-            <Field name='acceptTerms' />
+            <FieldSpecificer name='acceptTerms' />
 
-            <Field name='password' />
+            <FieldSpecificer name='password' />
 
           </Form>
 
