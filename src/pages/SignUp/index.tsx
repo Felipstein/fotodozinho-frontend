@@ -20,14 +20,12 @@ export const SignUp: React.FC = () => {
       name: 'name',
       label: 'Nome',
       type: 'text',
-      required: true,
     },
     {
       name: 'email',
       label: 'E-mail',
       type: 'email',
       placeholder: 'exemplo@exemplo.com',
-      required: true,
     },
     {
       name: 'phone',
@@ -40,26 +38,22 @@ export const SignUp: React.FC = () => {
       label: 'Senha',
       type: 'password',
       placeholder: 'Sua senha aqui',
-      required: true,
     },
     {
       name: 'confirmPassword',
       label: 'Confirmar senha',
       type: 'password',
       placeholder: 'Confirme sua senha aqui',
-      required: true,
     },
     {
       name: 'notifyServicesByEmail',
       label: 'Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.',
       type: 'checkbox',
-      required: true,
     },
     {
       name: 'acceptTerms',
       label: 'Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.',
       type: 'checkbox',
-      required: true,
     },
     {
       name: 'phone2',

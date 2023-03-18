@@ -5,7 +5,7 @@ export interface FieldProps {
   label?: string;
   type: HTMLInputTypeAttribute;
   placeholder?: string;
-  required: boolean;
+  required?: boolean;
   value?: any;
   initialValue?: any;
   onChange?: (() => void) | any;

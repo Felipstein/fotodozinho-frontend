@@ -46,7 +46,9 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
 
     const field = fields.find(field => field.name === fieldName);
 
-    if(field && ['text', 'password', 'email'].includes(field?.type) && field.required) {
+    const isRequired = field?.required === undefined ? true : field.required;
+
+    if(field && field.type !== 'checkbox' && isRequired) {
       if(!value) {
         setError({ fieldName, feedback: 'Campo obrigatório' });
       } else {

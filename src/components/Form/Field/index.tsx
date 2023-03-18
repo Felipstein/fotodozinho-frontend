@@ -6,7 +6,7 @@ import { FieldProps } from './types';
 export const Field: React.FC<FieldProps> = ({
   name,
   type,
-  required,
+  required = true,
   placeholder,
   value,
   onChange,
