@@ -61,6 +61,11 @@ export const SignUp: React.FC = () => {
     setIsModalOpened(false);
   }
 
+  async function handleSubmit(data: Record<string, any>) {
+
+    console.log(data);
+  }
+
   return (
     <S.PageContainer>
       <TermsModal isOpened={isModalOpened} onClose={handleCloseModal} />
@@ -73,7 +78,7 @@ export const SignUp: React.FC = () => {
         </header>
 
         <div className="form-container">
-          <Form fields={fields}>
+          <Form fields={fields} onSubmit={handleSubmit}>
             <FieldSpecificer name='name' />
 
             <FieldSpecificer name='email' />

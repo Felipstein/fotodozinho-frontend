@@ -7,7 +7,7 @@ import { FieldSpecificer } from './FieldSpecifier';
 
 import { FormProps } from './types';
 
-export const Form: React.FC<FormProps> = ({ fields, children }) => {
+export const Form: React.FC<FormProps> = ({ fields, onSubmit, children }) => {
   const [values, setValues] = useState<Record<string, any>>(() => {
     const values: Record<string, any> = {};
 
@@ -25,10 +25,10 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     hasErrors,
   } = useFieldsErrors();
 
-  function handleSubmit(event: React.FormEvent) {
+  async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    console.log(values);
+    await onSubmit(values);
   }
 
   function setFieldValue(fieldName: string, value: any) {
