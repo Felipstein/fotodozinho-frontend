@@ -80,80 +80,18 @@ export const SignUp: React.FC = () => {
 
         <div className="form-container">
           <Form fields={fields}>
+            <FieldSpecificer name='name' />
 
             <FieldSpecificer name='email' />
 
-            <Button type='submit'>
-              Cadastrar
-            </Button>
-
-            <FieldSpecificer name='acceptTerms' />
-
             <FieldSpecificer name='password' />
 
-          </Form>
-
-          {/* <S.FormStyled noValidate onSubmit={handleSubmit}>
-            <div className="inputs">
-              <Input
-                label='Nome *'
-                name='name'
-                type='text'
-                value={name}
-                onChange={handleNameChange}
-                errorFeedback={getErrorFeedback('name')}
-              />
-
-              <Input
-                label='E-mail *'
-                name='email'
-                type='email'
-                placeholder='exemplo@gmail.com'
-                value={email}
-                onChange={handleEmailChange}
-                errorFeedback={getErrorFeedback('email')}
-              />
-
-              <Input
-                label='Telefone'
-                name='phone'
-                type='text'
-                value={phone}
-                onChange={handlePhoneChange}
-                errorFeedback={getErrorFeedback('phone')}
-              />
-
-              <PasswordInput
-                label='Senha *'
-                name='password'
-                placeholder='Sua senha aqui'
-                value={password}
-                onChange={handlePasswordChange}
-                errorFeedback={getErrorFeedback('password')}
-              />
-
-              <PasswordInput
-                label='Confirmar senha *'
-                name='confirmPassword'
-                placeholder='Confirme sua senha aqui'
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                errorFeedback={getErrorFeedback('confirmPassword')}
-              />
-            </div>
+            <FieldSpecificer name='confirmPassword' />
 
             <div className="sub-actions">
-              <CheckBox
-                label='Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.'
-                checked={notifyServicesByEmail}
-                onChange={setNotifyServicesByEmail}
-              />
+              <FieldSpecificer name='notifyServicesByEmail' />
 
-              <CheckBox
-                label='Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.'
-                checked={acceptTerms}
-                onChange={setAcceptTerms}
-              />
+              <FieldSpecificer name='acceptTerms' />
 
               <div className="label-button">
                 <LabelButton onClick={() => setIsModalOpened(true)}>
@@ -165,12 +103,12 @@ export const SignUp: React.FC = () => {
             <div className="actions">
               <Button
                 type='submit'
-                disabled={!isFormValid}
               >
                 Cadastrar
               </Button>
             </div>
-          </S.FormStyled> */}
+
+          </Form>
         </div>
 
         <div className="sub-actions">
