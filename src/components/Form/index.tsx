@@ -2,6 +2,7 @@ import React, { isValidElement, ReactElement, useMemo, useState } from 'react';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
+import { Field as FieldProps } from './Field/types';
 
 import { FormProps } from './types';
 
@@ -21,27 +22,7 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     removeError,
     getErrorFeedback,
     hasErrors,
-    fieldsErrors,
   } = useFieldsErrors();
-
-  const childrenMapped = useMemo(() => {
-
-    const childrensMapped = React.Children.toArray(children).map(child => {
-
-      if(isValidElement(child) && child.type === Field) {
-
-        const fieldProps = fields.find(field => field.name === child.props.name);
-
-        const fieldWithPropsInjected = React.cloneElement(child as ReactElement, { ...fieldProps });
-
-        return fieldWithPropsInjected;
-      }
-
-      return child;
-    });
-
-    return childrensMapped;
-  }, [fields, children]);
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -78,6 +59,44 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
   function handleCheckboxChange(fieldName: string, newState: boolean) {
     setFieldValue(fieldName, newState);
   }
+
+  const childrenMapped = useMemo(() => {
+
+    const childrensMapped = React.Children.toArray(children).map(child => {
+
+      if(isValidElement(child) && child.type === Field) {
+
+        const fieldName = child.props.name;
+
+        const fieldProps = fields.find(field => field.name === fieldName);
+
+        if(!fieldProps) {
+          return child;
+        }
+
+        const fieldWithPropsInjected = React.cloneElement(
+          child as ReactElement,
+          {
+            ...fieldProps,
+
+            value: values[fieldName],
+
+            onChange: fieldProps.type === 'checkbox'
+              ? (newState: boolean) => handleCheckboxChange(fieldName, newState)
+              : handleInputChange,
+
+            errorFeedback: getErrorFeedback(fieldName)
+          },
+        );
+
+        return fieldWithPropsInjected;
+      }
+
+      return child;
+    });
+
+    return childrensMapped;
+  }, [fields, values, handleInputChange, handleCheckboxChange, getErrorFeedback, children]);
 
   return (
     <form noValidate onSubmit={handleSubmit}>

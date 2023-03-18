@@ -87,6 +87,8 @@ export const SignUp: React.FC = () => {
               Cadastrar
             </Button>
 
+            <Field name='acceptTerms' />
+
             <Field name='password' />
 
           </Form>
