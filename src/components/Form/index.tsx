@@ -2,7 +2,6 @@ import React, { isValidElement, ReactElement, useCallback, useMemo, useState } f
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
-import { Field as FieldProps } from './Field/types';
 
 import { FormProps } from './types';
 
