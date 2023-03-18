@@ -8,7 +8,7 @@ export interface Field {
   required: boolean;
   value?: any;
   initialValue?: any;
-  onChange?: () => void;
+  onChange?: (() => void) | any;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
   onRightIconClick?: () => void;

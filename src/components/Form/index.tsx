@@ -73,19 +73,18 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
           return child;
         }
 
-        const fieldWithPropsInjected = React.cloneElement(
-          child as ReactElement,
-          {
-            ...fieldProps,
-
-            value: values[fieldName],
-
-            onChange: fieldProps.type === 'checkbox'
-              ? (newState: boolean) => handleCheckboxChange(fieldName, newState)
-              : handleInputChange,
-
-            errorFeedback: getErrorFeedback(fieldName)
-          },
+        const fieldWithPropsInjected = (
+          <Field
+            key={fieldName}
+            value={values[fieldName]}
+            onChange={
+              fieldProps.type === 'checkbox'
+                ? (newState: boolean) => handleCheckboxChange(fieldName, newState)
+                : handleInputChange
+            }
+            errorFeedback={getErrorFeedback(fieldName)}
+            {...fieldProps}
+          />
         );
 
         return fieldWithPropsInjected;
