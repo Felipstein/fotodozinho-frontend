@@ -3,7 +3,6 @@ import { Button } from '../../components/Button';
 
 import { Footer } from '../../components/Footer';
 import { Form } from '../../components/Form';
-import { Field } from '../../components/Form/Field';
 import { FieldProps } from '../../components/Form/Field/types';
 import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
