@@ -61,6 +61,12 @@ export const SignUp: React.FC = () => {
       type: 'checkbox',
       required: true,
     },
+    {
+      name: 'phone2',
+      label: 'Telefone 2',
+      type: 'text',
+      required: false,
+    },
   ];
 
   function handleCloseModal() {
@@ -83,6 +89,8 @@ export const SignUp: React.FC = () => {
             <FieldSpecificer name='name' />
 
             <FieldSpecificer name='email' />
+
+            <FieldSpecificer name='phone' />
 
             <FieldSpecificer name='password' />
 
