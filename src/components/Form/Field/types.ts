@@ -7,6 +7,7 @@ export interface Field {
   placeholder?: string;
   required: boolean;
   value?: any;
+  initialValue?: any;
   onChange?: () => void;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;

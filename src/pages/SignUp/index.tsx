@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Button } from '../../components/Button';
 
 import { Footer } from '../../components/Footer';
 import { Form } from '../../components/Form';
-import { Field } from '../../components/Form/types';
+import { Field } from '../../components/Form/Field';
+import { Field as FieldProps } from '../../components/Form/Field/types';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
@@ -13,7 +15,7 @@ import * as S from './styles';
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const fields: Field[] = [
+  const fields: FieldProps[] = [
     {
       name: 'name',
       label: 'Nome',
@@ -78,7 +80,15 @@ export const SignUp: React.FC = () => {
 
         <div className="form-container">
           <Form fields={fields}>
-            Test
+
+            <Field name='email' />
+
+            <Button type='submit'>
+              Cadastrar
+            </Button>
+
+            <Field name='password' />
+
           </Form>
 
           {/* <S.FormStyled noValidate onSubmit={handleSubmit}>

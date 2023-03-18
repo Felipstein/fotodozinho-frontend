@@ -1,12 +1,8 @@
-import { useState } from 'react';
+import React, { isValidElement, ReactElement, useMemo, useState } from 'react';
 
-import { Button } from '../../components/Button';
-import { CheckBox } from '../../components/CheckBox';
-import { Input } from '../../components/Input';
-import { PasswordInput } from '../../components/PasswordInput';
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
-import { formatPhone } from '../../utils/formatPhone';
-import { isEmailValid } from '../../utils/isEmailValid';
+import { Field } from './Field';
+
 import { FormProps } from './types';
 
 export const Form: React.FC<FormProps> = ({ fields, children }) => {
@@ -25,7 +21,27 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     removeError,
     getErrorFeedback,
     hasErrors,
+    fieldsErrors,
   } = useFieldsErrors();
+
+  const childrenMapped = useMemo(() => {
+
+    const childrensMapped = React.Children.toArray(children).map(child => {
+
+      if(isValidElement(child) && child.type === Field) {
+
+        const fieldProps = fields.find(field => field.name === child.props.name);
+
+        const fieldWithPropsInjected = React.cloneElement(child as ReactElement, { ...fieldProps });
+
+        return fieldWithPropsInjected;
+      }
+
+      return child;
+    });
+
+    return childrensMapped;
+  }, [fields, children]);
 
   function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
@@ -59,15 +75,13 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     setFieldValue(fieldName, value);
   }
 
-  console.log(values);
-
   function handleCheckboxChange(fieldName: string, newState: boolean) {
     setFieldValue(fieldName, newState);
   }
 
   return (
     <form noValidate onSubmit={handleSubmit}>
-      {children}
+      {childrenMapped}
     </form>
   );
 };
