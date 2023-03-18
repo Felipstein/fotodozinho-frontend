@@ -1,4 +1,4 @@
-import React, { isValidElement, ReactElement, useMemo, useState } from 'react';
+import React, { isValidElement, ReactElement, useCallback, useMemo, useState } from 'react';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
@@ -37,7 +37,7 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     }));
   }
 
-  function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+  const handleInputChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
 
     const fieldName = target.name;
@@ -54,11 +54,11 @@ export const Form: React.FC<FormProps> = ({ fields, children }) => {
     }
 
     setFieldValue(fieldName, value);
-  }
+  }, [fields, setError, removeError]);
 
-  function handleCheckboxChange(fieldName: string, newState: boolean) {
+  const handleCheckboxChange = useCallback((fieldName: string, newState: boolean) => {
     setFieldValue(fieldName, newState);
-  }
+  }, []);
 
   const childrenMapped = useMemo(() => {
 
