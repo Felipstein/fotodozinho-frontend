@@ -55,12 +55,6 @@ export const SignUp: React.FC = () => {
       label: 'Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.',
       type: 'checkbox',
     },
-    {
-      name: 'phone2',
-      label: 'Telefone 2',
-      type: 'text',
-      required: false,
-    },
   ];
 
   function handleCloseModal() {
