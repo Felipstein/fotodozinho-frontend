@@ -12,6 +12,10 @@ import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
 
+// - Sistema de validação
+// - Verificar se é possível melhorar o sistema de loading
+// - Verificar se é possível melhorar o sistema de errors no procesos de submiting
+
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
