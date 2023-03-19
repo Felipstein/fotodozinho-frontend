@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { isValidElement, ReactNode, useCallback, useMemo, useState } from 'react';
+import React, { isValidElement, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
+import { FieldProps } from './Field/types';
 import { FieldSpecificer } from './FieldSpecifier';
 
 import { FormProps } from './types';
 
-export const Form: React.FC<FormProps> = ({ fields, onSubmit, children }) => {
+export const Form: React.FC<FormProps> = ({ fields, onSubmit, onFormStatusChange, children }) => {
   const [values, setValues] = useState<Record<string, any>>(() => {
     const values: Record<string, any> = {};
 
@@ -23,7 +24,38 @@ export const Form: React.FC<FormProps> = ({ fields, onSubmit, children }) => {
     removeError,
     getErrorFeedback,
     hasErrors,
+    fieldsErrors,
   } = useFieldsErrors();
+
+  useEffect(() => {
+
+    if(onFormStatusChange) {
+      const isFormComplete = Object.entries(values).every(([key, value]) => {
+        const field = fields.find(field => field.name === key);
+
+        if(!field) {
+          return true;
+        }
+
+        if(field.type === 'checkbox') {
+          return true;
+        }
+
+        const isRequired = field.required ?? true;
+
+        if(!isRequired) {
+          return true;
+        }
+
+        return isRequired && value;
+      });
+
+      const isFormValid = isFormComplete && !hasErrors;
+
+      onFormStatusChange(isFormValid, isFormComplete, hasErrors, fieldsErrors);
+    }
+
+  }, [fields, values, onFormStatusChange, hasErrors, fieldsErrors]);
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();

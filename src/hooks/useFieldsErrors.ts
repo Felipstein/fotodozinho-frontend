@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-interface FieldErrorFeedback {
+export interface FieldErrorFeedback {
   fieldName: string;
   feedback: string;
 }

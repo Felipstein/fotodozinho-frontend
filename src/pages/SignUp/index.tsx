@@ -8,12 +8,14 @@ import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { FieldErrorFeedback } from '../../hooks/useFieldsErrors';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const fields: FieldProps[] = [
     {
@@ -66,6 +68,12 @@ export const SignUp: React.FC = () => {
     console.log(data);
   }
 
+  function handleFormStatusChange(isFormValid: boolean, isFormComplete: boolean, hasError: boolean, fieldsErrors: FieldErrorFeedback[]) {
+
+    console.log({ isFormValid, isFormComplete, hasError, fieldsErrors });
+
+  }
+
   return (
     <S.PageContainer>
       <TermsModal isOpened={isModalOpened} onClose={handleCloseModal} />
@@ -78,7 +86,7 @@ export const SignUp: React.FC = () => {
         </header>
 
         <div className="form-container">
-          <Form fields={fields} onSubmit={handleSubmit}>
+          <Form fields={fields} onSubmit={handleSubmit} onFormStatusChange={handleFormStatusChange}>
             <FieldSpecificer name='name' />
 
             <FieldSpecificer name='email' />
