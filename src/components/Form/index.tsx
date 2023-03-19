@@ -1,14 +1,26 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { isValidElement, ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  isValidElement,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
-import { FieldProps } from './Field/types';
 import { FieldSpecificer } from './FieldSpecifier';
 
 import { FormProps } from './types';
 
-export const Form: React.FC<FormProps> = ({ fields, onSubmit, onFormStatusChange, children }) => {
+export const Form: React.FC<FormProps> = ({
+  fields,
+  onSubmit,
+  onFormStatusChange,
+  children,
+  ...props
+}) => {
   const [values, setValues] = useState<Record<string, any>>(() => {
     const values: Record<string, any> = {};
 
@@ -189,7 +201,11 @@ export const Form: React.FC<FormProps> = ({ fields, onSubmit, onFormStatusChange
   }, [verifyAndMapChildrens, children]);
 
   return (
-    <form noValidate onSubmit={handleSubmit}>
+    <form
+      noValidate
+      onSubmit={handleSubmit}
+      {...props}
+    >
       {childrenMapped}
     </form>
   );

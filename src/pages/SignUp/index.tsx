@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button } from '../../components/Button';
 
+import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 import { Form } from '../../components/Form';
 import { FieldProps } from '../../components/Form/Field/types';
@@ -96,20 +96,22 @@ export const SignUp: React.FC = () => {
         </header>
 
         <div className="form-container">
-          <Form
+          <S.FormStyled
             fields={fields}
             onSubmit={handleSubmit}
             onFormStatusChange={({ isFormValid }) => setIsFormValid(isFormValid)}
           >
-            <FieldSpecificer name='name' />
+            <div className="inputs">
+              <FieldSpecificer name='name' />
 
-            <FieldSpecificer name='email' />
+              <FieldSpecificer name='email' />
 
-            <FieldSpecificer name='phone' />
+              <FieldSpecificer name='phone' />
 
-            <FieldSpecificer name='password' />
+              <FieldSpecificer name='password' />
 
-            <FieldSpecificer name='confirmPassword' />
+              <FieldSpecificer name='confirmPassword' />
+            </div>
 
             <div className="sub-actions">
               <FieldSpecificer name='notifyServicesByEmail' />
@@ -133,7 +135,7 @@ export const SignUp: React.FC = () => {
               </Button>
             </div>
 
-          </Form>
+          </S.FormStyled>
         </div>
 
         <div className="sub-actions">
