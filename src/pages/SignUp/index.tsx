@@ -13,8 +13,6 @@ import { TermsModal } from './components/modals/TermsModal';
 import * as S from './styles';
 
 // - Sistema de validação
-// - Pode ser possível com custom hooks melhorar o sistema de loading
-// - Pode ser possível com custom hooks melhorar o sistema de errors no procesos de submitting
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
