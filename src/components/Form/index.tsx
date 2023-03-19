@@ -52,7 +52,7 @@ export const Form: React.FC<FormProps> = ({ fields, onSubmit, onFormStatusChange
 
       const isFormValid = isFormComplete && !hasErrors;
 
-      onFormStatusChange(isFormValid, isFormComplete, hasErrors, fieldsErrors);
+      onFormStatusChange({ isFormValid, isFormComplete, hasErrors, fieldsErrors });
     }
 
   }, [fields, values, onFormStatusChange, hasErrors, fieldsErrors]);

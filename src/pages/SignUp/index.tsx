@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer';
 import { Form } from '../../components/Form';
 import { FieldProps } from '../../components/Form/Field/types';
 import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
+import { FormStatus } from '../../components/Form/types';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
@@ -68,12 +69,6 @@ export const SignUp: React.FC = () => {
     console.log(data);
   }
 
-  function handleFormStatusChange(isFormValid: boolean, isFormComplete: boolean, hasError: boolean, fieldsErrors: FieldErrorFeedback[]) {
-
-    console.log({ isFormValid, isFormComplete, hasError, fieldsErrors });
-
-  }
-
   return (
     <S.PageContainer>
       <TermsModal isOpened={isModalOpened} onClose={handleCloseModal} />
@@ -86,7 +81,11 @@ export const SignUp: React.FC = () => {
         </header>
 
         <div className="form-container">
-          <Form fields={fields} onSubmit={handleSubmit} onFormStatusChange={handleFormStatusChange}>
+          <Form
+            fields={fields}
+            onSubmit={handleSubmit}
+            onFormStatusChange={({ isFormValid }) => setIsFormValid(isFormValid)}
+          >
             <FieldSpecificer name='name' />
 
             <FieldSpecificer name='email' />
@@ -112,6 +111,7 @@ export const SignUp: React.FC = () => {
             <div className="actions">
               <Button
                 type='submit'
+                disabled={!isFormValid}
               >
                 Cadastrar
               </Button>
