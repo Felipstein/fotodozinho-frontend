@@ -8,7 +8,7 @@ export interface ButtonProps {
   variant?: ButtonVariants;
   danger?: boolean;
   disabled?: boolean;
-  loading?: boolean;
+  isLoading?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
   to?: string;
   width?: string;

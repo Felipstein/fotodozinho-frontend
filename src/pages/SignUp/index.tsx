@@ -13,12 +13,15 @@ import { TermsModal } from './components/modals/TermsModal';
 import * as S from './styles';
 
 // - Sistema de validação
-// - Verificar se é possível melhorar o sistema de loading
-// - Verificar se é possível melhorar o sistema de errors no procesos de submiting
+// - Pode ser possível com custom hooks melhorar o sistema de loading
+// - Pode ser possível com custom hooks melhorar o sistema de errors no procesos de submitting
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState<string | null>(null);
 
   const fields: FieldProps[] = [
     {
@@ -68,7 +71,19 @@ export const SignUp: React.FC = () => {
 
   async function handleSubmit(data: Record<string, any>) {
 
-    console.log(data);
+    try {
+      setIsSubmitting(true);
+      setSubmittingError(null);
+
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      throw new Error('Falha ao logar: motivo desconhecido');
+
+    } catch (err: Error | any) {
+      setSubmittingError(err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+
   }
 
   return (
@@ -114,6 +129,7 @@ export const SignUp: React.FC = () => {
               <Button
                 type='submit'
                 disabled={!isFormValid}
+                isLoading={isSubmitting}
               >
                 Cadastrar
               </Button>
@@ -126,7 +142,14 @@ export const SignUp: React.FC = () => {
           <LabelButton $isBlueVariant to='/login'>
             Já possuo uma conta
           </LabelButton>
+
+          <Text style={{ color: 'red' }} asChild>
+            <p>
+              {submittingError}
+            </p>
+          </Text>
         </div>
+
       </S.Container>
       <Footer />
     </S.PageContainer>

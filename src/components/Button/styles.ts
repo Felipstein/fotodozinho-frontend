@@ -80,7 +80,7 @@ export const BaseStyles = css<ButtonProps>`
     cursor: default;
   }
 
-  ${({ loading }) => loading && css`
+  ${({ isLoading }) => isLoading && css`
     .content-container {
       visibility: hidden;
     }
