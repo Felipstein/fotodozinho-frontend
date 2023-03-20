@@ -39,11 +39,14 @@ export const SignIn: React.FC = () => {
   ];
 
   async function handleSubmit(data: Record<string, any>) {
-    setIsSubmitting(true);
-    console.log(data);
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      setIsSubmitting(true);
+      console.log(data);
+      await new Promise(resolve => setTimeout(resolve, 2000));
 
-    setIsSubmitting(false);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (

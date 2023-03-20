@@ -17,7 +17,6 @@ export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submittingError, setSubmittingError] = useState<string | null>(null);
 
   const {
     isFormValid,
@@ -97,13 +96,10 @@ export const SignUp: React.FC = () => {
 
     try {
       setIsSubmitting(true);
-      setSubmittingError(null);
 
       await new Promise(resolve => setTimeout(resolve, 1500));
       throw new Error('Falha ao logar: motivo desconhecido');
 
-    } catch (err: Error | any) {
-      setSubmittingError(err.message);
     } finally {
       setIsSubmitting(false);
     }
@@ -169,12 +165,6 @@ export const SignUp: React.FC = () => {
           <LabelButton $isBlueVariant to='/login'>
             Já possuo uma conta
           </LabelButton>
-
-          <Text style={{ color: 'red' }} asChild>
-            <p>
-              {submittingError}
-            </p>
-          </Text>
         </div>
 
       </S.Container>
