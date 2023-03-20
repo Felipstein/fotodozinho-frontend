@@ -15,7 +15,12 @@ export function App() {
     <ThemeProvider theme={_default}>
       <GlobalStyles />
       <LoaderProvider>
-        <ToastContainer />
+        <ToastContainer
+          position='bottom-center'
+          pauseOnHover={false}
+          theme='colored'
+          hideProgressBar
+        />
         <BrowserRouter>
           <Routes />
         </BrowserRouter>
