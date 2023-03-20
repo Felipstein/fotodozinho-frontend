@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import { Container as CheckBoxContainer } from '../../components/CheckBox/styles';
+import { Form } from '../../components/Form';
 
 export const PageContainer = styled.div`
   display: flex;
@@ -45,7 +46,8 @@ export const Container = styled.div`
   }
 `;
 
-export const FormStyled = styled.form`
+export const FormStyled = styled(Form)`
+
   display: flex;
   flex-direction: column;
 

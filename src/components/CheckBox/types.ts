@@ -1,5 +1,8 @@
+export type CheckBoxOnChange = (newState: boolean) => void;
+
 export interface CheckBoxProps  {
-  label: string;
+  name?: string;
+  label?: string;
   checked?: boolean;
-  onChange?: (newState: boolean) => void;
+  onChange?: CheckBoxOnChange;
 }

@@ -1,16 +1,14 @@
 import { useState } from 'react';
 
 import { Button } from '../../components/Button';
-import { CheckBox } from '../../components/CheckBox';
 import { Footer } from '../../components/Footer';
-import { Input } from '../../components/Input';
+import { FieldProps } from '../../components/Form/Field/types';
+import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
-import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
-import { useFieldsErrors } from '../../hooks/useFieldsErrors';
+import { useFormStatus } from '../../hooks/useFormStatus';
 import { formatPhone } from '../../utils/formatPhone';
-import { isEmailValid } from '../../utils/isEmailValid';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
@@ -18,89 +16,98 @@ import * as S from './styles';
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [confirmPassword, setConfirmPassword] = useState<string>('');
-  const [notifyServicesByEmail, setNotifyServicesByEmail] = useState<boolean>(false);
-  const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submittingError, setSubmittingError] = useState<string | null>(null);
 
   const {
-    setError,
-    removeError,
-    getErrorFeedback,
-    hasErrors,
-  } = useFieldsErrors();
+    isFormValid,
+    handleFormStatusChange,
+  } = useFormStatus();
 
-  const isFormValid = (name && email && password && confirmPassword && acceptTerms) && !hasErrors;
+  const fields: FieldProps[] = [
+    {
+      name: 'name',
+      label: 'Nome',
+      type: 'text',
+    },
+    {
+      name: 'email',
+      label: 'E-mail',
+      type: 'email',
+      placeholder: 'exemplo@exemplo.com',
+      validator: {
+        matchesRegex: {
+          value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          errorFeedback: 'E-mail inválido',
+        },
+      },
+    },
+    {
+      name: 'phone',
+      label: 'Telefone',
+      type: 'text',
+      required: false,
+      mask: formatPhone,
+    },
+    {
+      name: 'password',
+      label: 'Senha',
+      type: 'password',
+      placeholder: 'Sua senha aqui',
+      validator: {
+        matchesRegex: {
+          value: /^(?=.*\d)(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
+          errorFeedback: 'Sua senha deve possuir pelo menos 1 número, 1 letra maiúscula e 1 símbolo',
+        },
+        minLength: {
+          value: 8,
+          errorFeedback: 'Sua senha deve possuir no mínimo 8 caracteres',
+        },
+      },
+    },
+    {
+      name: 'confirmPassword',
+      label: 'Confirmar senha',
+      type: 'password',
+      placeholder: 'Confirme sua senha aqui',
+      validator: {
+        byContext: {
+          value: ({ password }, confirmPassword) => password === confirmPassword,
+          errorFeedback: 'As senhas não coincidem',
+        },
+      },
+    },
+    {
+      name: 'notifyServicesByEmail',
+      label: 'Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.',
+      type: 'checkbox',
+    },
+    {
+      name: 'acceptTerms',
+      label: 'Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.',
+      type: 'checkbox',
+    },
+  ];
 
   function handleCloseModal() {
     setIsModalOpened(false);
   }
 
-  function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
-  }
+  async function handleSubmit(data: Record<string, any>) {
 
-  function handleNameChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
+    try {
+      setIsSubmitting(true);
+      setSubmittingError(null);
 
-    if(!value) {
-      setError({ fieldName: 'name', feedback: 'Nome é obrigatório' });
-    } else {
-      removeError('name');
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      throw new Error('Falha ao logar: motivo desconhecido');
+
+    } catch (err: Error | any) {
+      setSubmittingError(err.message);
+    } finally {
+      setIsSubmitting(false);
     }
 
-    setName(value);
-  }
-
-  function handleEmailChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-
-    if(!value) {
-      setError({ fieldName: 'email', feedback: 'E-mail é obrigatório' });
-    } else if(!isEmailValid(value)) {
-      setError({ fieldName: 'email', feedback: 'E-mail inválido' });
-    } else {
-      removeError('email');
-    }
-
-    setEmail(value);
-  }
-
-  function handlePhoneChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-
-    setPhone(formatPhone(value));
-  }
-
-  function handlePasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-
-    if(!value) {
-      setError({ fieldName: 'password', feedback: 'Senha é obrigatória' });
-    } else if(value.length < 8) {
-      setError({ fieldName: 'password', feedback: 'Sua senha deve ter no mínimo 8 caracteres' });
-    } else {
-      removeError('password');
-    }
-
-    setPassword(value);
-  }
-
-  function handleConfirmPasswordChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const { value } = event.target;
-
-    if(!value) {
-      setError({ fieldName: 'confirmPassword', feedback: 'Confirmar senha é obrigatória' });
-    } else if(password !== value) {
-      setError({ fieldName: 'confirmPassword', feedback: 'As senhas não coincidem' });
-    } else {
-      removeError('confirmPassword');
-    }
-
-    setConfirmPassword(value);
   }
 
   return (
@@ -115,67 +122,28 @@ export const SignUp: React.FC = () => {
         </header>
 
         <div className="form-container">
-          <S.FormStyled noValidate onSubmit={handleSubmit}>
+          <S.FormStyled
+            fields={fields}
+            onSubmit={handleSubmit}
+            onFormStatusChange={handleFormStatusChange}
+          >
+
             <div className="inputs">
-              <Input
-                label='Nome *'
-                name='name'
-                type='text'
-                value={name}
-                onChange={handleNameChange}
-                errorFeedback={getErrorFeedback('name')}
-              />
+              <FieldSpecificer name='name' />
 
-              <Input
-                label='E-mail *'
-                name='email'
-                type='email'
-                placeholder='exemplo@gmail.com'
-                value={email}
-                onChange={handleEmailChange}
-                errorFeedback={getErrorFeedback('email')}
-              />
+              <FieldSpecificer name='email' />
 
-              <Input
-                label='Telefone'
-                name='phone'
-                type='text'
-                value={phone}
-                onChange={handlePhoneChange}
-                errorFeedback={getErrorFeedback('phone')}
-              />
+              <FieldSpecificer name='phone' />
 
-              <PasswordInput
-                label='Senha *'
-                name='password'
-                placeholder='Sua senha aqui'
-                value={password}
-                onChange={handlePasswordChange}
-                errorFeedback={getErrorFeedback('password')}
-              />
+              <FieldSpecificer name='password' />
 
-              <PasswordInput
-                label='Confirmar senha *'
-                name='confirmPassword'
-                placeholder='Confirme sua senha aqui'
-                value={confirmPassword}
-                onChange={handleConfirmPasswordChange}
-                errorFeedback={getErrorFeedback('confirmPassword')}
-              />
+              <FieldSpecificer name='confirmPassword' />
             </div>
 
             <div className="sub-actions">
-              <CheckBox
-                label='Desejo ser notificado por e-mail sobre as atualizações dos meus serviços e pedidos.'
-                checked={notifyServicesByEmail}
-                onChange={setNotifyServicesByEmail}
-              />
+              <FieldSpecificer name='notifyServicesByEmail' />
 
-              <CheckBox
-                label='Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.'
-                checked={acceptTerms}
-                onChange={setAcceptTerms}
-              />
+              <FieldSpecificer name='acceptTerms' />
 
               <div className="label-button">
                 <LabelButton onClick={() => setIsModalOpened(true)}>
@@ -188,10 +156,12 @@ export const SignUp: React.FC = () => {
               <Button
                 type='submit'
                 disabled={!isFormValid}
+                isLoading={isSubmitting}
               >
                 Cadastrar
               </Button>
             </div>
+
           </S.FormStyled>
         </div>
 
@@ -199,7 +169,14 @@ export const SignUp: React.FC = () => {
           <LabelButton $isBlueVariant to='/login'>
             Já possuo uma conta
           </LabelButton>
+
+          <Text style={{ color: 'red' }} asChild>
+            <p>
+              {submittingError}
+            </p>
+          </Text>
         </div>
+
       </S.Container>
       <Footer />
     </S.PageContainer>

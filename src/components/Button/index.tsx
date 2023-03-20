@@ -1,16 +1,16 @@
 import { ClickableScale } from '../shared/ClickableScale';
+import { LinkTarget, targetMapper } from '../../shared/LinkTarget';
 import { Loading } from '../Loading';
 
 import { ButtonProps } from './types';
 import * as S from './styles';
-import { LinkTarget, targetMapper } from '../../shared/LinkTarget';
 
 export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   variant,
   danger,
   disabled,
-  loading,
+  isLoading,
   width,
   height = '4.6rem',
   onClick,
@@ -19,13 +19,13 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   if(['button', 'submit'].includes(type) || to === undefined) {
     return (
-      <ClickableScale disabled={disabled || loading}>
+      <ClickableScale disabled={disabled || isLoading}>
         <S.ButtonStyled
           type={type as 'button' | 'submit'}
           variant={variant}
           danger={danger}
-          disabled={disabled || loading}
-          loading={loading}
+          disabled={disabled || isLoading}
+          isLoading={isLoading}
           width={width}
           height={height}
           onClick={onClick}
@@ -33,7 +33,7 @@ export const Button: React.FC<ButtonProps> = ({
           <div className="content-container">
             {children}
           </div>
-          {loading && (
+          {isLoading && (
             <div className="loading-container">
               <Loading />
             </div>
@@ -44,13 +44,13 @@ export const Button: React.FC<ButtonProps> = ({
   }
 
   return (
-    <ClickableScale disabled={disabled || loading}>
+    <ClickableScale disabled={disabled || isLoading}>
       <S.LinkStyled
         type={type}
         variant={variant}
         danger={danger}
-        disabled={disabled || loading}
-        loading={loading}
+        disabled={disabled || isLoading}
+        isLoading={isLoading}
         width={width}
         height={height}
         onClick={onClick}
@@ -60,7 +60,7 @@ export const Button: React.FC<ButtonProps> = ({
         <div className="content-container">
           {children}
         </div>
-        {loading && (
+        {isLoading && (
           <div className="loading-container">
             <Loading />
           </div>
