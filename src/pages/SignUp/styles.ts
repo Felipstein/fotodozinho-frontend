@@ -55,7 +55,6 @@ export const FormStyled = styled(Form)`
 
   .inputs {
     background-color: red;
-    height: 10px;
 
     display: flex;
     flex-direction: column;

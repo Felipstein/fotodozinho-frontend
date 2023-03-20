@@ -100,6 +100,7 @@ export const SignUp: React.FC = () => {
             onSubmit={handleSubmit}
             onFormStatusChange={({ isFormValid }) => setIsFormValid(isFormValid)}
           >
+
             <div className="inputs">
               <FieldSpecificer name='name' />
 

@@ -107,98 +107,82 @@ export const Form: React.FC<FormProps> = ({
     setFieldValue(fieldName, newState);
   }, []);
 
-  const verifyAndMapChildrens = useCallback((childrens: (string | number | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal)[]) => {
+  const createFieldBasedOnName = useCallback((fieldName: string) => {
 
-    const childrensMapped = childrens.map(child => {
+    const fieldProps = fields.find(field => field.name === fieldName);
 
-      if(isValidElement(child)) {
-        if(child.type === FieldSpecificer) {
+    if(!fieldProps) {
+      return (
+        <Field
+          key={fieldName}
+          name={fieldName}
+          type='text'
+          required={false}
+        />
+      );
+    }
 
-          const fieldName = child.props.name;
-
-          const fieldProps = fields.find(field => field.name === fieldName);
-
-          if(!fieldProps) {
-            return (
-              <Field
-                key={fieldName}
-                name={fieldName}
-                type='text'
-                required={false}
-              />
-            );
-          }
-
-          const fieldWithPropsInjected = (
-            <Field
-              key={fieldName}
-              value={values[fieldName]}
-              onChange={
-                fieldProps.type === 'checkbox'
-                  ? (newState: boolean) => handleCheckboxChange(fieldName, newState)
-                  : handleInputChange
-              }
-              errorFeedback={getErrorFeedback(fieldName)}
-              {...fieldProps}
-            />
-          );
-
-          return fieldWithPropsInjected;
+    const fieldWithPropsInjected = (
+      <Field
+        key={fieldName}
+        value={values[fieldName]}
+        onChange={
+          fieldProps.type === 'checkbox'
+            ? (newState: boolean) => handleCheckboxChange(fieldName, newState)
+            : handleInputChange
         }
+        errorFeedback={getErrorFeedback(fieldName)}
+        {...fieldProps}
+      />
+    );
 
-        const childrenOfChild = child.props?.children;
+    return fieldWithPropsInjected;
 
-
-        if(childrenOfChild?.type === FieldSpecificer) {
-          const fieldName = childrenOfChild.props.name;
-
-          const fieldProps = fields.find(field => field.name === fieldName);
-
-          if(!fieldProps) {
-            return (
-              <Field
-                key={fieldName}
-                name={fieldName}
-                label={fieldName}
-                type='text'
-                required={false}
-              />
-            );
-          }
-
-          const fieldWithPropsInjected = (
-            <Field
-              key={fieldName}
-              value={values[fieldName]}
-              onChange={
-                fieldProps.type === 'checkbox'
-                  ? (newState: boolean) => handleCheckboxChange(fieldName, newState)
-                  : handleInputChange
-              }
-              errorFeedback={getErrorFeedback(fieldName)}
-              {...fieldProps}
-            />
-          );
-
-          return fieldWithPropsInjected;
-        }
-
-        if(Array.isArray(childrenOfChild)) {
-          return verifyAndMapChildrens(childrenOfChild);
-        }
-      }
-
-      return child;
-    }) as ReactNode;
-
-    return childrensMapped;
   }, [fields, values, handleInputChange, handleCheckboxChange, getErrorFeedback]);
 
-  const childrenMapped = useMemo(() => {
-    const childrens = React.Children.toArray(children);
+  const verifyAndMapOneChildren = useCallback((children: ReactNode) => {
 
-    return verifyAndMapChildrens(childrens);
-  }, [verifyAndMapChildrens, children]);
+    if(isValidElement(children) && children.type === FieldSpecificer) {
+
+      const fieldName = children.props.name;
+
+      const fieldWithPropsInjected = createFieldBasedOnName(fieldName);
+
+      return fieldWithPropsInjected;
+
+    }
+
+    return children;
+  }, [createFieldBasedOnName]);
+
+  const verifyAndMapArrayOfChildrens = useCallback((childrens: ReactNode[]) => {
+
+
+    return childrens.map(children => {
+
+      if(isValidElement(children)) {
+
+        if(children.props?.children?.length > 1) {
+          return verifyAndMapArrayOfChildrens(children.props.children);
+        }
+
+        return verifyAndMapOneChildren(children);
+      }
+
+      return children;
+    });
+
+  }, [verifyAndMapOneChildren]);
+
+  const childrenMapped = useMemo(() => {
+
+    if(React.Children.count(children) > 1) {
+      return verifyAndMapArrayOfChildrens(React.Children.toArray(children));
+    }
+
+    return verifyAndMapOneChildren(children);
+
+  }, [children, verifyAndMapOneChildren, verifyAndMapArrayOfChildrens]);
 
   return (
     <form
