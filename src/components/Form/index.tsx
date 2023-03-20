@@ -10,7 +10,6 @@ import React, {
   useState,
 } from 'react';
 import { toast } from 'react-toastify';
-import { APIError } from '../../errors/APIError';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
@@ -99,7 +98,7 @@ export const Form: React.FC<FormProps> = ({
 
     try {
       await onSubmit(values);
-    } catch (err: APIError | Error | any) {
+    } catch (err: Error | any) {
       toast.error(err.message || 'Houve um problema desconhecido no processo do login. Por favor, entre em contato conosco.');
     }
   }
