@@ -33,7 +33,7 @@ export const Form: React.FC<FormProps> = ({
     return values;
   });
 
-  const [masks, setMasks] = useState<Record<string, Masker>>(() => {
+  const [masks] = useState<Record<string, Masker>>(() => {
     const masks: Record<string, Masker> = {};
 
     fields.filter(field => !!field.mask).forEach(field => {
