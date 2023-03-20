@@ -54,8 +54,6 @@ export const FormStyled = styled(Form)`
   max-width: 100%;
 
   .inputs {
-    background-color: red;
-
     display: flex;
     flex-direction: column;
     gap: 1.6rem;

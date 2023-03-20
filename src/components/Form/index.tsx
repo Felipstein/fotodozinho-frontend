@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, {
   isValidElement,
+  ReactElement,
   ReactNode,
   useCallback,
   useEffect,
@@ -140,49 +141,29 @@ export const Form: React.FC<FormProps> = ({
 
   }, [fields, values, handleInputChange, handleCheckboxChange, getErrorFeedback]);
 
-  const verifyAndMapOneChildren = useCallback((children: ReactNode) => {
+  const mapChildren = useCallback((children: ReactNode): ReactNode => {
+    return React.Children.map(children, (child) => {
 
-    if(isValidElement(children) && children.type === FieldSpecificer) {
+      if(isValidElement(child)) {
 
-      const fieldName = children.props.name;
+        if(child.type === FieldSpecificer) {
+          const fieldName = child.props.name;
 
-      const fieldWithPropsInjected = createFieldBasedOnName(fieldName);
-
-      return fieldWithPropsInjected;
-
-    }
-
-    return children;
-  }, [createFieldBasedOnName]);
-
-  const verifyAndMapArrayOfChildrens = useCallback((childrens: ReactNode[]) => {
-
-
-    return childrens.map(children => {
-
-      if(isValidElement(children)) {
-
-        if(children.props?.children?.length > 1) {
-          return verifyAndMapArrayOfChildrens(children.props.children);
+          return createFieldBasedOnName(fieldName);
         }
 
-        return verifyAndMapOneChildren(children);
+        if(child.props?.children) {
+          return React.cloneElement(child as ReactElement, {
+            children: mapChildren(child.props.children),
+          });
+        }
       }
 
-      return children;
+      return child;
     });
+  }, [createFieldBasedOnName]);
 
-  }, [verifyAndMapOneChildren]);
-
-  const childrenMapped = useMemo(() => {
-
-    if(React.Children.count(children) > 1) {
-      return verifyAndMapArrayOfChildrens(React.Children.toArray(children));
-    }
-
-    return verifyAndMapOneChildren(children);
-
-  }, [children, verifyAndMapOneChildren, verifyAndMapArrayOfChildrens]);
+  const childrenMapped = useMemo(() => mapChildren(children), [children, mapChildren]);
 
   return (
     <form
