@@ -7,6 +7,7 @@ import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { formatPhone } from '../../utils/formatPhone';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
@@ -35,6 +36,7 @@ export const SignUp: React.FC = () => {
       label: 'Telefone',
       type: 'text',
       required: false,
+      mask: formatPhone,
     },
     {
       name: 'password',

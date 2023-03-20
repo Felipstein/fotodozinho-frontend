@@ -11,6 +11,7 @@ import React, {
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
+import { Masker } from './Field/types';
 import { FieldSpecificer } from './FieldSpecifier';
 
 import { FormProps } from './types';
@@ -30,6 +31,17 @@ export const Form: React.FC<FormProps> = ({
     });
 
     return values;
+  });
+
+  const [masks, setMasks] = useState<Record<string, Masker>>(() => {
+    const masks: Record<string, Masker> = {};
+
+    fields.filter(field => !!field.mask).forEach(field => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      masks[field.name] = field.mask!;
+    });
+
+    return masks;
   });
 
   const {
@@ -101,8 +113,17 @@ export const Form: React.FC<FormProps> = ({
       }
     }
 
-    setFieldValue(fieldName, value);
-  }, [fields, setError, removeError]);
+    let finalValue = value;
+
+    const masker = masks[fieldName];
+
+    if(masker && typeof finalValue === 'string') {
+
+      finalValue = masker(finalValue);
+    }
+
+    setFieldValue(fieldName, finalValue);
+  }, [fields, masks, setError, removeError]);
 
   const handleCheckboxChange = useCallback((fieldName: string, newState: boolean) => {
     setFieldValue(fieldName, newState);

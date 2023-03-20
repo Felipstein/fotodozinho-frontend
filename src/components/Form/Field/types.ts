@@ -4,6 +4,7 @@ export interface FieldProps {
   name: string;
   label?: string;
   type: HTMLInputTypeAttribute;
+  mask?: Masker;
   placeholder?: string;
   required?: boolean;
   value?: any;
@@ -14,3 +15,5 @@ export interface FieldProps {
   onRightIconClick?: () => void;
   errorFeedback?: string;
 }
+
+export type Masker = (value: string) => string;
