@@ -5,7 +5,7 @@ import { Loading } from '../../components/Loading';
 import { SimpleHeader } from '../../components/SimpleHeader';
 import { Text } from '../../components/Text';
 import { useService } from '../../hooks/useService';
-import { printPriceService } from '../../services/print-prices';
+import { printPriceService } from '../../services/print-prices.service';
 import { PrintPrice } from '../../types/PrintPrice';
 import { PricesList } from './components/PricesList';
 

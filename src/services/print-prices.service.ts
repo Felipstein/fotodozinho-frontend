@@ -1,5 +1,5 @@
 import { PrintPrice } from '../types/PrintPrice';
-import { api } from './api';
+import { api } from './api.service';
 
 class PrintPriceService {
 
