@@ -19,10 +19,15 @@ export interface FieldProps {
 
 export type Masker = (value: string) => string;
 
+export interface ValidatorType<T> {
+  value: T;
+  errorFeedback?: string;
+}
+
 export interface Validator {
-  min?: number;
-  max?: number;
-  minLength?: number;
-  maxLength?: number;
-  matchesRegex?: RegExp;
+  min?: ValidatorType<number>;
+  max?: ValidatorType<number>;
+  minLength?: ValidatorType<number>;
+  maxLength?: ValidatorType<number>;
+  matchesRegex?: ValidatorType<RegExp>;
 }

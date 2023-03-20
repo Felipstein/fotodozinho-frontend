@@ -134,34 +134,55 @@ export const Form: React.FC<FormProps> = ({
         if(validator) {
 
           if(typeof value === 'number') {
-            if(validator.max != undefined && value > validator.max) {
-              setError({ fieldName, feedback: `Valor máximo (${validator.max}) excedido` });
+
+            if(validator.max != undefined && value > validator.max.value) {
+              setError({
+                fieldName,
+                feedback: validator.max.errorFeedback || `Valor máximo (${validator.max}) excedido`,
+              });
+
               noErrorsFound = false;
               break label;
             }
 
             if(validator.min != undefined && value < validator.min) {
-              setError({ fieldName, feedback: `Valor mínimo (${validator.max}) excedido` });
+              setError({
+                fieldName,
+                feedback: validator.min.errorFeedback || `Valor mínimo (${validator.max}) excedido`,
+              });
+
               noErrorsFound = false;
               break label;
             }
           }
 
           if(typeof value === 'string') {
-            if(validator.maxLength != undefined && value.length > validator.maxLength) {
-              setError({ fieldName, feedback: `Tamanho máximo de caracteres (${validator.max}) excedido` });
+            if(validator.maxLength != undefined && value.length > validator.maxLength.value) {
+              setError({
+                fieldName,
+                feedback: validator.maxLength.errorFeedback || `Tamanho máximo de caracteres (${validator.max}) excedido`,
+              });
+
               noErrorsFound = false;
               break label;
             }
 
-            if(validator.minLength != undefined && value.length < validator.minLength) {
-              setError({ fieldName, feedback: `Tamanho mínimo de caracteres (${validator.max}) excedido` });
+            if(validator.minLength != undefined && value.length < validator.minLength.value) {
+              setError({
+                fieldName,
+                feedback: validator.minLength.errorFeedback || `Tamanho mínimo de caracteres (${validator.max}) excedido`,
+              });
+
               noErrorsFound = false;
               break label;
             }
 
-            if(validator.matchesRegex && !validator.matchesRegex.test(value)) {
-              setError({ fieldName, feedback: 'Formato inválido' });
+            if(validator.matchesRegex && !validator.matchesRegex.value.test(value)) {
+              setError({
+                fieldName,
+                feedback: validator.matchesRegex.errorFeedback || 'Formato inválido',
+              });
+
               noErrorsFound = false;
               break label;
             }
