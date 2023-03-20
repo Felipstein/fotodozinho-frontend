@@ -1,3 +1,5 @@
+import { User } from './User';
+
 export interface LoginInRequest {
   email: string;
   password: string;
@@ -14,7 +16,7 @@ export interface SignUpRequest {
   acceptedTermsAndConditions: boolean;
 }
 
-export interface SignOuRequest {
+export interface SignOutRequest {
   userId: string;
   tokenRequesting: string;
 }
@@ -25,5 +27,21 @@ export interface VerifyTokenRequest {
 }
 
 export interface GenerateNewTokenRequest {
+  refreshToken: string;
+}
+
+export interface LogInResponse {
+  user: User;
+  token: string;
+  refreshToken: string | null;
+}
+
+export interface VerifyTokenResponse {
+  user: User;
+  token: string;
+}
+
+export interface GenerateNewTokenResponse {
+  token: string;
   refreshToken: string;
 }
