@@ -50,9 +50,13 @@ export const SignUp: React.FC = () => {
       type: 'password',
       placeholder: 'Sua senha aqui',
       validator: {
+        matchesRegex: {
+          value: /^(?=.*\d)(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
+          errorFeedback: 'Sua senha deve possuir pelo menos 1 número, 1 letra maiúscula e 1 símbolo',
+        },
         minLength: {
           value: 8,
-          errorFeedback: 'Sua senha deve possuir no mínimo 8 caracteres'
+          errorFeedback: 'Sua senha deve possuir no mínimo 8 caracteres',
         },
       },
     },
