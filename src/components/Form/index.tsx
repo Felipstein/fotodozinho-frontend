@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import React, {
   isValidElement,
@@ -11,7 +12,7 @@ import React, {
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
-import { Masker } from './Field/types';
+import { Masker, Validator } from './Field/types';
 import { FieldSpecificer } from './FieldSpecifier';
 
 import { FormProps } from './types';
@@ -37,11 +38,20 @@ export const Form: React.FC<FormProps> = ({
     const masks: Record<string, Masker> = {};
 
     fields.filter(field => !!field.mask).forEach(field => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       masks[field.name] = field.mask!;
     });
 
     return masks;
+  });
+
+  const [validators] = useState<Record<string, Validator>>(() => {
+    const validators: Record<string, Validator> = {};
+
+    fields.filter(field => !!field.validator).forEach(field => {
+      validators[field.name] = field.validator!;
+    });
+
+    return validators;
   });
 
   const {
@@ -103,27 +113,74 @@ export const Form: React.FC<FormProps> = ({
 
     const field = fields.find(field => field.name === fieldName);
 
-    const isRequired = field?.required === undefined ? true : field.required;
+    let finalValue = value;
 
-    if(field && field.type !== 'checkbox' && isRequired) {
-      if(!value) {
-        setError({ fieldName, feedback: 'Campo obrigatório' });
-      } else {
+    if(field?.type !== 'checkbox') {
+
+      const isRequired = field?.required === undefined ? true : field.required;
+
+      const validator = validators[fieldName];
+
+      let noErrorsFound = true;
+
+      label: {
+
+        if(isRequired && !value) {
+          setError({ fieldName, feedback: 'Campo obrigatório' });
+          noErrorsFound = false;
+          break label;
+        }
+
+        if(validator) {
+
+          if(typeof value === 'number') {
+            if(validator.max != undefined && value > validator.max) {
+              setError({ fieldName, feedback: `Valor máximo (${validator.max}) excedido` });
+              noErrorsFound = false;
+              break label;
+            }
+
+            if(validator.min != undefined && value < validator.min) {
+              setError({ fieldName, feedback: `Valor mínimo (${validator.max}) excedido` });
+              noErrorsFound = false;
+              break label;
+            }
+          }
+
+          if(typeof value === 'string') {
+            if(validator.maxLength != undefined && value.length > validator.maxLength) {
+              setError({ fieldName, feedback: `Tamanho máximo de caracteres (${validator.max}) excedido` });
+              noErrorsFound = false;
+              break label;
+            }
+
+            if(validator.minLength != undefined && value.length < validator.minLength) {
+              setError({ fieldName, feedback: `Tamanho mínimo de caracteres (${validator.max}) excedido` });
+              noErrorsFound = false;
+              break label;
+            }
+
+            if(validator.matchesRegex && !validator.matchesRegex.test(value)) {
+              setError({ fieldName, feedback: 'Formato inválido' });
+              noErrorsFound = false;
+              break label;
+            }
+          }
+        }
+      }
+
+      if(noErrorsFound) {
         removeError(fieldName);
+      }
+
+      const masker = masks[fieldName];
+      if(masker && typeof finalValue === 'string') {
+        finalValue = masker(finalValue);
       }
     }
 
-    let finalValue = value;
-
-    const masker = masks[fieldName];
-
-    if(masker && typeof finalValue === 'string') {
-
-      finalValue = masker(finalValue);
-    }
-
     setFieldValue(fieldName, finalValue);
-  }, [fields, masks, setError, removeError]);
+  }, [fields, masks, validators, setError, removeError]);
 
   const handleCheckboxChange = useCallback((fieldName: string, newState: boolean) => {
     setFieldValue(fieldName, newState);

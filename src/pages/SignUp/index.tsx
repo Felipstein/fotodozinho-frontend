@@ -30,6 +30,9 @@ export const SignUp: React.FC = () => {
       label: 'E-mail',
       type: 'email',
       placeholder: 'exemplo@exemplo.com',
+      validator: {
+        matchesRegex: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+      },
     },
     {
       name: 'phone',

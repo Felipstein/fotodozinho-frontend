@@ -9,6 +9,7 @@ export interface FieldProps {
   required?: boolean;
   value?: any;
   initialValue?: any;
+  validator?: Validator;
   onChange?: (() => void) | any;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
@@ -17,3 +18,11 @@ export interface FieldProps {
 }
 
 export type Masker = (value: string) => string;
+
+export interface Validator {
+  min?: number;
+  max?: number;
+  minLength?: number;
+  maxLength?: number;
+  matchesRegex?: RegExp;
+}
