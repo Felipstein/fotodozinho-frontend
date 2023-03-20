@@ -1,16 +1,44 @@
+import { useState } from 'react';
 import { Button } from '../../components/Button';
-import { CheckBox } from '../../components/CheckBox';
 import { Footer } from '../../components/Footer';
-import { Input } from '../../components/Input';
+import { FieldProps } from '../../components/Form/Field/types';
+import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
-import { PasswordInput } from '../../components/PasswordInput';
 import { Text } from '../../components/Text';
+
 import * as S from './styles';
 
 export const SignIn: React.FC = () => {
-  function handleSubmit(event: React.FormEvent) {
-    event.preventDefault();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(false);
+
+  const fields: FieldProps[] = [
+    {
+      name: 'email',
+      label: 'E-mail',
+      type: 'email',
+      placeholder: 'exemplo@gmail.com',
+    },
+    {
+      name: 'password',
+      label: 'Senha',
+      type: 'password',
+      placeholder: 'Sua senha aqui',
+    },
+    {
+      name: 'rememberme',
+      label: 'Mantenha-me logado',
+      type: 'checkbox',
+    },
+  ];
+
+  async function handleSubmit(data: Record<string, any>) {
+    setIsSubmitting(true);
+    console.log(data);
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    setIsSubmitting(false);
   }
 
   return (
@@ -23,24 +51,20 @@ export const SignIn: React.FC = () => {
         </header>
 
         <div className="form-container">
-          <S.FormStyled noValidate onSubmit={handleSubmit}>
-            <div className="inputs">
-              <Input
-                label='E-mail'
-                name='email'
-                type='email'
-                placeholder='exemplo@gmail.com'
-              />
+          <S.FormStyled
+            fields={fields}
+            onSubmit={handleSubmit}
+            onFormStatusChange={({ isFormValid }) => setIsFormValid(isFormValid)}
+          >
 
-              <PasswordInput
-                label='Senha'
-                name='password'
-                placeholder='Sua senha aqui'
-              />
+            <div className="inputs">
+              <FieldSpecificer name='email' />
+
+              <FieldSpecificer name='password' />
             </div>
 
             <div className="sub-actions">
-              <CheckBox label='Mantenha-me logado' />
+              <FieldSpecificer name='rememberme' />
 
               <LabelButton $isBlueVariant to='/forgot-password'>
                 Esqueci a senha
@@ -48,7 +72,11 @@ export const SignIn: React.FC = () => {
             </div>
 
             <div className="actions">
-              <Button type='submit'>Fazer login</Button>
+              <Button
+                type='submit'
+                disabled={!isFormValid}
+                isLoading={isSubmitting}
+              >Fazer login</Button>
             </div>
           </S.FormStyled>
         </div>
