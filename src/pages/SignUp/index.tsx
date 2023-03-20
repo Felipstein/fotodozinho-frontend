@@ -65,6 +65,12 @@ export const SignUp: React.FC = () => {
       label: 'Confirmar senha',
       type: 'password',
       placeholder: 'Confirme sua senha aqui',
+      validator: {
+        byContext: {
+          value: ({ password }, confirmPassword) => password === confirmPassword,
+          errorFeedback: 'As senhas não coincidem',
+        },
+      },
     },
     {
       name: 'notifyServicesByEmail',

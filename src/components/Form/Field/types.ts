@@ -19,6 +19,8 @@ export interface FieldProps {
 
 export type Masker = (value: string) => string;
 
+export type ContextInjecter = (values: Record<string, any>, currentFieldValue: any) => boolean;
+
 export interface ValidatorType<T> {
   value: T;
   errorFeedback?: string;
@@ -30,4 +32,5 @@ export interface Validator {
   minLength?: ValidatorType<number>;
   maxLength?: ValidatorType<number>;
   matchesRegex?: ValidatorType<RegExp>;
+  byContext?: ValidatorType<ContextInjecter>;
 }

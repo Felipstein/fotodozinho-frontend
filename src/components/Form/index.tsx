@@ -187,6 +187,22 @@ export const Form: React.FC<FormProps> = ({
               break label;
             }
           }
+
+          if(validator.byContext) {
+
+            const isValid = validator.byContext.value(values, value);
+
+            if(!isValid) {
+              setError({
+                fieldName,
+                feedback: validator.byContext.errorFeedback || 'Formato inválido',
+              });
+
+              noErrorsFound = false;
+              break label;
+            }
+
+          }
         }
       }
 
@@ -201,7 +217,7 @@ export const Form: React.FC<FormProps> = ({
     }
 
     setFieldValue(fieldName, finalValue);
-  }, [fields, masks, validators, setError, removeError]);
+  }, [fields, values, masks, validators, setError, removeError]);
 
   const handleCheckboxChange = useCallback((fieldName: string, newState: boolean) => {
     setFieldValue(fieldName, newState);
