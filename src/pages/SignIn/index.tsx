@@ -6,12 +6,17 @@ import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { useFormStatus } from '../../hooks/useFormStatus';
 
 import * as S from './styles';
 
 export const SignIn: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
+
+  const {
+    isFormValid,
+    handleFormStatusChange,
+  } = useFormStatus();
 
   const fields: FieldProps[] = [
     {
@@ -54,7 +59,7 @@ export const SignIn: React.FC = () => {
           <S.FormStyled
             fields={fields}
             onSubmit={handleSubmit}
-            onFormStatusChange={({ isFormValid }) => setIsFormValid(isFormValid)}
+            onFormStatusChange={handleFormStatusChange}
           >
 
             <div className="inputs">

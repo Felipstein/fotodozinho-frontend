@@ -7,6 +7,7 @@ import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { useFormStatus } from '../../hooks/useFormStatus';
 import { formatPhone } from '../../utils/formatPhone';
 import { TermsModal } from './components/modals/TermsModal';
 
@@ -14,10 +15,14 @@ import * as S from './styles';
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const [isFormValid, setIsFormValid] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submittingError, setSubmittingError] = useState<string | null>(null);
+
+  const {
+    isFormValid,
+    handleFormStatusChange,
+  } = useFormStatus();
 
   const fields: FieldProps[] = [
     {
@@ -120,7 +125,7 @@ export const SignUp: React.FC = () => {
           <S.FormStyled
             fields={fields}
             onSubmit={handleSubmit}
-            onFormStatusChange={({ isFormValid }) => setIsFormValid(isFormValid)}
+            onFormStatusChange={handleFormStatusChange}
           >
 
             <div className="inputs">
