@@ -50,8 +50,9 @@ export const SignUp: React.FC = () => {
       type: 'password',
       placeholder: 'Sua senha aqui',
       validator: {
-        min: {
+        minLength: {
           value: 8,
+          errorFeedback: 'Sua senha deve possuir no mínimo 8 caracteres'
         },
       },
     },
