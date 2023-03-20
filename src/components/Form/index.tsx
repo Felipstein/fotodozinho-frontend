@@ -9,6 +9,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import { toast } from 'react-toastify';
+import { APIError } from '../../errors/APIError';
 
 import { useFieldsErrors } from '../../hooks/useFieldsErrors';
 import { Field } from './Field';
@@ -95,7 +97,11 @@ export const Form: React.FC<FormProps> = ({
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    await onSubmit(values);
+    try {
+      await onSubmit(values);
+    } catch (err: APIError | Error | any) {
+      toast.error(err.message || 'Houve um problema desconhecido no processo do login. Por favor, entre em contato conosco.');
+    }
   }
 
   function setFieldValue(fieldName: string, value: any) {
