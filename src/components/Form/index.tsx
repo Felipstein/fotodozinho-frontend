@@ -133,22 +133,22 @@ export const Form: React.FC<FormProps> = ({
 
         if(validator) {
 
-          if(typeof value === 'number') {
+          if(!isNaN(Number(value))) {
 
-            if(validator.max != undefined && value > validator.max.value) {
+            if(validator.max != undefined && Number(value) > validator.max.value) {
               setError({
                 fieldName,
-                feedback: validator.max.errorFeedback || `Valor máximo (${validator.max}) excedido`,
+                feedback: validator.max.errorFeedback || `Valor máximo (${validator.max.value}) excedido`,
               });
 
               noErrorsFound = false;
               break label;
             }
 
-            if(validator.min != undefined && value < validator.min) {
+            if(validator.min != undefined && Number(value) < validator.min.value) {
               setError({
                 fieldName,
-                feedback: validator.min.errorFeedback || `Valor mínimo (${validator.max}) excedido`,
+                feedback: validator.min.errorFeedback || `Valor mínimo (${validator.min.value}) excedido`,
               });
 
               noErrorsFound = false;
@@ -160,7 +160,7 @@ export const Form: React.FC<FormProps> = ({
             if(validator.maxLength != undefined && value.length > validator.maxLength.value) {
               setError({
                 fieldName,
-                feedback: validator.maxLength.errorFeedback || `Tamanho máximo de caracteres (${validator.max}) excedido`,
+                feedback: validator.maxLength.errorFeedback || `Tamanho máximo de caracteres (${validator.maxLength.value}) excedido`,
               });
 
               noErrorsFound = false;
@@ -170,7 +170,7 @@ export const Form: React.FC<FormProps> = ({
             if(validator.minLength != undefined && value.length < validator.minLength.value) {
               setError({
                 fieldName,
-                feedback: validator.minLength.errorFeedback || `Tamanho mínimo de caracteres (${validator.max}) excedido`,
+                feedback: validator.minLength.errorFeedback || `Tamanho mínimo de caracteres (${validator.minLength.value}) excedido`,
               });
 
               noErrorsFound = false;

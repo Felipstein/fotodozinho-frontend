@@ -49,6 +49,11 @@ export const SignUp: React.FC = () => {
       label: 'Senha',
       type: 'password',
       placeholder: 'Sua senha aqui',
+      validator: {
+        min: {
+          value: 8,
+        },
+      },
     },
     {
       name: 'confirmPassword',
