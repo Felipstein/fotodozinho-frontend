@@ -8,8 +8,8 @@ import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { useAuth } from '../../contexts/AuthContext';
 import { useFormStatus } from '../../hooks/useFormStatus';
-import { AuthService } from '../../services/auth.service';
 import { SignUpRequest } from '../../types/AuthDTO';
 import { formatPhone } from '../../utils/formatPhone';
 import { TermsModal } from './components/modals/TermsModal';
@@ -19,7 +19,7 @@ import * as S from './styles';
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { signUp, isLoading } = useAuth();
 
   const {
     isFormValid,
@@ -97,16 +97,9 @@ export const SignUp: React.FC = () => {
 
   async function handleSubmit(data: Record<string, any>) {
 
-    try {
-      setIsSubmitting(true);
+    await signUp(data as SignUpRequest);
 
-      const signUpResponse = await AuthService.signUp(data as SignUpRequest);
-
-      toast.success('Seu cadastro está quase concluído! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)');
-
-    } finally {
-      setIsSubmitting(false);
-    }
+    toast.success('Seu cadastro está quase concluído! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)');
 
   }
 
@@ -156,7 +149,7 @@ export const SignUp: React.FC = () => {
               <Button
                 type='submit'
                 disabled={!isFormValid}
-                isLoading={isSubmitting}
+                isLoading={isLoading}
               >
                 Cadastrar
               </Button>

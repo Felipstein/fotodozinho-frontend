@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 import { FieldProps } from '../../components/Form/Field/types';
@@ -7,14 +5,15 @@ import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
+import { useAuth } from '../../contexts/AuthContext';
 import { useFormStatus } from '../../hooks/useFormStatus';
-import { AuthService } from '../../services/auth.service';
 import { LogInRequest } from '../../types/AuthDTO';
 
 import * as S from './styles';
 
 export const SignIn: React.FC = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { logIn, isLoading } = useAuth();
 
   const {
     isFormValid,
@@ -42,14 +41,10 @@ export const SignIn: React.FC = () => {
   ];
 
   async function handleSubmit(data: Record<string, any>) {
-    try {
-      setIsSubmitting(true);
 
+    await logIn(data as LogInRequest);
 
-
-    } finally {
-      setIsSubmitting(false);
-    }
+    // toast.success(`Bem vindo de volta, ${logInResponse.user.name}`);
   }
 
   return (
@@ -86,7 +81,7 @@ export const SignIn: React.FC = () => {
               <Button
                 type='submit'
                 disabled={!isFormValid}
-                isLoading={isSubmitting}
+                isLoading={isLoading}
               >Fazer login</Button>
             </div>
           </S.FormStyled>
