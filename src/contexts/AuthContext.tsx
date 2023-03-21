@@ -2,8 +2,11 @@
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthService } from '../services/auth.service';
+import { TokenType } from '../services/token-storage.service';
 import { LogInRequest, LogInResponse, SignOutRequest, SignUpRequest } from '../types/AuthDTO';
 import { User } from '../types/User';
+
+export type TokenState = Record<TokenType, string | null>;
 
 export interface AuthContextProps {
   isAuthenticated: boolean;
@@ -25,8 +28,10 @@ export interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [token, setToken] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [tokens, setTokens] = useState<TokenState>({
+    token: null,
+    refresh_token: null,
+  });
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,10 +49,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const { user, token, refreshToken } = logInResponse;
 
       setUser(user);
-      setToken(token);
-      if(refreshToken) {
-        setRefreshToken(refreshToken);
-      }
+      setTokens({ token, refresh_token: refreshToken ?? null });
 
       toast.success(`Bem vindo de volta, ${user.name}.`);
 
@@ -77,8 +79,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const { user, token, refreshToken } = signUpResponse;
 
       setUser(user);
-      setToken(token);
-      setRefreshToken(refreshToken);
+      setTokens({ token, refresh_token: refreshToken });
 
       toast.success(`Seu cadastro está quase concluído, ${user.name}! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)`);
 
@@ -103,8 +104,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       await AuthService.signOut({ userId, tokenRequesting });
 
       setUser(null);
-      setToken(null);
-      setRefreshToken(null);
+      setTokens({ token: null, refresh_token: null });
 
       toast.warn('Você foi desconectado.');
     } catch {} finally {
@@ -116,8 +116,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     <AuthContext.Provider value={{
       isAuthenticated: !!user,
       user,
-      token,
-      refreshToken,
+      token: tokens.token,
+      refreshToken: tokens.refresh_token,
       isLoading,
       logIn,
       signUp,

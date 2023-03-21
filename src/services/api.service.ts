@@ -28,7 +28,7 @@ export class API {
     });
   }
 
-  async get<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
+  async get<T = any, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.get(endpoint, config);
 
@@ -38,7 +38,7 @@ export class API {
     }
   }
 
-  async delete<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
+  async delete<T = any, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.delete(endpoint, config);
 
@@ -48,7 +48,7 @@ export class API {
     }
   }
 
-  async head<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
+  async head<T = any, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.head(endpoint, config);
 
@@ -58,7 +58,7 @@ export class API {
     }
   }
 
-  async options<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
+  async options<T = any, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.options(endpoint, config);
 
@@ -68,7 +68,7 @@ export class API {
     }
   }
 
-  async post<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
+  async post<T = any, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.post(endpoint, data, config);
 
@@ -78,7 +78,7 @@ export class API {
     }
   }
 
-  async put<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
+  async put<T = any, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.put(endpoint, data, config);
 
@@ -88,7 +88,7 @@ export class API {
     }
   }
 
-  async patch<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
+  async patch<T = any, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.patch(endpoint, data, config);
 
@@ -98,7 +98,7 @@ export class API {
     }
   }
 
-  async postForm<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
+  async postForm<T = any, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.postForm(endpoint, data, config);
 
@@ -108,7 +108,7 @@ export class API {
     }
   }
 
-  async putForm<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
+  async putForm<T = any, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.putForm(endpoint, data, config);
 
@@ -118,7 +118,7 @@ export class API {
     }
   }
 
-  async patchForm<T = any, R = AxiosResponse<T>, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
+  async patchForm<T = any, D = any>(endpoint: string, data?: D, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.patchForm(endpoint, data, config);
 
