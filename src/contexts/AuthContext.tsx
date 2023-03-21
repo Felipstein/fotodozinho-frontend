@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
+import { api } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
-import { TokenType } from '../services/token-storage.service';
+import { TokenStorageService, TokenType } from '../services/token-storage.service';
 import { LogInRequest, LogInResponse, SignOutRequest, SignUpRequest } from '../types/AuthDTO';
 import { User } from '../types/User';
 
@@ -51,6 +52,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setUser(user);
       setTokens({ token, refresh_token: refreshToken ?? null });
 
+      api.setAuthorizationToken(token);
+
+      TokenStorageService.storageToken('token', token);
+      if(refreshToken) {
+        TokenStorageService.storageToken('refresh_token', refreshToken);
+      }
+
       toast.success(`Bem vindo de volta, ${user.name}.`);
 
       return logInResponse;
@@ -81,6 +89,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setUser(user);
       setTokens({ token, refresh_token: refreshToken });
 
+      api.setAuthorizationToken(token);
+
+      TokenStorageService.storageToken('token', token);
+      if(refreshToken) {
+        TokenStorageService.storageToken('refresh_token', refreshToken);
+      }
+
       toast.success(`Seu cadastro está quase concluído, ${user.name}! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)`);
 
       return signUpResponse;
@@ -105,6 +120,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       setUser(null);
       setTokens({ token: null, refresh_token: null });
+
+      api.unsetAuthorizationToken();
+
+      TokenStorageService.unstorageToken();
 
       toast.warn('Você foi desconectado.');
     } catch {} finally {
