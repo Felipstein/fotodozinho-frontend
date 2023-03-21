@@ -41,7 +41,7 @@ const variants: Record<ButtonVariants, ButtonVariantFn> = {
   secondary: secondaryVariant,
 };
 
-export const BaseStyles = css<ButtonProps>`
+export const BaseStyles = css<ButtonProps & { $isLoading?: boolean }>`
   position: relative;
 
   display: flex;
@@ -80,7 +80,7 @@ export const BaseStyles = css<ButtonProps>`
     cursor: default;
   }
 
-  ${({ isLoading }) => isLoading && css`
+  ${({ $isLoading }) => $isLoading && css`
     .content-container {
       visibility: hidden;
     }
