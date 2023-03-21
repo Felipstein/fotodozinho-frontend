@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { createContext, ReactNode, useCallback, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthService } from '../services/auth.service';
 import { LogInRequest, LogInResponse, SignOutRequest, SignUpRequest } from '../types/AuthDTO';
@@ -122,3 +122,5 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
+export const useAuth = () => useContext(AuthContext);
