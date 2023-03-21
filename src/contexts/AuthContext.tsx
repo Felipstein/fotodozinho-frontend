@@ -10,6 +10,7 @@ import { User } from '../types/User';
 export type TokenState = Record<TokenType, string | null>;
 
 export interface AuthContextProps {
+  redirect: boolean;
   isAuthenticated: boolean;
   user: User | null;
   token: string | null;
@@ -28,6 +29,8 @@ export interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+  const [redirect, setRedirect] = useState(false);
+
   const [user, setUser] = useState<User | null>(null);
   const [tokens, setTokens] = useState<TokenState>(() => {
 
@@ -167,6 +170,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{
+      redirect,
       isAuthenticated: !!user,
       user,
       token: tokens.token,
