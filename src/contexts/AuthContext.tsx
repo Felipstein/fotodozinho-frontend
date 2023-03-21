@@ -61,6 +61,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           TokenStorageService.unstorageToken();
 
           toast.error('Sessão expirada, faça login novamente para continuar.');
+
+          setRedirect(true);
         } finally {
           setIsLoading(false);
         }
