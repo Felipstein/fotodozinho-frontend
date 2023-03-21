@@ -69,7 +69,7 @@ export const SignIn: React.FC = () => {
             <div className="sub-actions">
               <FieldSpecificer name='rememberme' />
 
-              <LabelButton $isBlueVariant to='/forgot-password'>
+              <LabelButton isBlueVariant to='/forgot-password'>
                 Esqueci a senha
               </LabelButton>
             </div>
@@ -85,7 +85,7 @@ export const SignIn: React.FC = () => {
         </div>
 
         <div className="sub-actions">
-          <LabelButton $isBlueVariant to='/signup'>
+          <LabelButton isBlueVariant to='/signup'>
             Não possuo uma conta
           </LabelButton>
         </div>

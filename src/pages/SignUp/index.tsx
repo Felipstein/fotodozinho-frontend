@@ -154,7 +154,7 @@ export const SignUp: React.FC = () => {
         </div>
 
         <div className="sub-actions">
-          <LabelButton $isBlueVariant to='/login'>
+          <LabelButton isBlueVariant to='/login'>
             Já possuo uma conta
           </LabelButton>
         </div>

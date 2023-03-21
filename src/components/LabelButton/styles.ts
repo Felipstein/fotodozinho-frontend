@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { LabelButtonProps } from './types';
 
-export const LinkStyled = styled(Link)<LabelButtonProps>`
+export const LinkStyled = styled(Link)<LabelButtonProps & { $isBlueVariant?: boolean }>`
   position: relative;
   font-weight: 400;
   color: ${({ theme, $isBlueVariant }) => $isBlueVariant ? theme.colors.blue[500] : theme.colors.gray[900]};
