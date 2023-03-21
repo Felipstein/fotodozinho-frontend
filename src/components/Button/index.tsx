@@ -15,7 +15,8 @@ export const Button: React.FC<ButtonProps> = ({
   height = '4.6rem',
   onClick,
   to,
-  children
+  children,
+  ...props
 }) => {
   if(['button', 'submit'].includes(type) || to === undefined) {
     return (
@@ -29,6 +30,7 @@ export const Button: React.FC<ButtonProps> = ({
           width={width}
           height={height}
           onClick={onClick}
+          {...props}
         >
           <div className="content-container">
             {children}
@@ -56,6 +58,7 @@ export const Button: React.FC<ButtonProps> = ({
         onClick={onClick}
         to={to}
         target={targetMapper[type as LinkTarget]}
+        {...props}
       >
         <div className="content-container">
           {children}

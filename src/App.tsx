@@ -10,6 +10,7 @@ import _default from './styles/themes/default';
 
 import { Routes } from './Routes';
 import { AuthProvider } from './contexts/AuthContext';
+import { FloatingLogoutButton } from './components/development/FloatingLogoutButton';
 
 export function App() {
   return (
@@ -23,6 +24,7 @@ export function App() {
             theme='colored'
             hideProgressBar
           />
+          <FloatingLogoutButton />
           <BrowserRouter>
             <Routes />
           </BrowserRouter>

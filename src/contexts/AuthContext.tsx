@@ -88,6 +88,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const logInResponse = await AuthService.logIn({ email, password, rememberMe }) as LogInResponse;
       const { user, token, refreshToken } = logInResponse;
 
+      setRedirect(true);
+
       setUser(user);
       setTokens({ token, refresh_token: refreshToken ?? null });
 
@@ -125,6 +127,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }) as LogInResponse;
       const { user, token, refreshToken } = signUpResponse;
 
+      setRedirect(true);
+
       setUser(user);
       setTokens({ token, refresh_token: refreshToken });
 
@@ -156,6 +160,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setIsLoading(true);
 
       await AuthService.signOut();
+
+      setRedirect(true);
 
       setUser(null);
       setTokens({ token: null, refresh_token: null });
