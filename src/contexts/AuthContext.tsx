@@ -106,6 +106,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setToken(null);
       setRefreshToken(null);
 
+      toast.warn('Você foi desconectado.');
     } catch {} finally {
       setIsLoading(false);
     }
