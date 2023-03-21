@@ -9,22 +9,25 @@ import GlobalStyles from './styles/GlobalStyles';
 import _default from './styles/themes/default';
 
 import { Routes } from './Routes';
+import { AuthProvider } from './contexts/AuthContext';
 
 export function App() {
   return (
     <ThemeProvider theme={_default}>
       <GlobalStyles />
-      <LoaderProvider>
-        <ToastContainer
-          position='bottom-center'
-          pauseOnHover={false}
-          theme='colored'
-          hideProgressBar
-        />
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </LoaderProvider>
+      <AuthProvider>
+        <LoaderProvider>
+          <ToastContainer
+            position='bottom-center'
+            pauseOnHover={false}
+            theme='colored'
+            hideProgressBar
+          />
+          <BrowserRouter>
+            <Routes />
+          </BrowserRouter>
+        </LoaderProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

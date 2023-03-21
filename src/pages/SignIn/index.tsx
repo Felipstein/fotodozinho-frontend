@@ -45,9 +45,7 @@ export const SignIn: React.FC = () => {
     try {
       setIsSubmitting(true);
 
-      const logInResponse = await AuthService.logIn(data as LogInRequest);
 
-      toast.success(`Bem vindo de volta, ${logInResponse.user.name}`);
 
     } finally {
       setIsSubmitting(false);
