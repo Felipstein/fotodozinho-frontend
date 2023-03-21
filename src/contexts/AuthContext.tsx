@@ -43,7 +43,25 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     async function verifyToken() {
 
-      const verifyTokenResponse = await AuthService.verifyToken({  });
+      const { token } = tokens;
+      if(token) {
+        try {
+          setIsLoading(true);
+          const { user } = await AuthService.verifyToken({ token });
+
+          setUser(user);
+          api.setAuthorizationToken(token);
+
+        } catch (err: Error | any) {
+
+          setTokens({ token: null, refresh_token: null });
+          TokenStorageService.unstorageToken();
+
+          toast.error('Sessão expirada, faça login novamente para continuar.');
+        } finally {
+          setIsLoading(false);
+        }
+      }
 
     }
 
