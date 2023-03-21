@@ -28,6 +28,14 @@ export class API {
     });
   }
 
+  setAuthorizationToken(token: string) {
+    this.axiosInstance.defaults.headers.common.Authorization = `Bearer ${token}`;
+  }
+
+  unsetAuthorizationToken() {
+    this.axiosInstance.defaults.headers.common.Authorization = undefined;
+  }
+
   async get<T = any, D = any>(endpoint: string, config?: AxiosRequestConfig<D>): Promise<T> {
     try {
       const response = await this.axiosInstance.get(endpoint, config);
