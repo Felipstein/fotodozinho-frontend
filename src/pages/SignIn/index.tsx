@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
 import { FieldProps } from '../../components/Form/Field/types';
@@ -7,6 +8,8 @@ import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
 import { useFormStatus } from '../../hooks/useFormStatus';
+import { AuthService } from '../../services/auth.service';
+import { LogInRequest } from '../../types/AuthDTO';
 
 import * as S from './styles';
 
@@ -41,8 +44,10 @@ export const SignIn: React.FC = () => {
   async function handleSubmit(data: Record<string, any>) {
     try {
       setIsSubmitting(true);
-      console.log(data);
-      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      const logInResponse = await AuthService.logIn(data as LogInRequest);
+
+      toast.success(`Bem vindo de volta, ${logInResponse.user.name}`);
 
     } finally {
       setIsSubmitting(false);

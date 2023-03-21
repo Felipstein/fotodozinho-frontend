@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
@@ -8,6 +9,8 @@ import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
 import { useFormStatus } from '../../hooks/useFormStatus';
+import { AuthService } from '../../services/auth.service';
+import { SignUpRequest } from '../../types/AuthDTO';
 import { formatPhone } from '../../utils/formatPhone';
 import { TermsModal } from './components/modals/TermsModal';
 
@@ -82,7 +85,7 @@ export const SignUp: React.FC = () => {
       type: 'checkbox',
     },
     {
-      name: 'acceptTerms',
+      name: 'acceptedTermsAndConditions',
       label: 'Aceito os Termos de Serviço e Uso da Aplicação Foto do Zinho.',
       type: 'checkbox',
     },
@@ -97,8 +100,9 @@ export const SignUp: React.FC = () => {
     try {
       setIsSubmitting(true);
 
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      throw new Error('Falha ao logar: motivo desconhecido');
+      const signUpResponse = await AuthService.signUp(data as SignUpRequest);
+
+      toast.success('Seu cadastro está quase concluído! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)');
 
     } finally {
       setIsSubmitting(false);
@@ -139,7 +143,7 @@ export const SignUp: React.FC = () => {
             <div className="sub-actions">
               <FieldSpecificer name='notifyServicesByEmail' />
 
-              <FieldSpecificer name='acceptTerms' />
+              <FieldSpecificer name='acceptedTermsAndConditions' />
 
               <div className="label-button">
                 <LabelButton onClick={() => setIsModalOpened(true)}>
