@@ -1,9 +1,9 @@
-import { Navigate, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../../contexts/AuthContext';
 import { NotFoundPage } from '../../../pages';
 import { CustomRouteProps } from './types';
 
-export const CustomRoute: React.FC<CustomRouteProps> = ({ type = 'public', ...props }) => {
+export const CustomRoute: React.FC<CustomRouteProps> = ({ type = 'public', children }) => {
 
   const { isAuthenticated, user } = useAuth();
 
@@ -25,5 +25,5 @@ export const CustomRoute: React.FC<CustomRouteProps> = ({ type = 'public', ...pr
     }
   }
 
-  return <Route {...props} />;
+  return children;
 };

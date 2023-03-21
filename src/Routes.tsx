@@ -1,35 +1,39 @@
-import { Routes as ReactRoutes } from 'react-router-dom';
+import { Route, Routes as ReactRoutes } from 'react-router-dom';
 import { CustomRoute } from './components/shared/CustomRoute';
 import { HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage } from './pages';
 
 export function Routes() {
   return (
     <ReactRoutes>
-      <CustomRoute
-        type='public'
+      <Route
         path='/'
         element={<HomePage />}
       />
 
-      <CustomRoute
-        type='public'
+      <Route
         path='/prices'
         element={<PricesPage />}
       />
 
-      <CustomRoute
-        type='not_authenticated'
+      <Route
         path='/login'
-        element={<SignInPage />}
+        element={
+          <CustomRoute type='not_authenticated'>
+            <SignInPage />
+          </CustomRoute>
+        }
       />
 
-      <CustomRoute
-        type='not_authenticated'
+      <Route
         path='/signup'
-        element={<SignUpPage />}
+        element={
+          <CustomRoute type='not_authenticated'>
+            <SignUpPage />
+          </CustomRoute>
+        }
       />
 
-      <CustomRoute
+      <Route
         path='*'
         element={<NotFoundPage />}
       />

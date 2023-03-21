@@ -1,5 +1,8 @@
-import { RouteProps } from 'react-router-dom';
+import { ReactElement } from 'react';
 
 export type CustomRouteType = 'not_authenticated' | 'public' | 'protected' | 'admin';
 
-export type CustomRouteProps = RouteProps & { type?: CustomRouteType };
+export interface CustomRouteProps {
+  type?: CustomRouteType;
+  children: ReactElement;
+}
