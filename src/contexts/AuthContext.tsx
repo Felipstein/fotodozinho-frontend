@@ -49,6 +49,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setRefreshToken(refreshToken);
       }
 
+      toast.success(`Bem vindo de volta, ${user.name}.`);
+
       return logInResponse;
     } catch (err: Error | any) {
       toast.error(err.message || 'Não foi possível realizar seu login, tente novamente.');
@@ -77,6 +79,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       setUser(user);
       setToken(token);
       setRefreshToken(refreshToken);
+
+      toast.success(`Seu cadastro está quase concluído, ${user.name}! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)`);
 
       return signUpResponse;
     } catch (err: Error | any) {

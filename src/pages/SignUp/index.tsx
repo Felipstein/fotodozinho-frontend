@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
@@ -96,11 +95,7 @@ export const SignUp: React.FC = () => {
   }
 
   async function handleSubmit(data: Record<string, any>) {
-
     await signUp(data as SignUpRequest);
-
-    toast.success('Seu cadastro está quase concluído! Enviamos em seu e-mail um link para verificar sua conta. É rapidinho, vai lá! :)');
-
   }
 
   return (

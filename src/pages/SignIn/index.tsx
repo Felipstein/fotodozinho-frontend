@@ -41,10 +41,7 @@ export const SignIn: React.FC = () => {
   ];
 
   async function handleSubmit(data: Record<string, any>) {
-
     await logIn(data as LogInRequest);
-
-    // toast.success(`Bem vindo de volta, ${logInResponse.user.name}`);
   }
 
   return (
