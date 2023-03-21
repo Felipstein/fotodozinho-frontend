@@ -34,7 +34,7 @@ export const SignIn: React.FC = () => {
       placeholder: 'Sua senha aqui',
     },
     {
-      name: 'rememberme',
+      name: 'rememberMe',
       label: 'Mantenha-me logado',
       type: 'checkbox',
     },
@@ -67,7 +67,7 @@ export const SignIn: React.FC = () => {
             </div>
 
             <div className="sub-actions">
-              <FieldSpecificer name='rememberme' />
+              <FieldSpecificer name='rememberMe' />
 
               <LabelButton isBlueVariant to='/forgot-password'>
                 Esqueci a senha
