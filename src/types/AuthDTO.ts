@@ -1,6 +1,6 @@
 import { User } from './User';
 
-export interface LoginInRequest {
+export interface LogInRequest {
   email: string;
   password: string;
   rememberMe: boolean;
