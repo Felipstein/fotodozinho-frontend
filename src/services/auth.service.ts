@@ -19,12 +19,12 @@ export class AuthService {
     return signUpResponse;
   }
 
-  static async signOut({ userId, tokenRequesting }: Auth.SignOutRequest): Promise<void> {
-    await api.post('/auth/signout', { userId, tokenRequesting });
+  static async signOut(): Promise<void> {
+    await api.delete('/auth/signout');
   }
 
-  static async verifyToken({ userId, tokenRequesting }: Auth.VerifyTokenRequest): Promise<Auth.VerifyTokenResponse> {
-    const verifyTokenResponse = await api.post('/auth/validate', { userId, tokenRequesting }) as Auth.VerifyTokenResponse;
+  static async verifyToken({ token }: Auth.VerifyTokenRequest): Promise<Auth.VerifyTokenResponse> {
+    const verifyTokenResponse = await api.get(`/auth/validate/${token}`) as Auth.VerifyTokenResponse;
 
     return verifyTokenResponse;
   }

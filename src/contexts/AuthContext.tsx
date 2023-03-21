@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
+import { createContext, ReactNode, useCallback, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../services/api.service';
 import { AuthService } from '../services/auth.service';
 import { TokenStorageService, TokenType } from '../services/token-storage.service';
-import { LogInRequest, LogInResponse, SignOutRequest, SignUpRequest } from '../types/AuthDTO';
+import { LogInRequest, LogInResponse, SignUpRequest } from '../types/AuthDTO';
 import { User } from '../types/User';
 
 export type TokenState = Record<TokenType, string | null>;
@@ -17,7 +17,7 @@ export interface AuthContextProps {
   isLoading: boolean;
   logIn: (logInRequest: LogInRequest) => Promise<LogInResponse | undefined>;
   signUp: (signUpRequest: SignUpRequest) => Promise<LogInResponse | undefined>;
-  signOut: (signOutRequest: SignOutRequest) => Promise<void>;
+  signOut: () => Promise<void>;
 }
 
 // @ts-ignore
@@ -29,10 +29,26 @@ export interface AuthProviderProps {
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [tokens, setTokens] = useState<TokenState>({
-    token: null,
-    refresh_token: null,
+  const [tokens, setTokens] = useState<TokenState>(() => {
+
+    const token = TokenStorageService.getToken('token') ?? null;
+    const refreshToken = TokenStorageService.getToken('refresh_token') ?? null;
+
+    return {
+      token,
+      refresh_token: refreshToken,
+    };
   });
+
+  useEffect(() => {
+    async function verifyToken() {
+
+      const verifyTokenResponse = await AuthService.verifyToken({  });
+
+    }
+
+    verifyToken();
+  }, [tokens]);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -106,7 +122,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [user]);
 
-  const signOut = useCallback(async ({ userId, tokenRequesting }: SignOutRequest) => {
+  const signOut = useCallback(async () => {
 
     if(!user) {
       toast.error('Você não está autenticado.');
@@ -116,7 +132,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     try {
       setIsLoading(true);
 
-      await AuthService.signOut({ userId, tokenRequesting });
+      await AuthService.signOut();
 
       setUser(null);
       setTokens({ token: null, refresh_token: null });

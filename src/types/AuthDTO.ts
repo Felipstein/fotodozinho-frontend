@@ -16,14 +16,8 @@ export interface SignUpRequest {
   acceptedTermsAndConditions: boolean;
 }
 
-export interface SignOutRequest {
-  userId: string;
-  tokenRequesting: string;
-}
-
 export interface VerifyTokenRequest {
-  userId: string;
-  tokenRequesting: string;
+  token: string;
 }
 
 export interface GenerateNewTokenRequest {
