@@ -8,7 +8,6 @@ import { Text } from '../../components/Text';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormStatus } from '../../hooks/useFormStatus';
 import { LogInRequest } from '../../types/AuthDTO';
-import { regex } from '../../utils/regex-provider';
 
 import * as S from './styles';
 
