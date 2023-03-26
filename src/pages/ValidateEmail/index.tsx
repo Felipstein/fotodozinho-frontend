@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import { Logo } from '../../components/common/Logo';
 import { SplashScreen } from '../../components/layout/SplashScreen';
+import { useAuth } from '../../contexts/AuthContext';
 import { APIError } from '../../errors/APIError';
 import { ValidateEmailService } from '../../services/validate-email.service';
 
@@ -12,9 +13,14 @@ import * as S from './styles';
 export const ValidateEmail: React.FC = () => {
   const navigate = useNavigate();
   const { validateToken } = useParams();
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     async function validateEmail() {
+
+      if(!isAuthenticated) {
+        return;
+      }
 
       try {
         if(!validateToken) {
@@ -32,7 +38,7 @@ export const ValidateEmail: React.FC = () => {
     }
 
     validateEmail();
-  }, [validateToken, navigate]);
+  }, [isAuthenticated, validateToken, navigate]);
 
   return (
     <S.CenteredContent>
