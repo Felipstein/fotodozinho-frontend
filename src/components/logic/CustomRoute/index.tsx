@@ -5,7 +5,11 @@ import { CustomRouteProps } from './types';
 
 export const CustomRoute: React.FC<CustomRouteProps> = ({ type = 'public', children }) => {
 
-  const { isAuthenticated, user } = useAuth();
+  const { redirect, isAuthenticated, user } = useAuth();
+
+  if(!redirect) {
+    return children;
+  }
 
   if(type === 'not_authenticated' && isAuthenticated) {
     return <Navigate to='/app' />;
