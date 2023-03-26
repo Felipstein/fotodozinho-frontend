@@ -8,6 +8,7 @@ import { Text } from '../../components/Text';
 import { useAuth } from '../../contexts/AuthContext';
 import { useFormStatus } from '../../hooks/useFormStatus';
 import { LogInRequest } from '../../types/AuthDTO';
+import { regex } from '../../utils/regex-provider';
 
 import * as S from './styles';
 
@@ -26,6 +27,12 @@ export const SignIn: React.FC = () => {
       label: 'E-mail',
       type: 'email',
       placeholder: 'exemplo@gmail.com',
+      validator: {
+        matchesRegex: {
+          value: regex.email,
+          errorFeedback: 'E-mail inválido',
+        },
+      },
     },
     {
       name: 'password',

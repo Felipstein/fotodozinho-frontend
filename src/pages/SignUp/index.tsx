@@ -11,6 +11,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useFormStatus } from '../../hooks/useFormStatus';
 import { SignUpRequest } from '../../types/AuthDTO';
 import { formatPhone } from '../../utils/formatPhone';
+import { regex } from '../../utils/regex-provider';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
@@ -38,7 +39,7 @@ export const SignUp: React.FC = () => {
       placeholder: 'exemplo@exemplo.com',
       validator: {
         matchesRegex: {
-          value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+          value: regex.email,
           errorFeedback: 'E-mail inválido',
         },
       },
