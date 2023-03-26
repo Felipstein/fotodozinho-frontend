@@ -1,13 +1,6 @@
 import styled from 'styled-components';
 import { Form } from '../../components/Form';
 
-export const PageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  min-height: 100vh;
-`;
-
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -17,8 +10,6 @@ export const Container = styled.div`
   max-width: 45rem;
   margin: auto;
   margin-top: 6.4rem;
-
-  flex: 1;
 
   header {
     display: flex;

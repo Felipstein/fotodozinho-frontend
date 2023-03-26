@@ -34,7 +34,7 @@ export function Routes() {
       />
 
       <Route
-        path='/verifyrequire'
+        path='/verifyrequest'
         element={
           <CustomRoute type='protected_without_required_verification'>
             <VerifyRequirePage />

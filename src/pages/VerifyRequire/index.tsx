@@ -1,6 +1,10 @@
+import { LayoutFooter } from '../../components/LayoutFooter';
+
 export const VerifyRequire: React.FC = () => {
 
   return (
-    <h1>No no no no</h1>
+    <LayoutFooter>
+      <h1>No no no no</h1>
+    </LayoutFooter>
   );
 };

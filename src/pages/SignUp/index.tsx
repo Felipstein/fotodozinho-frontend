@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import { Button } from '../../components/Button';
-import { Footer } from '../../components/Footer';
 import { FieldProps, validations } from '../../components/Form/Field/types';
 import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
+import { LayoutFooter } from '../../components/LayoutFooter';
 import { Logo } from '../../components/Logo';
 import { Text } from '../../components/Text';
 import { useAuth } from '../../contexts/AuthContext';
@@ -85,7 +85,7 @@ export const SignUp: React.FC = () => {
   }
 
   return (
-    <S.PageContainer>
+    <LayoutFooter>
       <TermsModal isOpened={isModalOpened} onClose={handleCloseModal} />
 
       <S.Container>
@@ -144,9 +144,7 @@ export const SignUp: React.FC = () => {
             Já possuo uma conta
           </LabelButton>
         </div>
-
       </S.Container>
-      <Footer />
-    </S.PageContainer>
+    </LayoutFooter>
   );
 };
