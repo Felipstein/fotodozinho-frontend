@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { Logo } from '../../components/common/Logo';
-import { SplashScreen } from '../../components/layout/SplashScreen';
-import { useAuth } from '../../contexts/AuthContext';
-import { APIError } from '../../errors/APIError';
-import { ValidateEmailService } from '../../services/validate-email.service';
+import { Logo } from '../../../components/common/Logo';
+import { SplashScreen } from '../../../components/layout/SplashScreen';
+import { useAuth } from '../../../contexts/AuthContext';
+import { APIError } from '../../../errors/APIError';
+import { ValidateEmailService } from '../../../services/validate-email.service';
 
 import * as S from './styles';
 

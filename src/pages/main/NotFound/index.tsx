@@ -1,8 +1,8 @@
 import backgroundImage from '/404.png';
 
-import { Text } from '../../components/common/Text';
-import { Button } from '../../components/common/Button';
-import { Logo } from '../../components/common/Logo';
+import { Text } from '../../../components/common/Text';
+import { Button } from '../../../components/common/Button';
+import { Logo } from '../../../components/common/Logo';
 
 import * as S from './styles';
 

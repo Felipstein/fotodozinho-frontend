@@ -1,8 +1,8 @@
-import { Button } from '../../components/common/Button';
-import { Footer } from '../../components/layout/Footer';
-import { LabelButton } from '../../components/common/LabelButton';
-import { Logo } from '../../components/common/Logo';
-import { Text } from '../../components/common/Text';
+import { Button } from '../../../components/common/Button';
+import { Footer } from '../../../components/layout/Footer';
+import { LabelButton } from '../../../components/common/LabelButton';
+import { Logo } from '../../../components/common/Logo';
+import { Text } from '../../../components/common/Text';
 
 import * as S from './styles';
 

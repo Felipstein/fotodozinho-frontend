@@ -1,14 +1,14 @@
-import { Button } from '../../components/common/Button';
-import { FieldProps, validations } from '../../components/logic/Form/Field/types';
-import { FieldSpecificer } from '../../components/logic/Form/FieldSpecifier';
-import { LabelButton } from '../../components/common/LabelButton';
-import { LayoutFooter } from '../../components/layout/LayoutFooter';
-import { Logo } from '../../components/common/Logo';
-import { Text } from '../../components/common/Text';
+import { Button } from '../../../components/common/Button';
+import { FieldProps, validations } from '../../../components/logic/Form/Field/types';
+import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
+import { LabelButton } from '../../../components/common/LabelButton';
+import { LayoutFooter } from '../../../components/layout/LayoutFooter';
+import { Logo } from '../../../components/common/Logo';
+import { Text } from '../../../components/common/Text';
 
-import { useAuth } from '../../contexts/AuthContext';
-import { useFormStatus } from '../../hooks/useFormStatus';
-import { LogInRequest } from '../../types/AuthDTO';
+import { useAuth } from '../../../contexts/AuthContext';
+import { useFormStatus } from '../../../hooks/useFormStatus';
+import { LogInRequest } from '../../../types/AuthDTO';
 
 import * as S from './styles';
 

@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { Form } from '../../components/logic/Form';
+
+import { Container as CheckBoxContainer } from '../../../components/common/CheckBox/styles';
+import { Form } from '../../../components/logic/Form';
 
 export const Container = styled.div`
   display: flex;
@@ -7,7 +9,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  max-width: 45rem;
+  max-width: 40rem;
   margin: auto;
   margin-top: 6.4rem;
 
@@ -36,21 +38,32 @@ export const Container = styled.div`
 `;
 
 export const FormStyled = styled(Form)`
+
   display: flex;
   flex-direction: column;
+
+  max-width: 100%;
 
   .inputs {
     display: flex;
     flex-direction: column;
     gap: 1.6rem;
 
-    margin-bottom: 0.4rem;
+    margin-bottom: 1.6rem;
   }
 
   .sub-actions {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+
+    ${CheckBoxContainer} + ${CheckBoxContainer} {
+      margin-top: 1.2rem;
+    }
+
+    .label-button {
+      margin-top: 0.4rem;
+    }
   }
 
   .actions {

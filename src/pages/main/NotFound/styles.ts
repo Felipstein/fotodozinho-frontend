@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { NotFoundContainerProps } from './types';
 
 export const Container = styled.div<NotFoundContainerProps>`

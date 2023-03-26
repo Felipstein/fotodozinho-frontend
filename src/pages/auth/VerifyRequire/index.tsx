@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { Button } from '../../components/common/Button';
-import { Logo } from '../../components/common/Logo';
-import { Text } from '../../components/common/Text';
-import { LayoutFooter } from '../../components/layout/LayoutFooter';
-import { useAuth } from '../../contexts/AuthContext';
-import { ValidateEmailService } from '../../services/validate-email.service';
+import { Button } from '../../../components/common/Button';
+import { Logo } from '../../../components/common/Logo';
+import { Text } from '../../../components/common/Text';
+import { LayoutFooter } from '../../../components/layout/LayoutFooter';
+import { useAuth } from '../../../contexts/AuthContext';
+import { ValidateEmailService } from '../../../services/validate-email.service';
 
 import * as S from './styles';
 
