@@ -43,6 +43,15 @@ export function Routes() {
       />
 
       <Route
+        path='/validateemail/:validateToken'
+        element={
+          <CustomRoute type='protected_without_required_verification'>
+            <VerifyRequirePage />
+          </CustomRoute>
+        }
+      />
+
+      <Route
         path='/app'
         element={
           <CustomRoute type='protected'>
