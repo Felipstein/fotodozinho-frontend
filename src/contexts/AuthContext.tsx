@@ -10,7 +10,6 @@ import { User } from '../types/User';
 export type TokenState = Record<TokenType, string | null>;
 
 export interface AuthContextProps {
-  redirect: boolean;
   isAuthenticated: boolean;
   user: User | null;
   token: string | null;
@@ -29,8 +28,6 @@ export interface AuthProviderProps {
 }
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [redirect, setRedirect] = useState(false);
-
   const [user, setUser] = useState<User | null>(null);
   const [tokens, setTokens] = useState<TokenState>(() => {
 
@@ -61,8 +58,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           TokenStorageService.unstorageToken();
 
           toast.error('Sessão expirada, faça login novamente para continuar.');
-
-          setRedirect(true);
         } finally {
           setIsLoading(false);
         }
@@ -87,8 +82,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       const logInResponse = await AuthService.logIn({ email, password, rememberMe }) as LogInResponse;
       const { user, token, refreshToken } = logInResponse;
-
-      setRedirect(true);
 
       setUser(user);
       setTokens({ token, refresh_token: refreshToken ?? null });
@@ -127,8 +120,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }) as LogInResponse;
       const { user, token, refreshToken } = signUpResponse;
 
-      setRedirect(true);
-
       setUser(user);
       setTokens({ token, refresh_token: refreshToken });
 
@@ -161,8 +152,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
       await AuthService.signOut();
 
-      setRedirect(true);
-
       setUser(null);
       setTokens({ token: null, refresh_token: null });
 
@@ -178,7 +167,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{
-      redirect,
       isAuthenticated: !!user,
       user,
       token: tokens.token,

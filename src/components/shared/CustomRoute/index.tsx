@@ -5,17 +5,23 @@ import { CustomRouteProps } from './types';
 
 export const CustomRoute: React.FC<CustomRouteProps> = ({ type = 'public', children }) => {
 
-  const { redirect, isAuthenticated, user } = useAuth();
-
-  if(!redirect) {
-    return children;
-  }
+  const { isAuthenticated, user } = useAuth();
 
   if(type === 'not_authenticated' && isAuthenticated) {
     return <Navigate to='/app' />;
   }
 
-  if(type === 'protected' && !isAuthenticated) {
+  if(type === 'protected') {
+    if(!isAuthenticated) {
+      return <Navigate to='/login' />;
+    }
+
+    if(!user!.verified) {
+      return <Navigate to='/verifyrequest' />;
+    }
+  }
+
+  if(type === 'protected_without_required_verification' && !isAuthenticated) {
     return <Navigate to='/login' />;
   }
 

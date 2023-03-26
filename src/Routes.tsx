@@ -1,6 +1,6 @@
 import { Route, Routes as ReactRoutes } from 'react-router-dom';
 import { CustomRoute } from './components/shared/CustomRoute';
-import { AppPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage } from './pages';
+import { AppPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage, VerifyRequirePage } from './pages';
 
 export function Routes() {
   return (
@@ -29,6 +29,15 @@ export function Routes() {
         element={
           <CustomRoute type='not_authenticated'>
             <SignUpPage />
+          </CustomRoute>
+        }
+      />
+
+      <Route
+        path='/verifyrequire'
+        element={
+          <CustomRoute type='protected_without_required_verification'>
+            <VerifyRequirePage />
           </CustomRoute>
         }
       />

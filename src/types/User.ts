@@ -23,6 +23,7 @@ export interface UserPublic {
   phone: string | null;
   createdAt: Date;
   admin: boolean;
+  verified: boolean;
   totalPrints: number;
   totalPrintOrders: number;
   totalPurchases: number;
