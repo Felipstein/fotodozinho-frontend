@@ -27,4 +27,10 @@ export const CenteredContent = styled.div`
     }
   }
 
+  #send-again {
+    margin-top: 2.4rem;
+    margin-bottom: 0.8rem;
+    color: ${({ theme }) => theme.colors.gray[400]};
+  }
+
 `;
