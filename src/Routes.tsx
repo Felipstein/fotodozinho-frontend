@@ -1,6 +1,6 @@
 import { Route, Routes as ReactRoutes } from 'react-router-dom';
 import { CustomRoute } from './components/logic/CustomRoute';
-import { AppPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage, VerifyRequirePage } from './pages';
+import { AppPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage, ValidateEmailPage, VerifyRequirePage } from './pages';
 
 export function Routes() {
   return (
@@ -46,7 +46,7 @@ export function Routes() {
         path='/validateemail/:validateToken'
         element={
           <CustomRoute type='protected_without_required_verification'>
-            <VerifyRequirePage />
+            <ValidateEmailPage />
           </CustomRoute>
         }
       />
