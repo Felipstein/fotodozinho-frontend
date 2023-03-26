@@ -29,8 +29,11 @@ export const ValidateEmail: React.FC = () => {
 
         await ValidateEmailService.validateEmail({ token: validateToken });
 
-        toast.success('Seu e-mail agora está validado. Agora você pode acessar nossos serviços!');
-        navigate('/app');
+        toast.success('Seu e-mail está validado. Agora você pode acessar nossos serviços!');
+
+        setTimeout(() => {
+          navigate('/app');
+        }, 750);
       } catch (err: APIError | Error | any) {
         toast.error(err.message || 'Ocorreu um problema ao validar seu e-mail, tente novamente.');
         navigate('/verifyrequest');
