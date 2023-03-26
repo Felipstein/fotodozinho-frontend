@@ -1,5 +1,5 @@
 import { Route, Routes as ReactRoutes } from 'react-router-dom';
-import { CustomRoute } from './components/shared/CustomRoute';
+import { CustomRoute } from './components/logic/CustomRoute';
 import { AppPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage, VerifyRequirePage } from './pages';
 
 export function Routes() {

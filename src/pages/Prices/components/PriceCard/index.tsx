@@ -1,8 +1,9 @@
 import { formatCurrency } from '../../../../utils/formatCurrency';
 
+import { Text } from '../../../../components/common/Text';
+
 import { PriceCardProps } from './types';
 import * as S from './styles';
-import { Text } from '../../../../components/Text';
 
 export const PriceCard: React.FC<PriceCardProps> = ({ printPrice }) => {
   return (

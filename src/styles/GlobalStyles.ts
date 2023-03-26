@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { Scrollbar } from '../components/Scrollbar';
 
 export default createGlobalStyle`
 

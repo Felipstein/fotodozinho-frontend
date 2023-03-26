@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { createContext, ReactNode, useState } from 'react';
-import { SplashScreen } from '../components/SplashScreen';
+import { SplashScreen } from '../components/layout/SplashScreen';
 
 interface LoaderContextProps {
   isVisible: boolean;

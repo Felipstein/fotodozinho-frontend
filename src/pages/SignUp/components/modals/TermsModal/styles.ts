@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Scrollbar } from '../../../../../components/Scrollbar';
+import { Scrollbar } from '../../../../../components/common/Scrollbar';
 
 export const ContentContainer = styled.div`
   display: flex;

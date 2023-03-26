@@ -11,7 +11,7 @@ interface DataFetchFeedbackResponse {
   canRenderData: boolean;
 }
 
-export function useDataFetchFeedback({ isLoading, error, data }: DataFetchFeedbackProps): DataFetchFeedbackResponse {
+export function useDataFetchFeedback({ isLoading, error, data }: DataFetchFeedbackHookProps): DataFetchFeedbackResponse {
 
   const isFailedToFetch = !isLoading && Boolean(error);
 

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Form } from '../../components/Form';
+import { Form } from '../../components/logic/Form';
 
 export const Container = styled.div`
   display: flex;

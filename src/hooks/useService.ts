@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useCallback } from 'react';
 import { APIError } from '../errors/APIError';
@@ -32,5 +33,6 @@ export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, sta
     fetchData();
   }, [fetchData]);
 
+  // @ts-ignore
   return { data, isLoading, error, fetchDataAgain: fetchData };
 }

@@ -1,6 +1,6 @@
-import { Button } from '../../../../../components/Button';
-import { Text } from '../../../../../components/Text';
-import { Modal } from '../../../../../components/Modal';
+import { Button } from '../../../../../components/common/Button';
+import { Text } from '../../../../../components/common/Text';
+import { Modal } from '../../../../../components/portal/Modal';
 
 import { TermsModalProps } from './types';
 import * as S from './styles';

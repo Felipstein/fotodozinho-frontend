@@ -1,4 +1,4 @@
-import { LayoutFooter } from '../../components/LayoutFooter';
+import { LayoutFooter } from '../../components/layout/LayoutFooter';
 
 export const VerifyRequire: React.FC = () => {
 

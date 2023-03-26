@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { FormStatus } from '../components/Form/types';
+import { FormStatus } from '../components/logic/Form/types';
 import { FieldErrorFeedback } from './useFieldsErrors';
 
 export function useFormStatus() {

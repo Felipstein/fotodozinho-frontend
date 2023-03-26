@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { Container as CheckBoxContainer } from '../../components/CheckBox/styles';
-import { Form } from '../../components/Form';
+import { Container as CheckBoxContainer } from '../../components/common/CheckBox/styles';
+import { Form } from '../../components/logic/Form';
 
 export const Container = styled.div`
   display: flex;

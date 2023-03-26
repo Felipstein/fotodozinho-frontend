@@ -1,12 +1,14 @@
-import { Button } from '../../components/Button';
-import { DataFetchFeedback } from '../../components/DataFetchFeedback';
-import { Footer } from '../../components/Footer';
-import { Loading } from '../../components/Loading';
-import { SimpleHeader } from '../../components/SimpleHeader';
-import { Text } from '../../components/Text';
+import { Button } from '../../components/common/Button';
+import { DataFetchFeedback } from '../../components/common/DataFetchFeedback';
+import { Footer } from '../../components/layout/Footer';
+import { Loading } from '../../components/common/Loading';
+import { SimpleHeader } from '../../components/layout/SimpleHeader';
+import { Text } from '../../components/common/Text';
+
 import { useService } from '../../hooks/useService';
 import { PrintPriceService } from '../../services/print-prices.service';
 import { PrintPrice } from '../../types/PrintPrice';
+
 import { PricesList } from './components/PricesList';
 
 import * as S from './styles';
