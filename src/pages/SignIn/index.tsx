@@ -1,6 +1,6 @@
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
-import { FieldProps } from '../../components/Form/Field/types';
+import { FieldProps, validations } from '../../components/Form/Field/types';
 import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
@@ -27,12 +27,7 @@ export const SignIn: React.FC = () => {
       label: 'E-mail',
       type: 'email',
       placeholder: 'exemplo@gmail.com',
-      validator: {
-        matchesRegex: {
-          value: regex.email,
-          errorFeedback: 'E-mail inválido',
-        },
-      },
+      validator: validations.email,
     },
     {
       name: 'password',

@@ -1,4 +1,5 @@
 import { HTMLInputTypeAttribute, ReactElement } from 'react';
+import { regex } from '../../../utils/regex-provider';
 
 export interface FieldProps {
   name: string;
@@ -34,3 +35,22 @@ export interface Validator {
   matchesRegex?: ValidatorType<RegExp>;
   byContext?: ValidatorType<ContextInjecter>;
 }
+
+export const validations = {
+  email: {
+    matchesRegex: {
+      value: regex.email,
+      errorFeedback: 'E-mail inválido',
+    },
+  },
+  password: {
+    matchesRegex: {
+      value: /^(?=.*\d)(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
+      errorFeedback: 'Sua senha deve possuir pelo menos 1 número, 1 letra maiúscula e 1 símbolo',
+    },
+    minLength: {
+      value: 8,
+      errorFeedback: 'Sua senha deve possuir no mínimo 8 caracteres',
+    },
+  },
+};

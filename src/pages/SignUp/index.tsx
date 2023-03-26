@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button } from '../../components/Button';
 import { Footer } from '../../components/Footer';
-import { FieldProps } from '../../components/Form/Field/types';
+import { FieldProps, validations } from '../../components/Form/Field/types';
 import { FieldSpecificer } from '../../components/Form/FieldSpecifier';
 import { LabelButton } from '../../components/LabelButton';
 import { Logo } from '../../components/Logo';
@@ -11,7 +11,6 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useFormStatus } from '../../hooks/useFormStatus';
 import { SignUpRequest } from '../../types/AuthDTO';
 import { formatPhone } from '../../utils/formatPhone';
-import { regex } from '../../utils/regex-provider';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
@@ -37,12 +36,7 @@ export const SignUp: React.FC = () => {
       label: 'E-mail',
       type: 'email',
       placeholder: 'exemplo@exemplo.com',
-      validator: {
-        matchesRegex: {
-          value: regex.email,
-          errorFeedback: 'E-mail inválido',
-        },
-      },
+      validator: validations.email,
     },
     {
       name: 'phone',
@@ -56,16 +50,7 @@ export const SignUp: React.FC = () => {
       label: 'Senha',
       type: 'password',
       placeholder: 'Sua senha aqui',
-      validator: {
-        matchesRegex: {
-          value: /^(?=.*\d)(?=.*[A-Z])(?=.*[^\w\d\s:])([^\s]){8,16}$/,
-          errorFeedback: 'Sua senha deve possuir pelo menos 1 número, 1 letra maiúscula e 1 símbolo',
-        },
-        minLength: {
-          value: 8,
-          errorFeedback: 'Sua senha deve possuir no mínimo 8 caracteres',
-        },
-      },
+      validator: validations.password,
     },
     {
       name: 'confirmPassword',
