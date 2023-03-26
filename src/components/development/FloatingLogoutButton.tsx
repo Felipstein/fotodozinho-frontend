@@ -1,16 +1,15 @@
-import { useAuth } from '../../../contexts/AuthContext';
-import * as S from './styles';
+import { useAuth } from '../../contexts/AuthContext';
+import { Button } from '../common/Button';
 
 export const FloatingLogoutButton: React.FC = () => {
-
   const { isAuthenticated, signOut } = useAuth();
 
   return (
-    <S.ButtonStyled
+    <Button
       disabled={!isAuthenticated}
       onClick={signOut}
     >
       Deslogar
-    </S.ButtonStyled>
+    </Button>
   );
 };
