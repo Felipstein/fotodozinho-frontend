@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { XIcon } from '../../../icons/XIcon';
+import { IconButton } from '../../common/IconButton';
 import { Text } from '../../common/Text';
 import { FloatingLogoutButton } from '../FloatingLogoutButton';
 
@@ -11,7 +13,13 @@ export const DevPanel: React.FC = () => {
     <S.Container
       isOpened={isOpened}
     >
-      <S.Header />
+      <S.Header>
+        <h2 id='dev-title'>Painel Dev</h2>
+
+        <IconButton>
+          <XIcon />
+        </IconButton>
+      </S.Header>
 
       <div className="content">
         <div className="group">

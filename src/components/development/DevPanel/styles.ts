@@ -4,9 +4,9 @@ export const Container = styled.div<{ isOpened: boolean }>`
   position: absolute;
 
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
+  flex-direction: column;
+  /* justify-content: center;
+  align-items: center; */
 
   min-width: 25vw;
   height: 100%;
@@ -19,6 +19,8 @@ export const Container = styled.div<{ isOpened: boolean }>`
   .content {
     flex: 1;
 
+    margin: 1.6rem auto;
+
     .group {
       span {
         display: inline-block;
@@ -27,12 +29,20 @@ export const Container = styled.div<{ isOpened: boolean }>`
         margin-bottom: 0.4rem;
       }
     }
-
-    background-color: red;
   }
 `;
 
 export const Header = styled.header`
-  height: 20%;
+  width: 100%;
   background-color: ${({ theme }) => theme.colors.blue[400]};
+
+  padding: 1.6rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  #dev-title {
+    color: ${({ theme }) => theme.colors.gray[50]};
+    text-align: center;
+  }
 `;
