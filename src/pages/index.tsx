@@ -4,6 +4,7 @@ export { Prices as PricesPage } from './main/Prices';
 export { SignIn as SignInPage } from './auth/SignIn';
 export { SignUp as SignUpPage } from './auth/SignUp';
 export { ForgotPassword as ForgotPasswordPage } from './auth/ForgotPassword';
+export { ResetPassword as ResetPasswordPage } from './auth/ResetPassword';
 export { VerifyRequire as VerifyRequirePage } from './auth/VerifyRequire';
 export { ValidateEmail as ValidateEmailPage } from './auth/ValidateEmail';
 
