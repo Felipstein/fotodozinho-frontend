@@ -7,6 +7,7 @@ import { LayoutFooter } from '../../../components/layout/LayoutFooter';
 import { FieldProps, validations } from '../../../components/logic/Form/Field/types';
 import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 import { useFormStatus } from '../../../hooks/useFormStatus';
+import { ForgotPasswordService } from '../../../services/forgot-password.service';
 
 import * as S from './styles';
 
@@ -28,12 +29,17 @@ export const ForgotPassword: React.FC = () => {
     },
   ];
 
-  async function handleSubmit(data: Record<string, any>) {
+  async function handleSubmit({ email }: Record<string, any>) {
     try {
       setIsSendingEmail(true);
-      console.log(data);
+
+      await ForgotPasswordService.sendRecoveryEmail({ email });
+
+      toast.success('Nós lhe enviamos as instruções no seu e-mail para alterar sua senha, dá uma olhadinha lá!');
     } catch (err: Error | any) {
+
       toast.error(err.message || 'Ocorreu um problema enquanto enviamos para você as instruções de recuperação de senha, tente novamente mais tarde.');
+
     } finally {
       setIsSendingEmail(false);
     }
