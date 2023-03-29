@@ -9,7 +9,7 @@ import { FloatingLogoutButton } from '../FloatingLogoutButton';
 import * as S from './styles';
 
 export const DevPanel: React.FC = () => {
-  const [isOpened, setIsOpened] = useState(true);
+  const [isOpened, setIsOpened] = useState(false);
 
   const { isAuthenticated, isLoading } = useAuth();
 
