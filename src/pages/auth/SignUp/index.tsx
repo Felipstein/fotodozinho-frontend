@@ -5,8 +5,6 @@ import { FieldProps, validations } from '../../../components/logic/Form/Field/ty
 import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
-import { Logo } from '../../../components/common/Logo';
-import { Text } from '../../../components/common/Text';
 
 import { useAuth } from '../../../contexts/AuthContext';
 import { useFormStatus } from '../../../hooks/useFormStatus';
@@ -16,6 +14,7 @@ import { formatPhone } from '../../../utils/formatPhone';
 import { TermsModal } from './components/modals/TermsModal';
 
 import * as S from './styles';
+import { HeaderOnlyLogo } from '../../../components/layout/HeaderOnlyLogo';
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -91,11 +90,10 @@ export const SignUp: React.FC = () => {
       <TermsModal isOpened={isModalOpened} onClose={handleCloseModal} />
 
       <S.Container>
-        <header>
-          <Logo scale={0.625} />
-          <Text id='top-title' size='lg'>Bem-vindo(a)!</Text>
-          <Text id='bottom-title'>Cadastre-se para usar nossos serviços já</Text>
-        </header>
+        <HeaderOnlyLogo
+          topTitle='Bem-vindo(a)!'
+          bottomTitle='Cadastre-se para usar nossos serviços já'
+        />
 
         <div className="form-container">
           <S.FormStyled

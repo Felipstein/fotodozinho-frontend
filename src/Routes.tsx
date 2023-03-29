@@ -1,6 +1,6 @@
 import { Route, Routes as ReactRoutes } from 'react-router-dom';
 import { CustomRoute } from './components/logic/CustomRoute';
-import { AppPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage, ValidateEmailPage, VerifyRequirePage } from './pages';
+import { AppPage, ForgotPasswordPage, HomePage, NotFoundPage, PricesPage, SignInPage, SignUpPage, ValidateEmailPage, VerifyRequirePage } from './pages';
 
 export function Routes() {
   return (
@@ -29,6 +29,15 @@ export function Routes() {
         element={
           <CustomRoute type='not_authenticated'>
             <SignUpPage />
+          </CustomRoute>
+        }
+      />
+
+      <Route
+        path='/forgot-password'
+        element={
+          <CustomRoute type='not_authenticated'>
+            <ForgotPasswordPage />
           </CustomRoute>
         }
       />

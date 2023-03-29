@@ -13,25 +13,6 @@ export const Container = styled.div`
   margin: auto;
   margin-top: 6.4rem;
 
-  header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    #top-title {
-      margin: 1.6rem 0 2.4rem 0;
-
-      font-weight: 500;
-    }
-
-    #bottom-title {
-      margin-bottom: 2.8rem;
-
-      font-weight: 600;
-    }
-
-  }
-
   .form-container {
     margin-bottom: 1.6rem;
   }

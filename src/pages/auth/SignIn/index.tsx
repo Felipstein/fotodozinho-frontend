@@ -3,14 +3,13 @@ import { FieldProps, validations } from '../../../components/logic/Form/Field/ty
 import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
-import { Logo } from '../../../components/common/Logo';
-import { Text } from '../../../components/common/Text';
 
 import { useAuth } from '../../../contexts/AuthContext';
 import { useFormStatus } from '../../../hooks/useFormStatus';
 import { LogInRequest } from '../../../types/AuthDTO';
 
 import * as S from './styles';
+import { HeaderOnlyLogo } from '../../../components/layout/HeaderOnlyLogo';
 
 export const SignIn: React.FC = () => {
 
@@ -49,11 +48,10 @@ export const SignIn: React.FC = () => {
   return (
     <LayoutFooter>
       <S.Container>
-        <header>
-          <Logo scale={0.625} />
-          <Text id='top-title' size='lg'>Bem-vindo(a) a nossa plataforma de serviços!</Text>
-          <Text id='bottom-title'>Faça login para continuar</Text>
-        </header>
+        <HeaderOnlyLogo
+          topTitle='Bem-vindo(a) a nossa plataforma de serviços!'
+          bottomTitle='Faça login para continuar'
+        />
 
         <div className="form-container">
           <S.FormStyled
