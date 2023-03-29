@@ -13,6 +13,8 @@ export const Container = styled.div`
   margin: auto;
   margin-top: 6.4rem;
 
+  height: 100%;
+
   .form-container {
     margin-bottom: 1.6rem;
   }

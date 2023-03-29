@@ -7,11 +7,11 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 100%;
-
   max-width: 45rem;
   margin: auto;
   margin-top: 6.4rem;
+
+  height: 100%;
 
   .form-container {
     margin-bottom: 1.6rem;
@@ -27,20 +27,17 @@ export const FormStyled = styled(Form)`
     flex-direction: column;
     gap: 1.6rem;
 
-    margin-bottom: 0.4rem;
-  }
-
-  .sub-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    margin-bottom: 2.4rem;
   }
 
   .actions {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 1.2rem;
 
-    margin-top: 3.6rem;
+    button {
+      width: 100%;
+    }
   }
 `;
