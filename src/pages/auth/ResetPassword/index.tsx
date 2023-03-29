@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { Button } from '../../../components/common/Button';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { HeaderOnlyLogo } from '../../../components/layout/HeaderOnlyLogo';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
-
 import { SplashScreen } from '../../../components/layout/SplashScreen';
 import { FieldProps, validations } from '../../../components/logic/Form/Field/types';
 import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
@@ -19,6 +19,7 @@ export const ResetPassword: React.FC = () => {
   const navigate = useNavigate();
   const [params] = useSearchParams();
 
+  const [isSettingPassword, setIsSettingPassword] = useState(false);
   const [isVerifingToken, setIsVerifingToken] = useState(true);
   const [showLoadingScreen, setShowLoadingScreen] = useState(false);
 
@@ -31,14 +32,14 @@ export const ResetPassword: React.FC = () => {
 
   const fields: FieldProps[] = [
     {
-      name: 'password',
+      name: 'newPassword',
       label: 'Nova senha',
       type: 'password',
       placeholder: 'Sua senha aqui',
       validator: validations.password,
     },
     {
-      name: 'confirmPassword',
+      name: 'confirmNewPassword',
       label: 'Confirmar nova senha',
       type: 'password',
       placeholder: 'Confirme sua senha aqui',
@@ -93,8 +94,21 @@ export const ResetPassword: React.FC = () => {
     };
   }, [token, navigate]);
 
-  async function handleSubmit(data: Record<string, any>) {
-    console.log(data);
+  async function handleSubmit({ newPassword, confirmNewPassword }: Record<string, any>) {
+    try {
+      setIsSettingPassword(true);
+
+      await ForgotPasswordService.setPassword({ token: token!, newPassword, confirmNewPassword });
+
+      toast.success('Sua senha foi alterada com êxito! Agora você pode se autenticar novamente.');
+      navigate('/login');
+    } catch (err: Error | any) {
+
+      toast.error(err.message || 'Ocorreu um erro enquanto tentavamos alterar sua senha, tente novamente ou peça por outro token.');
+
+    } finally {
+      setIsSettingPassword(false);
+    }
   }
 
   return (
@@ -119,15 +133,16 @@ export const ResetPassword: React.FC = () => {
             >
 
               <div className="inputs">
-                <FieldSpecificer name='password' />
+                <FieldSpecificer name='newPassword' />
 
-                <FieldSpecificer name='confirmPassword' />
+                <FieldSpecificer name='confirmNewPassword' />
               </div>
 
               <div className="actions">
                 <Button
                   type='submit'
-                  disabled={!isFormValid}
+                  disabled={!isFormValid && !!token}
+                  isLoading={isSettingPassword}
                 >
                   Alterar senha
                 </Button>
