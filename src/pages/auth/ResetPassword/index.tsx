@@ -65,8 +65,6 @@ export const ResetPassword: React.FC = () => {
         }, 1500);
 
         await ForgotPasswordService.verifyToken({ token });
-
-        toast.success('Tudo certo com seu token ehehehehehheheheheheehehehehehh');
       } catch(err: Error | any) {
 
         toast.error(err.message || 'Ocorreu um erro enquanto verificavamos o token, tente novamente.');
