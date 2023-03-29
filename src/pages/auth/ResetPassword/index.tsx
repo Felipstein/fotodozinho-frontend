@@ -44,7 +44,7 @@ export const ResetPassword: React.FC = () => {
       placeholder: 'Confirme sua senha aqui',
       validator: {
         byContext: {
-          value: ({ password }, confirmPassword) => password === confirmPassword,
+          value: ({ newPassword }, confirmNewPassword) => newPassword === confirmNewPassword,
           errorFeedback: 'As senhas não coincidem',
         },
       },
