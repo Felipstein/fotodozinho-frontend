@@ -20,7 +20,6 @@ export const ResetPassword: React.FC = () => {
   const [params] = useSearchParams();
 
   const [isSettingPassword, setIsSettingPassword] = useState(false);
-  const [isVerifingToken, setIsVerifingToken] = useState(true);
   const [showLoadingScreen, setShowLoadingScreen] = useState(false);
 
   const token = params.get('token');
@@ -57,8 +56,6 @@ export const ResetPassword: React.FC = () => {
 
     async function verifyToken() {
       try {
-        setIsVerifingToken(true);
-
         if(!token) {
           throw new APIError('Token inválido', 400);
         }
@@ -76,7 +73,6 @@ export const ResetPassword: React.FC = () => {
 
         navigate('/forgot-password');
       } finally {
-        setIsVerifingToken(false);
         setShowLoadingScreen(false);
 
         if(timer != undefined) {
