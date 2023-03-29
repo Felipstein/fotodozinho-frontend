@@ -1,10 +1,20 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  display: flex;
 
-export const SidebarNav = styled.aside``;
+  min-height: 100vh;
+`;
 
-export const MenuContent = styled.div``;
+export const SidebarNav = styled.aside`
+  background-color: red;
+`;
+
+export const MenuContent = styled.div`
+  flex: 1;
+
+  background-color: blue;
+`;
 
 export const Header = styled.header``;
 
