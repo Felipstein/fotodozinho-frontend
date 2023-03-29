@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAuth } from '../../../contexts/AuthContext';
 import { XIcon } from '../../../icons/XIcon';
 import { IconButton } from '../../common/IconButton';
 import { Text } from '../../common/Text';
@@ -9,27 +10,44 @@ import * as S from './styles';
 export const DevPanel: React.FC = () => {
   const [isOpened, setIsOpened] = useState(true);
 
+  const { isAuthenticated } = useAuth();
+
   return (
-    <S.Container
-      isOpened={isOpened}
-    >
-      <S.Header>
-        <h2 id='dev-title'>Painel Dev</h2>
+    <>
+      <S.DevPanelToggle
+        isOpened={isOpened}
+        onClick={() => setIsOpened(true)}
+      >
+        Painel Dev
+      </S.DevPanelToggle>
+      <S.Container
+        isOpened={isOpened}
+      >
+        <S.Header>
+          <h2 id='dev-title'>Painel Dev</h2>
 
-        <IconButton>
-          <XIcon />
-        </IconButton>
-      </S.Header>
+          <IconButton onClick={() => setIsOpened(false)}>
+            <XIcon />
+          </IconButton>
+        </S.Header>
 
-      <div className="content">
-        <div className="group">
-          <Text size='sm'>
-            Desconecte de sua conta
-          </Text>
+        <div className="content">
 
-          <FloatingLogoutButton />
+          {isAuthenticated ? (
+            <div className="group">
+              <Text size='sm'>
+                Desconecte de sua conta
+              </Text>
+
+              <FloatingLogoutButton />
+            </div>
+          ) : (
+            <S.DangerText>
+              Não autenticado
+            </S.DangerText>
+          )}
         </div>
-      </div>
-    </S.Container>
+      </S.Container>
+    </>
   );
 };
