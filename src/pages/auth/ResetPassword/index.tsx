@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { Button } from '../../../components/common/Button';
+import { LabelButton } from '../../../components/common/LabelButton';
 import { HeaderOnlyLogo } from '../../../components/layout/HeaderOnlyLogo';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
 
 import { SplashScreen } from '../../../components/layout/SplashScreen';
 import { FieldProps, validations } from '../../../components/logic/Form/Field/types';
+import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 import { APIError } from '../../../errors/APIError';
 import { useFormStatus } from '../../../hooks/useFormStatus';
 import { ForgotPasswordService } from '../../../services/forgot-password.service';
@@ -108,7 +111,36 @@ export const ResetPassword: React.FC = () => {
             bottomTitle='Não se esqueça de anotar bem essa nova senha, viu?'
           />
 
+          <div className="form-container">
+            <S.FormStyled
+              fields={fields}
+              onSubmit={handleSubmit}
+              onFormStatusChange={handleFormStatusChange}
+            >
 
+              <div className="inputs">
+                <FieldSpecificer name='password' />
+
+                <FieldSpecificer name='confirmPassword' />
+              </div>
+
+              <div className="actions">
+                <Button
+                  type='submit'
+                  disabled={!isFormValid}
+                >
+                  Alterar senha
+                </Button>
+
+                <LabelButton
+                  isBlueVariant
+                  to='/login'
+                >
+                  Me leve de volta para o login
+                </LabelButton>
+              </div>
+            </S.FormStyled>
+          </div>
         </S.Container>
       </LayoutFooter>
     </>

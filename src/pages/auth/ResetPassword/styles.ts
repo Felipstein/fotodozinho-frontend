@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from '../../../components/logic/Form';
 
 export const Container = styled.div`
   display: flex;
@@ -14,5 +15,31 @@ export const Container = styled.div`
 
   .form-container {
     margin-bottom: 1.6rem;
+  }
+`;
+
+export const FormStyled = styled(Form)`
+  display: flex;
+  flex-direction: column;
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    margin-bottom: 0.4rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+
+    margin-top: 2.4rem;
+
+    button {
+      width: 100%;
+    }
   }
 `;
