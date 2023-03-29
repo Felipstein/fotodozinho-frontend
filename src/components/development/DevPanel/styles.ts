@@ -45,8 +45,8 @@ export const Container = styled.div<{ isOpened: boolean }>`
 
 export const DevPanelToggle = styled(Button)<{ isOpened: boolean }>`
   position: fixed;
-  top: 1.6rem;
-  left: 1.6rem;
+  bottom: 1.6rem;
+  right: 1.6rem;
 
   ${({ isOpened }) => isOpened && css`
     display: none;
