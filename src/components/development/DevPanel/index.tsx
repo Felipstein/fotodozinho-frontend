@@ -3,6 +3,7 @@ import { useAuth } from '../../../contexts/AuthContext';
 import { XIcon } from '../../../icons/XIcon';
 import { IconButton } from '../../common/IconButton';
 import { Text } from '../../common/Text';
+import { AccountData } from '../AccountData';
 import { FloatingLogoutButton } from '../FloatingLogoutButton';
 
 import * as S from './styles';
@@ -10,7 +11,7 @@ import * as S from './styles';
 export const DevPanel: React.FC = () => {
   const [isOpened, setIsOpened] = useState(true);
 
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoading } = useAuth();
 
   return (
     <>
@@ -32,8 +33,9 @@ export const DevPanel: React.FC = () => {
         </S.Header>
 
         <div className="content">
+          <AccountData />
 
-          {isAuthenticated ? (
+          {isAuthenticated && (
             <div className="group">
               <Text size='sm'>
                 Desconecte de sua conta
@@ -41,9 +43,11 @@ export const DevPanel: React.FC = () => {
 
               <FloatingLogoutButton />
             </div>
-          ) : (
+          )}
+
+          {!isAuthenticated && !isLoading && (
             <S.DangerText>
-              Não autenticado
+                Não autenticado
             </S.DangerText>
           )}
         </div>

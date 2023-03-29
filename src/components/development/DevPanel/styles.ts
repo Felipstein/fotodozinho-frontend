@@ -26,6 +26,10 @@ export const Container = styled.div<{ isOpened: boolean }>`
   .content {
     flex: 1;
 
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
     margin: 1.6rem auto;
 
     .group {
