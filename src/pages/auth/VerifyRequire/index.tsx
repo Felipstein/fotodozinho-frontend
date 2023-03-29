@@ -11,7 +11,7 @@ import { ValidateEmailService } from '../../../services/validate-email.service';
 import * as S from './styles';
 
 export const VerifyRequire: React.FC = () => {
-  const { user } = useAuth();
+  const { user, isLoading: isSigningOut, signOut } = useAuth();
   const [isSendingEmail, setIsSendingEmail] = useState(false);
 
   async function handleSendValidateTokenAgain() {
@@ -49,12 +49,22 @@ export const VerifyRequire: React.FC = () => {
           Não chegou nada ou já expirou? Sem problemas
         </Text>
 
-        <Button
-          isLoading={isSendingEmail}
-          onClick={handleSendValidateTokenAgain}
-        >
-          Enviar novamente
-        </Button>
+        <div className="actions">
+          <Button
+            isLoading={isSendingEmail}
+            onClick={handleSendValidateTokenAgain}
+          >
+            Enviar novamente
+          </Button>
+
+          <Button
+            isLoading={isSigningOut}
+            onClick={signOut}
+            variant='secondary'
+          >
+            Conectar com outra conta
+          </Button>
+        </div>
 
       </S.CenteredContent>
     </LayoutFooter>

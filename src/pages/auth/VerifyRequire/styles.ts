@@ -33,4 +33,10 @@ export const CenteredContent = styled.div`
     color: ${({ theme }) => theme.colors.gray[400]};
   }
 
+  .actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
 `;
