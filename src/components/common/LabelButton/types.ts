@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { LinkTarget } from '../../../shared/LinkTarget';
 
 export interface LabelButtonProps {
@@ -5,5 +6,5 @@ export interface LabelButtonProps {
   to?: string;
   linkTarget?: LinkTarget;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-  children: string;
+  children: ReactNode;
 }

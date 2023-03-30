@@ -3,6 +3,8 @@ import { LabelButton } from '../../../components/common/LabelButton';
 import { Text } from '../../../components/common/Text';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
+import { CheckCircleIcon } from '../../../icons/CheckCircleIcon';
+import { TrashIcon } from '../../../icons/TrashIcon';
 import { NotificationsService } from '../../../services/notifications.service';
 import { Notification } from './components/Notification';
 
@@ -61,10 +63,12 @@ export const Notifications: React.FC = () => {
 
         <div className="actions">
           <LabelButton>
+            <CheckCircleIcon size={19} />
             Marcar todas como lidas
           </LabelButton>
 
           <LabelButton>
+            <TrashIcon size={19} />
             Remover todas notificações já lidas
           </LabelButton>
         </div>
