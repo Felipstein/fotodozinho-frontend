@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.div<{ read: boolean }>`
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,12 +13,31 @@ export const Container = styled.div`
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};
 
+  &::after {
+    content: '';
+
+    position: absolute;
+    right: 8px;
+    top: 8px;
+
+    width: 1.2rem;
+    height: 1.2rem;
+
+    border-radius: 12px;
+    background-color: ${({ theme }) => theme.colors.blue[400]};
+  }
+
+  ${({ read }) => !read && css`
+
+
+  `};
+
   .data-info {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    color: ${({ theme }) => theme.colors.gray[300]};
+    color: ${({ theme, read }) => read ? theme.colors.gray[300] : theme.colors.blue[400]};
 
     .data-time {
       display: flex;
@@ -37,7 +58,8 @@ export const Container = styled.div`
     flex: 1;
 
     .notification-title {
-      color: ${({ theme }) => theme.colors.gray[900]};
+
+      color: ${({ theme, read }) => read ? theme.colors.gray[900] : theme.colors.blue[400]};
       font-weight: 500;
     }
 
@@ -51,6 +73,8 @@ export const Container = styled.div`
     align-items: center;
     gap: 0.4rem;
 
-    color: ${({ theme }) => theme.colors.gray[900]};
+    svg {
+      color: ${({ theme, read }) => read ? theme.colors.gray[900] : theme.colors.blue[400]};
+    }
   }
 `;

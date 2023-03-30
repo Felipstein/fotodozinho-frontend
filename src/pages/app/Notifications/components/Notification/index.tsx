@@ -16,7 +16,7 @@ export const Notification: React.FC<NotificationProps> = ({
 }) => {
 
   return (
-    <S.Container>
+    <S.Container read={read}>
       <div className="data-info">
         <CalendarBlankIcon size={24} />
 
@@ -33,18 +33,20 @@ export const Notification: React.FC<NotificationProps> = ({
 
       <main className="content">
         <Text className='notification-title'>
-          Pedido realizado com sucesso!
+          {title}
         </Text>
 
         <Text className='notification-body' size='sm'>
-          Agora só falta escolher o método de pagamento
+          {message}
         </Text>
       </main>
 
       <div className="actions">
-        <IconButton size={26} >
-          <CheckCircleIcon />
-        </IconButton>
+        {!read && (
+          <IconButton size={26} >
+            <CheckCircleIcon />
+          </IconButton>
+        )}
 
         <IconButton size={26}>
           <TrashIcon />
