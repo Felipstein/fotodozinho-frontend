@@ -4,6 +4,7 @@ import { MenuButton } from '../../common/MenuButton';
 
 import { AppLayoutProps } from './types';
 import * as S from './styles';
+import { WarnIcon } from '../../../icons/WarnIcon';
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, children }) => {
 
@@ -16,6 +17,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
           <MenuButton
             to='notifications'
           >
+            <SmileySadIcon />
             Notificações
           </MenuButton>
         </nav>
@@ -25,6 +27,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
             <MenuButton
               to='print'
             >
+              <WarnIcon />
               Revelação
             </MenuButton>
 

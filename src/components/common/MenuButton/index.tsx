@@ -7,7 +7,12 @@ export const MenuButton: React.FC<MenuButtonProps> = ({ to, children }) => {
     <S.NavLinkStyled
       to={to}
     >
-      {children}
+      {({ isActive }) => (
+        <>
+          {children}
+          <S.LittleLine isActive={isActive} />
+        </>
+      )}
     </S.NavLinkStyled>
   );
 };
