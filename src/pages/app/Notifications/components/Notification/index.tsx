@@ -5,6 +5,8 @@ import { Text } from '../../../../../components/common/Text';
 import { IconButton } from '../../../../../components/common/IconButton';
 import { WarnIcon } from '../../../../../icons/WarnIcon';
 import { CalendarBlankIcon } from '../../../../../icons/CalendarBlankIcon';
+import { CheckCircleIcon } from '../../../../../icons/CheckCircleIcon';
+import { TrashIcon } from '../../../../../icons/TrashIcon';
 
 export const Notification: React.FC<NotificationProps> = ({
   id,
@@ -41,12 +43,12 @@ export const Notification: React.FC<NotificationProps> = ({
       </main>
 
       <div className="actions">
-        <IconButton>
-          <InfoIcon />
+        <IconButton size={26} >
+          <CheckCircleIcon />
         </IconButton>
 
-        <IconButton>
-          <WarnIcon />
+        <IconButton size={26}>
+          <TrashIcon />
         </IconButton>
       </div>
     </S.Container>
