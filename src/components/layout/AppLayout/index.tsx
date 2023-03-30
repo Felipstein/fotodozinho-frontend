@@ -10,7 +10,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
   return (
     <S.Container>
       <S.SidebarNav>
-        <div className="group">
+        <nav className="group">
           <Logo scale={0.35} />
 
           <MenuButton
@@ -18,10 +18,10 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
           >
             Notificações
           </MenuButton>
-        </div>
+        </nav>
 
-        <div className="group more-gap">
-          <div className="group">
+        <nav className="group more-gap">
+          <nav className="group">
             <MenuButton
               to='print'
             >
@@ -39,7 +39,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
             >
               Meus Pedidos
             </MenuButton>
-          </div>
+          </nav>
 
           <MenuButton
             to='photography'
@@ -47,7 +47,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
             Fotografia
           </MenuButton>
 
-          <div className="group">
+          <nav className="group">
             <MenuButton
               to='support'
             >
@@ -65,8 +65,8 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
             >
               Sair
             </MenuButton>
-          </div>
-        </div>
+          </nav>
+        </nav>
       </S.SidebarNav>
 
       <S.MenuContent>
