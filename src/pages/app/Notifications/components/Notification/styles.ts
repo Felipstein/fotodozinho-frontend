@@ -8,7 +8,7 @@ export const Container = styled.div<{ read: boolean }>`
   align-items: center;
   gap: 1.2rem;
 
-  padding: 1.6rem 0.8rem;
+  padding: 2rem 1.6rem;
   width: 100%;
 
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};

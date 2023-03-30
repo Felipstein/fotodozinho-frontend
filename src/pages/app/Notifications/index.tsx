@@ -52,16 +52,17 @@ export const Notifications: React.FC = () => {
             }}
           >
             {notifications.map(notification => (
-              <Notification
-                key={notification.id}
-                id={notification.id}
-                title={notification.title}
-                message={notification.message}
-                createdAt={notification.createdAt}
-                read={notification.read}
-                onMarkAsRead={handleMarkNotificationAsRead}
-                onDelete={handleDeleteNotification}
-              />
+              <li key={notification.id}>
+                <Notification
+                  id={notification.id}
+                  title={notification.title}
+                  message={notification.message}
+                  createdAt={notification.createdAt}
+                  read={notification.read}
+                  onMarkAsRead={handleMarkNotificationAsRead}
+                  onDelete={handleDeleteNotification}
+                />
+              </li>
             ))}
           </DataFetchFeedback>
 
