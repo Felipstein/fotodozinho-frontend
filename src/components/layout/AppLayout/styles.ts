@@ -12,7 +12,7 @@ export const SidebarNav = styled.aside`
   justify-content: space-between;
   align-items: center;
 
-  padding: 4rem 1.6rem;
+  padding: 2.4rem 1.6rem;
 
   background-color: ${({ theme }) => theme.colors.white};
 
@@ -23,7 +23,7 @@ export const SidebarNav = styled.aside`
     gap: 2.4rem;
 
     &.more-gap {
-      gap: 6.4rem;
+      gap: 3.2rem;
     }
   }
 `;
