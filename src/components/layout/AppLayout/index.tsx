@@ -4,8 +4,7 @@ import { MenuNav } from './components/MenuNav';
 import { AppLayoutProps } from './types';
 import * as S from './styles';
 
-export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, children }) => {
-
+export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   return (
     <S.Container>
       <MenuNav />
@@ -17,9 +16,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
           <h1>Notificações</h1>
         </S.Header>
 
-        <S.Content
-          isCentered={centerContent}
-        >
+        <S.Content>
           {children}
         </S.Content>
       </S.MenuContent>

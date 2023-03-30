@@ -14,4 +14,4 @@ export const MenuContent = styled.div`
 
 export const Header = styled.header``;
 
-export const Content = styled.main<{ isCentered: boolean }>``;
+export const Content = styled.main``;
