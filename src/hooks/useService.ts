@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState, useCallback } from 'react';
+import { toast } from 'react-toastify';
 import { APIError } from '../errors/APIError';
 
 interface ServiceResponse<T> {
@@ -10,7 +11,7 @@ interface ServiceResponse<T> {
   fetchDataAgain: () => void;
 }
 
-export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, startLoading = true): ServiceResponse<T> {
+export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, startLoading = true, toastError = false): ServiceResponse<T> {
   const [isLoading, setIsLoading] = useState(Boolean(startLoading));
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<T | null>(initialValue ? initialValue : null);
@@ -23,7 +24,13 @@ export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, sta
       const result = await serviceFn();
       setData(result);
     } catch (err: APIError | Error | any) {
-      setError(err.message || 'Ocorreu um erro desconhecido, por favor, tente novamente. Se o erro persistir, entre em contato conosco pelo suporte.');
+      const errorMessage = err.message || 'Ocorreu um erro desconhecido, por favor, tente novamente. Se o erro persistir, entre em contato conosco pelo suporte.';
+
+      setError(errorMessage);
+
+      if(toastError) {
+        toast.error(errorMessage);
+      }
     } finally {
       setIsLoading(false);
     }
