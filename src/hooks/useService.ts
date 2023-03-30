@@ -9,17 +9,20 @@ interface ServiceResponse<T> {
   isLoading: boolean;
   error: string | null;
   fetchDataAgain: () => void;
+  setData: React.Dispatch<React.SetStateAction<T extends undefined ? T | null : T>>;
 }
 
 export interface HookServiceSettings {
   startLoading?: boolean;
   toastError?: boolean;
   customErrorMessage?: string;
+  canManipuleStateOfData?: boolean;
 }
 
 const defaultSettings: HookServiceSettings = {
   startLoading: true,
   toastError: false,
+  canManipuleStateOfData: false,
 };
 
 export function useService<T>(
@@ -55,6 +58,13 @@ export function useService<T>(
     fetchData();
   }, [fetchData]);
 
-  // @ts-ignore
-  return { data, isLoading, error, fetchDataAgain: fetchData };
+  return {
+    // @ts-ignore
+    data,
+    isLoading,
+    error,
+    fetchDataAgain: fetchData,
+    // @ts-ignore
+    setData: settings.canManipuleStateOfData ? setData : null,
+  };
 }

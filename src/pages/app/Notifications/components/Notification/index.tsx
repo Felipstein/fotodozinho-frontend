@@ -16,6 +16,8 @@ export const Notification: React.FC<NotificationProps> = ({
   message,
   createdAt,
   read,
+  onMarkAsRead,
+  onDelete,
 }) => {
   const [isMarkingNotificationAsRead, setIsMarkingNotificationAsRead] = useState(false);
   const [isDeletingNotification, setIsDeletingNotification] = useState(false);
@@ -26,6 +28,7 @@ export const Notification: React.FC<NotificationProps> = ({
 
       await NotificationsService.markNotificationAsRead({ notificationId: id });
 
+      onMarkAsRead(id);
     } catch (err: Error | any) {
       toast.error(err.message || 'Ocorreu um erro enquanto tentavamos marcar sua notificação como lida, tente novamente.');
     } finally {
@@ -39,6 +42,7 @@ export const Notification: React.FC<NotificationProps> = ({
 
       await NotificationsService.deleteNotification({ notificationId: id });
 
+      onDelete(id);
     } catch (err: Error | any) {
       toast.error(err.message || 'Ocorreu um erro enquanto tentavamos deletar sua notificação, tente novamente.');
     } finally {

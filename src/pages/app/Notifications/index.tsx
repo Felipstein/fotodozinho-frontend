@@ -10,9 +10,33 @@ export const Notifications: React.FC = () => {
   const user = useAlreadyAuthUser();
 
   const {
-    data: notifications, isLoading, error,
-    fetchDataAgain,
-  } = useService(() => NotificationsService.getNotificationsByUser({ userId: user.id }), []);
+    data: notifications, isLoading, error, fetchDataAgain, setData: setNotifications,
+  } = useService(
+    () => NotificationsService.getNotificationsByUser({ userId: user.id }),
+    [],
+    { canManipuleStateOfData: true },
+  );
+
+  function handleMarkNotificationAsRead(id: string) {
+    setNotifications(prevState => prevState.map(
+      notification => {
+        if(notification.id === id) {
+          return {
+            ...notification,
+            read: true,
+          };
+        }
+
+        return notification;
+      }
+    ));
+  }
+
+  function handleDeleteNotification(id: string) {
+    setNotifications(prevState => prevState.filter(
+      notification => notification.id !== id,
+    ));
+  }
 
   return (
     <S.Container>
@@ -35,6 +59,8 @@ export const Notifications: React.FC = () => {
                 message={notification.message}
                 createdAt={notification.createdAt}
                 read={notification.read}
+                onMarkAsRead={handleMarkNotificationAsRead}
+                onDelete={handleDeleteNotification}
               />
             ))}
           </DataFetchFeedback>
