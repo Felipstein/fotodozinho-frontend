@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { toast } from 'react-toastify';
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { Tab } from '../../../components/common/Tab';
@@ -14,6 +15,9 @@ import * as S from './styles';
 
 export const Notifications: React.FC = () => {
   const user = useAlreadyAuthUser();
+
+  const [isMarkingAllReaded, setIsMarkingAllReaded] = useState(false);
+  const [isDeletingReaded, setIsDeletingAllReaded] = useState(false);
 
   const [filter, setFilter] = useState('all');
   const [sort, setSort] = useState('dec');
@@ -69,6 +73,54 @@ export const Notifications: React.FC = () => {
     ));
   }
 
+  async function handleMarkAllReaded() {
+    try {
+      setIsMarkingAllReaded(true);
+
+      const notificationsId: string[] = [];
+
+      const promises = notifications.filter(notification => notification.read).map(
+        async ({ id }) => {
+          notificationsId.push(id);
+
+          return NotificationsService.markNotificationAsRead({ notificationId: id });
+        }
+      );
+
+      await Promise.all(promises);
+      notificationsId.forEach(notificationId => handleMarkNotificationAsRead(notificationId));
+
+    } catch (err: Error | any) {
+      toast.error(err.message || 'Ocorreu um erro ao tentar marcar todas as notificações como já lidas, tente novamente.');
+    } finally {
+      setIsMarkingAllReaded(false);
+    }
+  }
+
+  async function handleDeleteAllReaded() {
+    try {
+      setIsDeletingAllReaded(true);
+
+      const notificationsId: string[] = [];
+
+      const promises = notifications.filter(notification => notification.read).map(
+        async ({ id }) => {
+          notificationsId.push(id);
+
+          return NotificationsService.deleteNotification({ notificationId: id });
+        }
+      );
+
+      await Promise.all(promises);
+      notificationsId.forEach(notificationId => handleDeleteNotification(notificationId));
+
+    } catch (err: Error | any) {
+      toast.error(err.message || 'Ocorreu um erro ao tentar deletar todas as notificações já lidas, tente novamente.');
+    } finally {
+      setIsDeletingAllReaded(false);
+    }
+  }
+
   return (
     <S.Container>
       <S.Header>
@@ -113,12 +165,16 @@ export const Notifications: React.FC = () => {
         </div>
 
         <div className="actions">
-          <LabelButton>
+          <LabelButton
+            onClick={handleMarkAllReaded}
+          >
             <CheckCircleIcon size={19} />
             Marcar todas como lidas
           </LabelButton>
 
-          <LabelButton>
+          <LabelButton
+            onClick={handleDeleteAllReaded}
+          >
             <TrashIcon size={19} />
             Remover todas notificações já lidas
           </LabelButton>
