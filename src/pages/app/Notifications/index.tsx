@@ -1,3 +1,4 @@
+import { useMemo, useState } from 'react';
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { Tab } from '../../../components/common/Tab';
@@ -14,6 +15,8 @@ import * as S from './styles';
 export const Notifications: React.FC = () => {
   const user = useAlreadyAuthUser();
 
+  const [filter, setFilter] = useState('all');
+
   const {
     data: notifications, isLoading, error, fetchDataAgain, setData: setNotifications,
   } = useService(
@@ -21,6 +24,26 @@ export const Notifications: React.FC = () => {
     [],
     { canManipuleStateOfData: true },
   );
+
+  const notificationsSorted = useMemo(() => (
+    notifications.sort(
+      (prev, current) => current.createdAt.getTime() - prev.createdAt.getTime(),
+    )
+  ), [notifications]);
+
+  const notificationsFiltered = useMemo(() => {
+
+    if(filter === 'readed') {
+      return notificationsSorted.filter(notification => notification.read );
+    }
+
+    if(filter === 'unread') {
+      return notificationsSorted.filter(notification => !notification.read );
+    }
+
+    return notificationsSorted;
+
+  }, [notificationsSorted, filter]);
 
   function handleMarkNotificationAsRead(id: string) {
     setNotifications(prevState => prevState.map(
@@ -57,12 +80,13 @@ export const Notifications: React.FC = () => {
         </div>
 
         <S.TabSelecterStyled
+          onSelect={setFilter}
         >
           <Tab value='all'>
             Todas
           </Tab>
 
-          <Tab value='no-readed'>
+          <Tab value='unread'>
             Não lidas
           </Tab>
 
@@ -90,12 +114,12 @@ export const Notifications: React.FC = () => {
             dataName='notificações'
             onTryAgain={fetchDataAgain}
             dataFetchHookProps={{
-              data: notifications,
+              data: notificationsFiltered,
               isLoading,
               error,
             }}
           >
-            {notifications.map(notification => (
+            {notificationsFiltered.map(notification => (
               <li key={notification.id}>
                 <Notification
                   id={notification.id}
