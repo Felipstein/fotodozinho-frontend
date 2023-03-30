@@ -28,6 +28,14 @@ export const Header = styled.header`
     }
   }
 
+  .filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 1.6rem;
+  }
+
   .actions {
     display: flex;
     align-items: center;

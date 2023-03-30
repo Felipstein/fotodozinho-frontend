@@ -16,6 +16,7 @@ export const Notifications: React.FC = () => {
   const user = useAlreadyAuthUser();
 
   const [filter, setFilter] = useState('all');
+  const [sort, setSort] = useState('dec');
 
   const {
     data: notifications, isLoading, error, fetchDataAgain, setData: setNotifications,
@@ -27,9 +28,11 @@ export const Notifications: React.FC = () => {
 
   const notificationsSorted = useMemo(() => (
     notifications.sort(
-      (prev, current) => current.createdAt.getTime() - prev.createdAt.getTime(),
+      (prev, current) => sort === 'asc'
+        ? prev.createdAt.getTime() - current.createdAt.getTime()
+        : current.createdAt.getTime() - prev.createdAt.getTime(),
     )
-  ), [notifications]);
+  ), [notifications, sort]);
 
   const notificationsFiltered = useMemo(() => {
 
@@ -79,21 +82,35 @@ export const Notifications: React.FC = () => {
           </Text>
         </div>
 
-        <S.TabSelecterStyled
-          onSelect={setFilter}
-        >
-          <Tab value='all'>
-            Todas
-          </Tab>
+        <div className="filters">
+          <S.TabSelecterStyled
+            onSelect={setFilter}
+          >
+            <Tab value='all'>
+              Todas
+            </Tab>
 
-          <Tab value='unread'>
-            Não lidas
-          </Tab>
+            <Tab value='unread'>
+              Não lidas
+            </Tab>
 
-          <Tab value='readed'>
-            Já lidas
-          </Tab>
-        </S.TabSelecterStyled>
+            <Tab value='readed'>
+              Já lidas
+            </Tab>
+          </S.TabSelecterStyled>
+
+          <S.TabSelecterStyled
+            onSelect={setSort}
+          >
+            <Tab value='dec'>
+              Mais recente
+            </Tab>
+
+            <Tab value='asc'>
+              Mais antigo
+            </Tab>
+          </S.TabSelecterStyled>
+        </div>
 
         <div className="actions">
           <LabelButton>
