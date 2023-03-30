@@ -4,6 +4,7 @@ import { InfoIcon } from '../../../../../icons/InfoIcon';
 import { Text } from '../../../../../components/common/Text';
 import { IconButton } from '../../../../../components/common/IconButton';
 import { WarnIcon } from '../../../../../icons/WarnIcon';
+import { CalendarBlankIcon } from '../../../../../icons/CalendarBlankIcon';
 
 export const Notification: React.FC<NotificationProps> = ({
   id,
@@ -16,7 +17,7 @@ export const Notification: React.FC<NotificationProps> = ({
   return (
     <S.Container>
       <div className="data-info">
-        <InfoIcon size={24} />
+        <CalendarBlankIcon size={24} />
 
         <div className="data-time">
           <Text size='xsm'>
