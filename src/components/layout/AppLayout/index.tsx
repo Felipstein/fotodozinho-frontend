@@ -5,6 +5,14 @@ import { MenuButton } from '../../common/MenuButton';
 import { AppLayoutProps } from './types';
 import * as S from './styles';
 import { WarnIcon } from '../../../icons/WarnIcon';
+import { NotificationIcon } from '../../../icons/NotificationIcon';
+import { PrinterIcon } from '../../../icons/PrinterIcon';
+import { ShoppingCartIcon } from '../../../icons/ShoppingCartIcon';
+import { ArchiveBoxIcon } from '../../../icons/ArchiveBoxIcon';
+import { ApertureIcon } from '../../../icons/ApertureIcon';
+import { InfoIcon } from '../../../icons/InfoIcon';
+import { UserListIcon } from '../../../icons/UserListIcon';
+import { SignOutIcon } from '../../../icons/SignOutIcon';
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, children }) => {
 
@@ -17,7 +25,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
           <MenuButton
             to='notifications'
           >
-            <SmileySadIcon />
+            <NotificationIcon />
             Notificações
           </MenuButton>
         </nav>
@@ -27,19 +35,21 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
             <MenuButton
               to='print'
             >
-              <WarnIcon />
+              <PrinterIcon />
               Revelação
             </MenuButton>
 
             <MenuButton
               to='shop'
             >
+              <ShoppingCartIcon />
               Loja
             </MenuButton>
 
             <MenuButton
               to='orders'
             >
+              <ArchiveBoxIcon />
               Meus Pedidos
             </MenuButton>
           </nav>
@@ -47,6 +57,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
           <MenuButton
             to='photography'
           >
+            <ApertureIcon />
             Fotografia
           </MenuButton>
 
@@ -54,18 +65,21 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, chi
             <MenuButton
               to='support'
             >
+              <InfoIcon />
               Suporte/Ajuda
             </MenuButton>
 
             <MenuButton
               to='profile'
             >
+              <UserListIcon />
               Meus Dados
             </MenuButton>
 
             <MenuButton
               to='logout'
             >
+              <SignOutIcon />
               Sair
             </MenuButton>
           </nav>
