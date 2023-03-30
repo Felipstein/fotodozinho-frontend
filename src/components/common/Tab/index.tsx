@@ -1,7 +1,7 @@
-import { TabSelecterProps } from './types';
+import { TabProps } from './types';
 import * as S from './styles';
 
-export const TabSelecter: React.FC<TabSelecterProps> = ({ isSelected = false, onClick, children }) => {
+export const Tab: React.FC<TabProps> = ({ isSelected = false, onClick, children }) => {
 
   return (
     <S.Container
