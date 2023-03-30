@@ -1,3 +1,4 @@
+import { FailedToFetchData } from '../../../components/common/FailedToFetchData';
 import { LoadingData } from '../../../components/common/LoadingData';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
@@ -11,6 +12,7 @@ export const Notifications: React.FC = () => {
 
   const {
     data: notifications, isLoading, error,
+    fetchDataAgain,
   } = useService(() => NotificationsService.getNotificationsByUser({ userId: user.id }), []);
 
   return (
@@ -18,11 +20,18 @@ export const Notifications: React.FC = () => {
       <S.NotificationsContainer>
         <S.NotificationsList>
 
-          {(isLoading || true) && (
-            <LoadingData data='notificações' />
+          {isLoading && (
+            <LoadingData dataName='notificações' />
           )}
 
-          {!isLoading && notifications.map(notification => (
+          {!isLoading && error && (
+            <FailedToFetchData
+              dataName='notificações'
+              onTryAgain={fetchDataAgain}
+            />
+          )}
+
+          {!isLoading && !error && notifications.map(notification => (
             <Notification
               key={notification.id}
               id={notification.id}

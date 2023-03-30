@@ -1,3 +1,3 @@
 export interface LoadingDataProps {
-  data?: string;
+  dataName?: string;
 }
