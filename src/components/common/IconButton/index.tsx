@@ -12,7 +12,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   color,
   linkTarget = 'navigate',
   onClick,
-  isLoading = true,
+  isLoading = false,
   children,
 }) => {
   const icon = React.Children.only(children);

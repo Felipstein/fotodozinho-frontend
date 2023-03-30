@@ -14,8 +14,6 @@ export const Notifications: React.FC = () => {
     fetchDataAgain,
   } = useService(() => NotificationsService.getNotificationsByUser({ userId: user.id }), []);
 
-  console.log(notifications);
-
   return (
     <S.Container>
       <S.NotificationsContainer>
