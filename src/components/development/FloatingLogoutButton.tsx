@@ -1,4 +1,4 @@
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../common/Button';
 
 export const FloatingLogoutButton: React.FC = () => {

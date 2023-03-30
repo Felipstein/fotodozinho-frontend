@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { Logo } from '../../../components/common/Logo';
 import { SplashScreen } from '../../../components/layout/SplashScreen';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../hooks/useAuth';
 import { APIError } from '../../../errors/APIError';
 import { ValidateEmailService } from '../../../services/validate-email.service';
 

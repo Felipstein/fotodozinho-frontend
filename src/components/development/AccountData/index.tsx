@@ -1,4 +1,4 @@
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../hooks/useAuth';
 import { Text } from '../../common/Text';
 
 import * as S from './styles';

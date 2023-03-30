@@ -4,7 +4,7 @@ import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
 
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../hooks/useAuth';
 import { useFormStatus } from '../../../hooks/useFormStatus';
 import { LogInRequest } from '../../../types/AuthDTO';
 

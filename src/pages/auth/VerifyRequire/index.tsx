@@ -5,7 +5,7 @@ import { Button } from '../../../components/common/Button';
 import { Text } from '../../../components/common/Text';
 import { HeaderOnlyLogo } from '../../../components/layout/HeaderOnlyLogo';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
-import { useAuth } from '../../../contexts/AuthContext';
+import { useAuth } from '../../../hooks/useAuth';
 import { ValidateEmailService } from '../../../services/validate-email.service';
 
 import * as S from './styles';
