@@ -1,14 +1,13 @@
-import { NavLink } from 'react-router-dom';
-
 import { MenuButtonProps } from './types';
+import * as S from './styles';
 
 export const MenuButton: React.FC<MenuButtonProps> = ({ to, children }) => {
 
   return (
-    <NavLink
+    <S.NavLinkStyled
       to={to}
     >
       {children}
-    </NavLink>
+    </S.NavLinkStyled>
   );
 };
