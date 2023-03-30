@@ -5,7 +5,7 @@ import { Text } from '../Text';
 import { FailedToFetchDataProps } from './types';
 import * as S from './styles';
 
-export const FailedToFetchData: React.FC<FailedToFetchDataProps> = ({ dataName, onTryAgain }) => {
+export const FailedToFetchData: React.FC<FailedToFetchDataProps> = ({ dataName, onTryAgain, isFetchingAgain }) => {
 
   function getTryAgainMessage() {
     if(onTryAgain) {
@@ -28,7 +28,10 @@ export const FailedToFetchData: React.FC<FailedToFetchDataProps> = ({ dataName, 
           {getTryAgainMessage()}
         </Text>
         {onTryAgain && (
-          <Button onClick={onTryAgain}>Tentar novamente</Button>
+          <Button
+            onClick={onTryAgain}
+            isLoading={isFetchingAgain}
+          >Tentar novamente</Button>
         )}
       </div>
     </S.Container>

@@ -28,6 +28,7 @@ export const Notifications: React.FC = () => {
             <FailedToFetchData
               dataName='notificações'
               onTryAgain={fetchDataAgain}
+              isFetchingAgain={isLoading}
             />
           )}
 
