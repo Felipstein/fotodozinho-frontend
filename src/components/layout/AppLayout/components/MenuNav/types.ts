@@ -1,5 +1,6 @@
 import { ApertureIcon } from '../../../../../icons/ApertureIcon';
 import { ArchiveBoxIcon } from '../../../../../icons/ArchiveBoxIcon';
+import { IconDefaultProps } from '../../../../../icons/icons.types';
 import { InfoIcon } from '../../../../../icons/InfoIcon';
 import { NotificationIcon } from '../../../../../icons/NotificationIcon';
 import { PrinterIcon } from '../../../../../icons/PrinterIcon';
@@ -11,7 +12,7 @@ export type AppMenu = 'notifications' | 'print' | 'shop' | 'orders' | 'photograp
 
 interface AppMenuProperties {
   label: string;
-  icon: React.FC;
+  icon: React.FC<IconDefaultProps>;
 }
 
 export const appMenuLabel: Record<AppMenu, AppMenuProperties> = {
