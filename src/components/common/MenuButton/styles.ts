@@ -37,7 +37,9 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const LittleLine = styled.span<{ isActive: boolean }>`
-  width: 100%;
+  margin-top: 0.2rem;
+
+  width: 2.5rem;
 
   border: 1px solid ${({ theme }) => theme.colors.blue[500]};
   border-radius: 8px;
