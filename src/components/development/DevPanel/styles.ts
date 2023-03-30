@@ -14,7 +14,7 @@ export const Container = styled.div<{ isOpened: boolean }>`
   background-color: ${({ theme }) => theme.colors.white};
   box-shadow: ${({ theme }) => theme.shadows.soft};
 
-  z-index: 5;
+  z-index: 100;
 
   transform: translateX(0);
   transition: transform ${({ theme }) => theme.animations.durations.md} ease;
@@ -51,6 +51,8 @@ export const DevPanelToggle = styled(Button)<{ isOpened: boolean }>`
   ${({ isOpened }) => isOpened && css`
     display: none;
   `};
+
+  z-index: 100;
 `;
 
 export const Header = styled.header`
