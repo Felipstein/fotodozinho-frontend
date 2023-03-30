@@ -6,6 +6,8 @@ import { TrashIcon } from '../../../../../icons/TrashIcon';
 
 import { NotificationProps } from './types';
 import * as S from './styles';
+import { useService } from '../../../../../hooks/useService';
+import { NotificationsService } from '../../../../../services/notifications.service';
 
 export const Notification: React.FC<NotificationProps> = ({
   id,
@@ -14,6 +16,14 @@ export const Notification: React.FC<NotificationProps> = ({
   createdAt,
   read,
 }) => {
+
+  const {
+    isLoading: isMarkingNotificationAsRead,
+  } = useService(() => NotificationsService.markNotificationAsRead({ notificationId: id }));
+
+  const {
+    isLoading: isDeletingNotification,
+  } = useService(() => NotificationsService.deleteNotification({ notificationId: id }));
 
   return (
     <S.Container read={read}>
