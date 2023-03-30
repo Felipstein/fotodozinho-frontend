@@ -56,16 +56,17 @@ export const Notifications: React.FC = () => {
           </Text>
         </div>
 
-        <S.TabSelecterStyled>
-          <Tab>
+        <S.TabSelecterStyled
+        >
+          <Tab value='all'>
             Todas
           </Tab>
 
-          <Tab>
+          <Tab value='no-readed'>
             Não lidas
           </Tab>
 
-          <Tab>
+          <Tab value='readed'>
             Já lidas
           </Tab>
         </S.TabSelecterStyled>
