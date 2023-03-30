@@ -1,12 +1,11 @@
-import { NotificationProps } from './types';
-import * as S from './styles';
-import { InfoIcon } from '../../../../../icons/InfoIcon';
 import { Text } from '../../../../../components/common/Text';
 import { IconButton } from '../../../../../components/common/IconButton';
-import { WarnIcon } from '../../../../../icons/WarnIcon';
 import { CalendarBlankIcon } from '../../../../../icons/CalendarBlankIcon';
 import { CheckCircleIcon } from '../../../../../icons/CheckCircleIcon';
 import { TrashIcon } from '../../../../../icons/TrashIcon';
+
+import { NotificationProps } from './types';
+import * as S from './styles';
 
 export const Notification: React.FC<NotificationProps> = ({
   id,
@@ -23,11 +22,11 @@ export const Notification: React.FC<NotificationProps> = ({
 
         <div className="data-time">
           <Text size='xsm'>
-            08/01/2022
+            {createdAt.getDate()}
           </Text>
 
           <Text size='xsm'>
-            10:29
+            {createdAt.getTime()}
           </Text>
         </div>
       </div>
