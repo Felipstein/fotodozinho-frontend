@@ -56,7 +56,7 @@ export const Notifications: React.FC = () => {
           </Text>
         </div>
 
-        <div className="tabs-filter">
+        <S.TabSelecterStyled>
           <Tab>
             Todas
           </Tab>
@@ -68,7 +68,7 @@ export const Notifications: React.FC = () => {
           <Tab>
             Já lidas
           </Tab>
-        </div>
+        </S.TabSelecterStyled>
 
         <div className="actions">
           <LabelButton>

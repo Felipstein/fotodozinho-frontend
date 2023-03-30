@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { TabSelecter } from '../../../components/common/Tab/TabSelecter';
 
 export const Container = styled.div`
   height: 100%;
@@ -27,17 +28,17 @@ export const Header = styled.header`
     }
   }
 
-  .tabs-filter {
-    display: flex;
-    align-items: center;
-    gap: 1.6rem;
-  }
-
   .actions {
     display: flex;
     align-items: center;
     gap: 2.4rem;
   }
+`;
+
+export const TabSelecterStyled = styled(TabSelecter)`
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 `;
 
 export const NotificationsContainer = styled.div`
