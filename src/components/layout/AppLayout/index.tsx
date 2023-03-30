@@ -1,5 +1,5 @@
 import { SmileySadIcon } from '../../../icons/SmileySadIcon';
-import { AsideNav } from './components/AsideNav';
+import { AsideNav } from './components/MenuNav';
 
 import { AppLayoutProps } from './types';
 import * as S from './styles';
