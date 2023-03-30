@@ -4,7 +4,7 @@ import { XIcon } from '../../../icons/XIcon';
 import { IconButton } from '../../common/IconButton';
 import { Text } from '../../common/Text';
 import { AccountData } from '../AccountData';
-import { FloatingLogoutButton } from '../FloatingLogoutButton';
+import { LogoutButton } from '../LogoutButton';
 import { GenerateNotifications } from '../GenerateNotifications';
 
 import * as S from './styles';
@@ -42,7 +42,7 @@ export const DevPanel: React.FC = () => {
                 Desconecte de sua conta
               </Text>
 
-              <FloatingLogoutButton />
+              <LogoutButton />
             </div>
           )}
 
