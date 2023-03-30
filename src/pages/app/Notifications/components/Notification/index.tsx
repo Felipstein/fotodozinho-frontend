@@ -3,11 +3,12 @@ import { IconButton } from '../../../../../components/common/IconButton';
 import { CalendarBlankIcon } from '../../../../../icons/CalendarBlankIcon';
 import { CheckCircleIcon } from '../../../../../icons/CheckCircleIcon';
 import { TrashIcon } from '../../../../../icons/TrashIcon';
+import { NotificationsService } from '../../../../../services/notifications.service';
 
 import { NotificationProps } from './types';
 import * as S from './styles';
-import { useService } from '../../../../../hooks/useService';
-import { NotificationsService } from '../../../../../services/notifications.service';
+import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 export const Notification: React.FC<NotificationProps> = ({
   id,
@@ -16,14 +17,34 @@ export const Notification: React.FC<NotificationProps> = ({
   createdAt,
   read,
 }) => {
+  const [isMarkingNotificationAsRead, setIsMarkingNotificationAsRead] = useState(false);
+  const [isDeletingNotification, setIsDeletingNotification] = useState(false);
 
-  const {
-    isLoading: isMarkingNotificationAsRead,
-  } = useService(() => NotificationsService.markNotificationAsRead({ notificationId: id }));
+  async function handleMarkNotificationAsRead() {
+    try {
+      setIsMarkingNotificationAsRead(true);
 
-  const {
-    isLoading: isDeletingNotification,
-  } = useService(() => NotificationsService.deleteNotification({ notificationId: id }));
+      await NotificationsService.markNotificationAsRead({ notificationId: id });
+
+    } catch (err: Error | any) {
+      toast.error(err.message || 'Ocorreu um erro enquanto tentavamos marcar sua notificação como lida, tente novamente.');
+    } finally {
+      setIsMarkingNotificationAsRead(false);
+    }
+  }
+
+  async function handleDeleteNotification() {
+    try {
+      setIsDeletingNotification(true);
+
+      await NotificationsService.deleteNotification({ notificationId: id });
+
+    } catch (err: Error | any) {
+      toast.error(err.message || 'Ocorreu um erro enquanto tentavamos deletar sua notificação, tente novamente.');
+    } finally {
+      setIsDeletingNotification(false);
+    }
+  }
 
   return (
     <S.Container read={read}>
@@ -53,12 +74,18 @@ export const Notification: React.FC<NotificationProps> = ({
 
       <div className="actions">
         {!read && (
-          <IconButton size={26} >
+          <IconButton
+            size={26}
+            onClick={handleMarkNotificationAsRead}
+          >
             <CheckCircleIcon />
           </IconButton>
         )}
 
-        <IconButton size={26}>
+        <IconButton
+          size={26}
+          onClick={handleDeleteNotification}
+        >
           <TrashIcon />
         </IconButton>
       </div>
