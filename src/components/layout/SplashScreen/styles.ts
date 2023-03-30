@@ -34,7 +34,7 @@ const fadeOut = keyframes`
   }
 `;
 
-export const Container = styled.div<{ isLeaving: boolean }>`
+export const Container = styled.div<{ isLeaving: boolean, noAnimationOnDisplay: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -43,7 +43,9 @@ export const Container = styled.div<{ isLeaving: boolean }>`
 
   background-color: ${({ theme }) => theme.colors.blue[500]};
 
-  animation: ${show} 0.6s ease-out forwards;
+  ${({ noAnimationOnDisplay }) => !noAnimationOnDisplay && css`
+    animation: ${show} 0.6s ease-out forwards;
+  `}
 
   ${({ isLeaving }) => isLeaving && css`
   animation: ${hidden} 0.6s ease-in forwards;
@@ -55,10 +57,13 @@ export const Container = styled.div<{ isLeaving: boolean }>`
     align-items: center;
 
     height: 100%;
-    opacity: 0;
-    transform: translateY(6%);
 
-    animation: ${fadeIn} 0.6s ease-out 0.6s forwards;
+    ${({ noAnimationOnDisplay }) => !noAnimationOnDisplay && css`
+      opacity: 0;
+      transform: translateY(6%);
+
+      animation: ${fadeIn} 0.6s ease-out 0.6s forwards;
+    `}
 
     ${({ isLeaving }) => isLeaving && css`
       animation: ${fadeOut} 0.6s ease-out forwards;

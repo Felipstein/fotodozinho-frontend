@@ -151,5 +151,5 @@ export class API {
 
 export const api = new API({
   baseURL: 'http://localhost:3333',
-  // delayMS: 1500,
+  delayMS: 5000,
 });

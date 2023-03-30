@@ -110,6 +110,7 @@ export const ResetPassword: React.FC = () => {
       <SplashScreen
         visible={showLoadingScreen}
         loadingMessage={'Verificando seu token...'}
+        instantlyDisplay
       />
 
       <LayoutFooter>

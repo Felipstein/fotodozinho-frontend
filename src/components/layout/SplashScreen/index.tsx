@@ -10,7 +10,7 @@ import { Text } from '../../common/Text';
 import * as S from './styles';
 import { SplashScreenProps } from './types';
 
-export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, loadingMessage }) => {
+export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, loadingMessage, instantlyDisplay = false }) => {
   const theme = useTheme();
   const { shouldRender, animatedElementRef } = useAnimatedUnmount(visible);
 
@@ -30,20 +30,28 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ visible, isLoading, 
 
   return (
     <ReactPortal containerId='screen-root'>
-      <S.Container ref={animatedElementRef} isLeaving={!visible}>
+      <S.Container
+        ref={animatedElementRef}
+        isLeaving={!visible}
+        noAnimationOnDisplay={instantlyDisplay}
+      >
         <div className="content">
           <div className="centered">
             <Logo isWhite scale={0.65} />
+
             <Text size='lg'>Sempre registrando a sua História</Text>
+
             {(isLoading || loadingMessage) && (
               <Loading size={42} color={theme.colors.white} />
             )}
+
             {loadingMessage && (
               <div className="loading-message">
                 <Text size='sm'>{loadingMessage}</Text>
               </div>
             )}
           </div>
+
           <div className="mini-footer">
             <Text size='xsm'>@ 2022 - Equipe Foto do Zinho / by Felipe Oliveira</Text>
           </div>
