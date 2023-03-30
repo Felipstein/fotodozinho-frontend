@@ -1,47 +1,72 @@
+import { Logo } from '../../common/Logo';
+import { SmileySadIcon } from '../../../icons/SmileySadIcon';
+import { MenuButton } from '../../common/MenuButton';
+
 import { AppLayoutProps } from './types';
 import * as S from './styles';
-import { Logo } from '../../common/Logo';
-import { Button } from '../../common/Button';
-import { SmileySadIcon } from '../../../icons/SmileySadIcon';
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ centerContent = false, children }) => {
 
   return (
     <S.Container>
       <S.SidebarNav>
-        <Logo scale={0.35} />
+        <div className="group">
+          <Logo scale={0.35} />
 
-        <Button>
-          Notificações
-        </Button>
+          <MenuButton
+            to='notifications'
+          >
+            Notificações
+          </MenuButton>
+        </div>
 
-        <Button>
-          Revelação
-        </Button>
+        <div className="group more-gap">
+          <div className="group">
+            <MenuButton
+              to='print'
+            >
+              Revelação
+            </MenuButton>
 
-        <Button>
-          Loja
-        </Button>
+            <MenuButton
+              to='shop'
+            >
+              Loja
+            </MenuButton>
 
-        <Button>
-          Meus Pedidos
-        </Button>
+            <MenuButton
+              to='orders'
+            >
+              Meus Pedidos
+            </MenuButton>
+          </div>
 
-        <Button>
-          Fotografia
-        </Button>
+          <MenuButton
+            to='photography'
+          >
+            Fotografia
+          </MenuButton>
 
-        <Button>
-          Suporte/Ajuda
-        </Button>
+          <div className="group">
+            <MenuButton
+              to='support'
+            >
+              Suporte/Ajuda
+            </MenuButton>
 
-        <Button>
-          Meus Dados
-        </Button>
+            <MenuButton
+              to='profile'
+            >
+              Meus Dados
+            </MenuButton>
 
-        <Button>
-          Sair
-        </Button>
+            <MenuButton
+              to='logout'
+            >
+              Sair
+            </MenuButton>
+          </div>
+        </div>
       </S.SidebarNav>
 
       <S.MenuContent>

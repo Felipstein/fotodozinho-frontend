@@ -7,7 +7,25 @@ export const Container = styled.div`
 `;
 
 export const SidebarNav = styled.aside`
-  background-color: red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 4rem 1.6rem;
+
+  background-color: ${({ theme }) => theme.colors.white};
+
+  .group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+
+    &.more-gap {
+      gap: 6.4rem;
+    }
+  }
 `;
 
 export const MenuContent = styled.div`
