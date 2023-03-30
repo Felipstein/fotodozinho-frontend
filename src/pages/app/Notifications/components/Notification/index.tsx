@@ -22,11 +22,11 @@ export const Notification: React.FC<NotificationProps> = ({
 
         <div className="data-time">
           <Text size='xsm'>
-            {createdAt.getDate()}
+            {createdAt.toLocaleDateString()}
           </Text>
 
           <Text size='xsm'>
-            {createdAt.getTime()}
+            {createdAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </Text>
         </div>
       </div>
