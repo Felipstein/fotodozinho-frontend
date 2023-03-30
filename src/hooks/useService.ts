@@ -11,8 +11,23 @@ interface ServiceResponse<T> {
   fetchDataAgain: () => void;
 }
 
-export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, startLoading = true, toastError = false): ServiceResponse<T> {
-  const [isLoading, setIsLoading] = useState(Boolean(startLoading));
+export interface HookServiceSettings {
+  startLoading?: boolean;
+  toastError?: boolean;
+  customErrorMessage?: string;
+}
+
+const defaultSettings: HookServiceSettings = {
+  startLoading: true,
+  toastError: false,
+};
+
+export function useService<T>(
+  serviceFn: () => Promise<T>,
+  initialValue?: T,
+  settings: HookServiceSettings = defaultSettings,
+): ServiceResponse<T> {
+  const [isLoading, setIsLoading] = useState(Boolean(settings.startLoading));
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<T | null>(initialValue ? initialValue : null);
 
@@ -24,11 +39,11 @@ export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, sta
       const result = await serviceFn();
       setData(result);
     } catch (err: APIError | Error | any) {
-      const errorMessage = err.message || 'Ocorreu um erro desconhecido, por favor, tente novamente. Se o erro persistir, entre em contato conosco pelo suporte.';
+      const errorMessage = settings.customErrorMessage || err.message || 'Ocorreu um erro desconhecido, por favor, tente novamente. Se o erro persistir, entre em contato conosco pelo suporte.';
 
       setError(errorMessage);
 
-      if(toastError) {
+      if(settings.toastError) {
         toast.error(errorMessage);
       }
     } finally {
