@@ -7,11 +7,18 @@ export const Container = styled.div`
 `;
 
 export const MenuContent = styled.div`
-  flex: 1;
+  display: flex;
+  flex-direction: column;
 
-  background-color: blue;
+  flex: 1;
 `;
 
-export const Header = styled.header``;
+export const Header = styled.header`
+  padding: 2rem 3.8rem;
 
-export const Content = styled.main``;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray[100]};
+`;
+
+export const Content = styled.main`
+  flex: 1;
+`;
