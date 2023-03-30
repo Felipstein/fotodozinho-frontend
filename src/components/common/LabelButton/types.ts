@@ -6,5 +6,7 @@ export interface LabelButtonProps {
   to?: string;
   linkTarget?: LinkTarget;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  isDisabled?: boolean;
+  isLoading?: boolean;
   children: ReactNode;
 }

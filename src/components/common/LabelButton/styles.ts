@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { LabelButtonProps } from './types';
 
-export const LinkStyled = styled(Link)<LabelButtonProps & { $isBlueVariant?: boolean }>`
+interface LinkStyledProps extends LabelButtonProps {
+  $isBlueVariant: boolean;
+  $isLoading: boolean;
+  $isDisabled: boolean;
+}
+
+export const LinkStyled = styled(Link)<LinkStyledProps>`
   position: relative;
 
   font-weight: 400;
@@ -18,6 +24,11 @@ export const LinkStyled = styled(Link)<LabelButtonProps & { $isBlueVariant?: boo
   padding-bottom: 2px;
 
   transition: color ${({ theme }) => theme.animations.durations.sh} ease-in-out;
+
+  ${({ $isDisabled, $isLoading }) => ($isDisabled || $isLoading) && css`
+    opacity: 0.3;
+    pointer-events: none;
+  `}
 
   &::after {
     content: "";
