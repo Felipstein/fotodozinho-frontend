@@ -1,5 +1,6 @@
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
 import { LabelButton } from '../../../components/common/LabelButton';
+import { TabSelecter } from '../../../components/common/TabSelecter';
 import { Text } from '../../../components/common/Text';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
@@ -55,10 +56,18 @@ export const Notifications: React.FC = () => {
           </Text>
         </div>
 
-        <div className="tags-filter">
-          Todas
-          Não lidas
-          Já lidas
+        <div className="tabs-filter">
+          <TabSelecter>
+            Todas
+          </TabSelecter>
+
+          <TabSelecter>
+            Não lidas
+          </TabSelecter>
+
+          <TabSelecter>
+            Já lidas
+          </TabSelecter>
         </div>
 
         <div className="actions">

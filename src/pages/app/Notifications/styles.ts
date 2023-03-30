@@ -27,7 +27,7 @@ export const Header = styled.header`
     }
   }
 
-  .tags-filter {
+  .tabs-filter {
     display: flex;
     align-items: center;
     gap: 1.6rem;
