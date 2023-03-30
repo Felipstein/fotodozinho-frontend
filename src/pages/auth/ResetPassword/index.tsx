@@ -52,17 +52,13 @@ export const ResetPassword: React.FC = () => {
   ];
 
   useEffect(() => {
-    let timer: number | undefined;
-
     async function verifyToken() {
       try {
         if(!token) {
           throw new APIError('Token inválido', 400);
         }
 
-        timer = setTimeout(() => {
-          setShowLoadingScreen(true);
-        }, 1500);
+        setShowLoadingScreen(true);
 
         await ForgotPasswordService.verifyToken({ token });
       } catch(err: Error | any) {
@@ -72,20 +68,10 @@ export const ResetPassword: React.FC = () => {
         navigate('/forgot-password');
       } finally {
         setShowLoadingScreen(false);
-
-        if(timer != undefined) {
-          clearTimeout(timer);
-        }
       }
     }
 
     verifyToken();
-
-    return () => {
-      if(timer != undefined) {
-        clearTimeout(timer);
-      }
-    };
   }, [token, navigate]);
 
   async function handleSubmit({ newPassword, confirmNewPassword }: Record<string, any>) {
