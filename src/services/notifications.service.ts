@@ -1,3 +1,4 @@
+import { Notification } from '../types/Notification';
 import { DeleteNotificationRequest, GetNotificationsByUserRequest, MarkNotificationAsReadRequest } from '../types/NotificationDTO';
 import { api } from './api.service';
 

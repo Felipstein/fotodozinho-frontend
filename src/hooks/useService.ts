@@ -27,7 +27,7 @@ export function useService<T>(serviceFn: () => Promise<T>, initialValue?: T, sta
     } finally {
       setIsLoading(false);
     }
-  }, [serviceFn]);
+  }, []);
 
   useEffect(() => {
     fetchData();
