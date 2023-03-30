@@ -5,6 +5,7 @@ import { IconButton } from '../../common/IconButton';
 import { Text } from '../../common/Text';
 import { AccountData } from '../AccountData';
 import { FloatingLogoutButton } from '../FloatingLogoutButton';
+import { GenerateNotifications } from '../GenerateNotifications';
 
 import * as S from './styles';
 
@@ -49,6 +50,10 @@ export const DevPanel: React.FC = () => {
             <S.DangerText>
                 Não autenticado
             </S.DangerText>
+          )}
+
+          {isAuthenticated && (
+            <GenerateNotifications />
           )}
         </div>
       </S.Container>
