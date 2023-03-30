@@ -6,11 +6,13 @@ export const Container = styled.div`
   min-height: 100vh;
 `;
 
-export const MenuContent = styled.div`
+export const MenuContent = styled.div<{ headerWidth: number }>`
   display: flex;
   flex-direction: column;
 
   flex: 1;
+
+  margin-left: ${({ headerWidth }) => headerWidth}px;
 `;
 
 export const Header = styled.header`

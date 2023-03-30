@@ -1,16 +1,23 @@
+import { createElement, useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import { SmileySadIcon } from '../../../icons/SmileySadIcon';
+import { AppMenu, appMenuLabel } from './components/MenuNav/types';
 import { MenuNav } from './components/MenuNav';
 
 import { AppLayoutProps } from './types';
 import * as S from './styles';
-import { AppMenu, appMenuLabel } from './components/MenuNav/types';
-import { createElement } from 'react';
-import { IconDefaultProps } from '../../../icons/icons.types';
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
+  const [menuNavWidth, setMenuNavWidth] = useState(145);
+
+  useEffect(() => {
+    const menuNavElement = document.getElementById('menu-nav');
+
+    if(menuNavElement) {
+      setMenuNavWidth(menuNavElement.offsetWidth);
+    }
+  }, []);
 
   const params = pathname.match(/^\/app\/(.+)$/);
   if(!params) {
@@ -24,7 +31,9 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     <S.Container>
       <MenuNav />
 
-      <S.MenuContent>
+      <S.MenuContent
+        headerWidth={menuNavWidth}
+      >
         <S.Header>
           {createElement(menu.icon, { size: 68 })}
 

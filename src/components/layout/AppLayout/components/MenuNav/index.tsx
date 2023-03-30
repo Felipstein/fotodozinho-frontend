@@ -13,7 +13,7 @@ import * as S from './styles';
 
 export const MenuNav: React.FC = () => {
   return (
-    <S.Container>
+    <S.Container id='menu-nav'>
       <nav className="group">
         <Logo scale={0.3} />
 
