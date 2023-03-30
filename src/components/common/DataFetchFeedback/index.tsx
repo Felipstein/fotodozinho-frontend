@@ -4,7 +4,13 @@ import { LoadingData } from '../LoadingData';
 import { NoDataFound } from '../NoDataFound';
 import { DataFetchFeedbackProps } from './types';
 
-export const DataFetchFeedback: React.FC<DataFetchFeedbackProps> = ({ dataName, onTryAgain, dataFetchHookProps, children }) => {
+export const DataFetchFeedback: React.FC<DataFetchFeedbackProps> = ({
+  dataName,
+  modify,
+  onTryAgain,
+  dataFetchHookProps,
+  children,
+}) => {
   const {
     isFetching, isFailedToFetch, isDataArrayEmpty, noDataFound, canRenderData,
   } = useDataFetchFeedback({
@@ -15,11 +21,23 @@ export const DataFetchFeedback: React.FC<DataFetchFeedbackProps> = ({ dataName, 
 
   return (
     <>
-      {isFetching && <LoadingData dataName={dataName} />}
+      {isFetching && (
+        <>
+          {modify?.loadingComponent || <LoadingData dataName={dataName} />}
+        </>
+      )}
 
-      {isFailedToFetch && <FailedToFetchData dataName={dataName} onTryAgain={onTryAgain} />}
+      {isFailedToFetch && (
+        <>
+          {modify?.failedToFetchDataComponent || <FailedToFetchData dataName={dataName} onTryAgain={onTryAgain} />}
+        </>
+      )}
 
-      {(isDataArrayEmpty || noDataFound) && <NoDataFound dataName={dataName} onTryAgain={onTryAgain} />}
+      {(isDataArrayEmpty || noDataFound) && (
+        <>
+          {modify?.noDataFoundComponent || <NoDataFound dataName={dataName} onTryAgain={onTryAgain} />}
+        </>
+      )}
 
       {canRenderData && children}
     </>

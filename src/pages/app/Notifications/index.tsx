@@ -9,6 +9,7 @@ import { useAlreadyAuthUser } from '../../../hooks/useUser';
 import { CheckCircleIcon } from '../../../icons/CheckCircleIcon';
 import { TrashIcon } from '../../../icons/TrashIcon';
 import { NotificationsService } from '../../../services/notifications.service';
+import { NoNotificationsFound } from './components/NoNotificationsFound';
 import { Notification } from './components/Notification';
 
 import * as S from './styles';
@@ -199,6 +200,9 @@ export const Notifications: React.FC = () => {
               data: notificationsFiltered,
               isLoading,
               error,
+            }}
+            modify={{
+              noDataFoundComponent: <NoNotificationsFound />
             }}
           >
             {notificationsFiltered.map(notification => (
