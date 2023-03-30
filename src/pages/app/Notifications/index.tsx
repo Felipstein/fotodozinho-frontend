@@ -1,4 +1,6 @@
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
+import { LabelButton } from '../../../components/common/LabelButton';
+import { Text } from '../../../components/common/Text';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
 import { NotificationsService } from '../../../services/notifications.service';
@@ -40,6 +42,34 @@ export const Notifications: React.FC = () => {
 
   return (
     <S.Container>
+      <S.Header>
+        <div className="total-info">
+          <h3>
+            {notifications.length} Notificaç{notifications.length === 1 ? 'ão' : 'ões'}
+          </h3>
+
+          <Text size='sm'>
+            {notifications.filter(notification => !notification.read).length} não lida{notifications.filter(notification => !notification.read).length === 1 ? '' : 's'}
+          </Text>
+        </div>
+
+        <div className="tags-filter">
+          Todas
+          Não lidas
+          Já lidas
+        </div>
+
+        <div className="actions">
+          <LabelButton>
+            Marcar todas como lidas
+          </LabelButton>
+
+          <LabelButton>
+            Remover todas notificações já lidas
+          </LabelButton>
+        </div>
+      </S.Header>
+
       <S.NotificationsContainer>
         <S.NotificationsList>
           <DataFetchFeedback
