@@ -1,9 +1,7 @@
-import { NoDataFound } from '../../../components/common/NoDataFound';
-import { useAuth } from '../../../hooks/useAuth';
+import { LoadingData } from '../../../components/common/LoadingData';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
 import { NotificationsService } from '../../../services/notifications.service';
-import { LoadingNotifications } from './components/LoadingNotifications';
 import { Notification } from './components/Notification';
 
 import * as S from './styles';
@@ -21,7 +19,7 @@ export const Notifications: React.FC = () => {
         <S.NotificationsList>
 
           {(isLoading || true) && (
-            <LoadingNotifications />
+            <LoadingData data='notificações' />
           )}
 
           {!isLoading && notifications.map(notification => (
