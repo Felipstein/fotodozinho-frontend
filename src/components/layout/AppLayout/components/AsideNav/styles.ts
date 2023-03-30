@@ -6,7 +6,7 @@ export const Container = styled.aside`
   justify-content: space-between;
   align-items: center;
 
-  padding: 2.4rem 1.6rem;
+  padding: 2rem 1.6rem;
 
   background-color: ${({ theme }) => theme.colors.white};
 

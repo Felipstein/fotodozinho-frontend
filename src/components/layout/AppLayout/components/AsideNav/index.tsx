@@ -15,7 +15,7 @@ export const AsideNav: React.FC = () => {
   return (
     <S.Container>
       <nav className="group">
-        <Logo scale={0.35} />
+        <Logo scale={0.3} />
 
         <MenuButton
           to='notifications'
