@@ -1,4 +1,3 @@
-import { APIError } from '../errors/APIError';
 import { Notification } from '../types/Notification';
 import { DeleteNotificationRequest, GetNotificationsByUserRequest, MarkNotificationAsReadRequest } from '../types/NotificationDTO';
 import { api } from './api.service';
@@ -10,8 +9,7 @@ export class NotificationsService {
   }
 
   static async getNotificationsByUser({ userId }: GetNotificationsByUserRequest): Promise<Notification[]> {
-    throw new APIError('Hmm, você não tem permissão', 403);
-
+    return await api.get(`/notifications/user/${userId}`);
   }
 
   static async markNotificationAsRead({ notificationId }: MarkNotificationAsReadRequest): Promise<Notification> {

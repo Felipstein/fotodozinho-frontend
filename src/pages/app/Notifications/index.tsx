@@ -1,3 +1,4 @@
+import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
 import { FailedToFetchData } from '../../../components/common/FailedToFetchData';
 import { LoadingData } from '../../../components/common/LoadingData';
 import { useService } from '../../../hooks/useService';
@@ -19,29 +20,27 @@ export const Notifications: React.FC = () => {
     <S.Container>
       <S.NotificationsContainer>
         <S.NotificationsList>
+          <DataFetchFeedback
+            dataName='notificações'
+            onTryAgain={fetchDataAgain}
+            dataFetchHookProps={{
+              data: notifications,
+              isLoading,
+              error,
+            }}
+          >
+            {notifications.map(notification => (
+              <Notification
+                key={notification.id}
+                id={notification.id}
+                title={notification.title}
+                message={notification.message}
+                createdAt={notification.createdAt}
+                read={notification.read}
+              />
+            ))}
+          </DataFetchFeedback>
 
-          {isLoading && (
-            <LoadingData dataName='notificações' />
-          )}
-
-          {!isLoading && error && (
-            <FailedToFetchData
-              dataName='notificações'
-              onTryAgain={fetchDataAgain}
-              isFetchingAgain={isLoading}
-            />
-          )}
-
-          {!isLoading && !error && notifications.map(notification => (
-            <Notification
-              key={notification.id}
-              id={notification.id}
-              title={notification.title}
-              message={notification.message}
-              createdAt={notification.createdAt}
-              read={notification.read}
-            />
-          ))}
         </S.NotificationsList>
       </S.NotificationsContainer>
     </S.Container>
