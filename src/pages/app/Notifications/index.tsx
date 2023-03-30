@@ -77,9 +77,10 @@ export const Notifications: React.FC = () => {
     try {
       setIsMarkingAllReaded(true);
 
+
       const notificationsId: string[] = [];
 
-      const promises = notifications.filter(notification => notification.read).map(
+      const promises = notificationsSorted.filter(notification => !notification.read).map(
         async ({ id }) => {
           notificationsId.push(id);
 
@@ -90,6 +91,9 @@ export const Notifications: React.FC = () => {
       await Promise.all(promises);
       notificationsId.forEach(notificationId => handleMarkNotificationAsRead(notificationId));
 
+      if(notificationsId.length > 0) {
+        toast.success(`${notificationsId.length} notificaç${notificationsId.length > 1 ? 'ções' : 'ão'} marcada${notificationsId.length > 1 ? 's' : ''} como lida${notificationsId.length > 1 ? 's' : ''} com êxito.`);
+      }
     } catch (err: Error | any) {
       toast.error(err.message || 'Ocorreu um erro ao tentar marcar todas as notificações como já lidas, tente novamente.');
     } finally {
@@ -103,7 +107,7 @@ export const Notifications: React.FC = () => {
 
       const notificationsId: string[] = [];
 
-      const promises = notifications.filter(notification => notification.read).map(
+      const promises = notificationsSorted.filter(notification => notification.read).map(
         async ({ id }) => {
           notificationsId.push(id);
 
@@ -114,6 +118,9 @@ export const Notifications: React.FC = () => {
       await Promise.all(promises);
       notificationsId.forEach(notificationId => handleDeleteNotification(notificationId));
 
+      if(notificationsId.length > 0) {
+        toast.success(`${notificationsId.length} notificaç${notificationsId.length > 1 ? 'ções' : 'ão'} deletada${notificationsId.length > 1 ? 's' : ''} com êxito.`);
+      }
     } catch (err: Error | any) {
       toast.error(err.message || 'Ocorreu um erro ao tentar deletar todas as notificações já lidas, tente novamente.');
     } finally {
@@ -166,6 +173,7 @@ export const Notifications: React.FC = () => {
 
         <div className="actions">
           <LabelButton
+            isLoading={isMarkingAllReaded}
             onClick={handleMarkAllReaded}
           >
             <CheckCircleIcon size={19} />
@@ -173,6 +181,7 @@ export const Notifications: React.FC = () => {
           </LabelButton>
 
           <LabelButton
+            isLoading={isDeletingReaded}
             onClick={handleDeleteAllReaded}
           >
             <TrashIcon size={19} />
