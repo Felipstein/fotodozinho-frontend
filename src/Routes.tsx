@@ -1,6 +1,6 @@
 import { Route, Routes as ReactRoutes } from 'react-router-dom';
 import { CustomRoute } from './components/logic/CustomRoute';
-import { AppPage, ForgotPasswordPage, HomePage, NotFoundPage, PricesPage, ResetPasswordPage, SignInPage, SignUpPage, ValidateEmailPage, VerifyRequirePage } from './pages';
+import { AppPage, ForgotPasswordPage, HomePage, NotFoundPage, NotificationsPage, PricesPage, PrintPage, ResetPasswordPage, SignInPage, SignUpPage, ValidateEmailPage, VerifyRequirePage } from './pages';
 
 export function Routes() {
   return (
@@ -76,7 +76,17 @@ export function Routes() {
             <AppPage />
           </CustomRoute>
         }
-      />
+      >
+        <Route
+          path='notifications'
+          element={<NotificationsPage />}
+        />
+
+        <Route
+          path='print'
+          element={<PrintPage />}
+        />
+      </Route>
 
       <Route
         path='*'

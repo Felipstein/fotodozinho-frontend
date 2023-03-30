@@ -9,5 +9,7 @@ export { VerifyRequire as VerifyRequirePage } from './auth/VerifyRequire';
 export { ValidateEmail as ValidateEmailPage } from './auth/ValidateEmail';
 
 export { App as AppPage } from './app/App';
+export { Notifications as NotificationsPage } from './app/Notifications';
+export { Print as PrintPage } from './app/Print';
 
 export { NotFound as NotFoundPage } from './main/NotFound';
