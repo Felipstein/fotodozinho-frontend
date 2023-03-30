@@ -1,12 +1,27 @@
 import React from 'react';
 
 import { targetMapper } from '../../../shared/LinkTarget';
+import { Loading } from '../Loading';
 
 import { IconButtonProps } from './types';
 import * as S from './styles';
 
-export const IconButton: React.FC<IconButtonProps> = ({ size = 32, to, color, linkTarget = 'navigate', onClick, children }) => {
+export const IconButton: React.FC<IconButtonProps> = ({
+  size = 32,
+  to,
+  color,
+  linkTarget = 'navigate',
+  onClick,
+  isLoading = true,
+  children,
+}) => {
   const icon = React.Children.only(children);
+
+  if(isLoading) {
+    return (
+      <Loading size={size} />
+    );
+  }
 
   if(to) {
     return linkTarget === 'navigate' ? (

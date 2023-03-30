@@ -7,5 +7,6 @@ export interface IconButtonProps {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   to?: string;
   linkTarget?: LinkTarget;
+  isLoading?: boolean;
   children: ReactElement;
 }
