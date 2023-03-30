@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
 import { LabelButton } from '../../../components/common/LabelButton';
+import { LoadingData } from '../../../components/common/LoadingData';
 import { Tab } from '../../../components/common/Tab';
 import { Text } from '../../../components/common/Text';
 import { useService } from '../../../hooks/useService';
@@ -202,7 +203,13 @@ export const Notifications: React.FC = () => {
               error,
             }}
             modify={{
-              noDataFoundComponent: <NoNotificationsFound />
+              noDataFoundComponent: <NoNotificationsFound />,
+              loadingComponent: <LoadingData dataName='notificações' style={{
+                height: '100%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }} />
             }}
           >
             {notificationsFiltered.map(notification => (
