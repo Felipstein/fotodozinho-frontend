@@ -82,6 +82,7 @@ export const Notification: React.FC<NotificationProps> = ({
             size={26}
             onClick={handleMarkNotificationAsRead}
             isLoading={isMarkingNotificationAsRead}
+            isDisabled={isDeletingNotification}
           >
             <CheckCircleIcon />
           </IconButton>
@@ -91,6 +92,7 @@ export const Notification: React.FC<NotificationProps> = ({
           size={26}
           onClick={handleDeleteNotification}
           isLoading={isDeletingNotification}
+          isDisabled={isMarkingNotificationAsRead}
         >
           <TrashIcon />
         </IconButton>

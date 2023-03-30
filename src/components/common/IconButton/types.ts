@@ -8,5 +8,6 @@ export interface IconButtonProps {
   to?: string;
   linkTarget?: LinkTarget;
   isLoading?: boolean;
+  isDisabled?: boolean;
   children: ReactElement;
 }

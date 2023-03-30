@@ -20,6 +20,15 @@ const BaseStyles = css<IconButtonProps>`
   transition-property: background-color, color;
   transition: ${({ theme }) => theme.animations.durations.sh} ease-in-out;
 
+  ${({ theme, isDisabled }) => isDisabled && css`
+    pointer-events: none;
+    opacity: 0.3;
+
+    svg {
+      color: ${theme.colors.gray[300]} !important;
+    }
+  `};
+
   &:hover {
     background-color: ${({ theme }) => theme.colors.gray[100]};
   }

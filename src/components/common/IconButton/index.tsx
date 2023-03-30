@@ -13,6 +13,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
   linkTarget = 'navigate',
   onClick,
   isLoading = false,
+  isDisabled = false,
   children,
 }) => {
   const icon = React.Children.only(children);
@@ -29,6 +30,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
         color={color}
         size={size}
         to={to}
+        isDisabled={isDisabled}
       >
         {React.cloneElement(icon, { size })}
       </S.LinkStyled>
@@ -38,6 +40,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
         size={size}
         to={to}
         target={targetMapper[linkTarget]}
+        isDisabled={isDisabled}
       >
         {React.cloneElement(icon, { size })}
       </S.LinkStyled>
@@ -50,6 +53,7 @@ export const IconButton: React.FC<IconButtonProps> = ({
       as='button'
       size={size}
       onClick={onClick}
+      isDisabled={isDisabled}
     >
       {React.cloneElement(icon, { size })}
     </S.ButtonStyled>
