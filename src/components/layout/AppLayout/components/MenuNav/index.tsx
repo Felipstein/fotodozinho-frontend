@@ -11,7 +11,7 @@ import { MenuButton } from '../../../../common/MenuButton';
 
 import * as S from './styles';
 
-export const AsideNav: React.FC = () => {
+export const MenuNav: React.FC = () => {
   return (
     <S.Container>
       <nav className="group">
