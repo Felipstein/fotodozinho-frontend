@@ -1,6 +1,4 @@
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
-import { FailedToFetchData } from '../../../components/common/FailedToFetchData';
-import { LoadingData } from '../../../components/common/LoadingData';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
 import { NotificationsService } from '../../../services/notifications.service';
