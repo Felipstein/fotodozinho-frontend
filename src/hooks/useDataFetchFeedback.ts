@@ -5,6 +5,7 @@ export interface DataFetchFeedbackHookProps {
 }
 
 interface DataFetchFeedbackResponse {
+  isFetching: boolean;
   isFailedToFetch: boolean;
   isDataArrayEmpty: boolean;
   noDataFound: boolean;
@@ -22,6 +23,10 @@ export function useDataFetchFeedback({ isLoading, error, data }: DataFetchFeedba
   const canRenderData = !isLoading && !isFailedToFetch && !isDataArrayEmpty && !noDataFound;
 
   return {
-    isFailedToFetch, isDataArrayEmpty, noDataFound, canRenderData,
+    isFetching: isLoading,
+    isFailedToFetch,
+    isDataArrayEmpty,
+    noDataFound,
+    canRenderData,
   };
 }
