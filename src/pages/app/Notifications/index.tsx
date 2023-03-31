@@ -1,15 +1,11 @@
 import { useMemo, useState } from 'react';
 import { toast } from 'react-toastify';
 import { DataFetchFeedback } from '../../../components/common/DataFetchFeedback';
-import { LabelButton } from '../../../components/common/LabelButton';
 import { LoadingData } from '../../../components/common/LoadingData';
-import { Tab } from '../../../components/common/Tab';
-import { Text } from '../../../components/common/Text';
 import { useService } from '../../../hooks/useService';
 import { useAlreadyAuthUser } from '../../../hooks/useUser';
-import { CheckCircleIcon } from '../../../icons/CheckCircleIcon';
-import { TrashIcon } from '../../../icons/TrashIcon';
 import { NotificationsService } from '../../../services/notifications.service';
+import { Header } from './components/Header';
 import { NoNotificationsFound } from './components/NoNotificationsFound';
 import { Notification } from './components/Notification';
 
@@ -132,65 +128,16 @@ export const Notifications: React.FC = () => {
 
   return (
     <S.Container>
-      <S.Header>
-        <div className="total-info">
-          <h3>
-            {notifications.length} Notificaç{notifications.length === 1 ? 'ão' : 'ões'}
-          </h3>
-
-          <Text size='sm'>
-            {notifications.filter(notification => !notification.read).length} não lida{notifications.filter(notification => !notification.read).length === 1 ? '' : 's'}
-          </Text>
-        </div>
-
-        <div className="filters">
-          <S.TabSelecterStyled
-            onSelect={setFilter}
-          >
-            <Tab value='all'>
-              Todas
-            </Tab>
-
-            <Tab value='unread'>
-              Não lidas
-            </Tab>
-
-            <Tab value='readed'>
-              Já lidas
-            </Tab>
-          </S.TabSelecterStyled>
-
-          <S.TabSelecterStyled
-            onSelect={setSort}
-          >
-            <Tab value='dec'>
-              Mais recente
-            </Tab>
-
-            <Tab value='asc'>
-              Mais antigo
-            </Tab>
-          </S.TabSelecterStyled>
-        </div>
-
-        <div className="actions">
-          <LabelButton
-            isLoading={isMarkingAllReaded}
-            onClick={handleMarkAllReaded}
-          >
-            <CheckCircleIcon size={19} />
-            Marcar todas como lidas
-          </LabelButton>
-
-          <LabelButton
-            isLoading={isDeletingReaded}
-            onClick={handleDeleteAllReaded}
-          >
-            <TrashIcon size={19} />
-            Remover todas notificações já lidas
-          </LabelButton>
-        </div>
-      </S.Header>
+      <Header
+        totalNotifications={notifications.length}
+        totalNotificationsUnread={notifications.filter(notification => !notification.read).length}
+        isMarkingAllReaded={isMarkingAllReaded}
+        isDeletingReaded={isDeletingReaded}
+        onMarkAllReaded={handleMarkAllReaded}
+        onDeleteAllReaded={handleDeleteAllReaded}
+        onSetFilter={setFilter}
+        onSetSort={setSort}
+      />
 
       <S.NotificationsContainer>
         <S.NotificationsList>
