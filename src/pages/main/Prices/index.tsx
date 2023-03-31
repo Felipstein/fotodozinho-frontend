@@ -31,10 +31,6 @@ export const Prices: React.FC = () => {
           <Text size='lg'>Tabela de preços</Text>
         </header>
 
-        {isLoading && (
-          <Loading size={32} />
-        )}
-
         <DataFetchFeedback
           dataName='preços'
           onTryAgain={fetchDataAgain}
