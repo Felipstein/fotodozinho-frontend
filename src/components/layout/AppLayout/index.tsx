@@ -1,14 +1,13 @@
 import { createElement, useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
+import { IconButton } from '../../common/IconButton';
+import { MenuIcon } from '../../../icons/MenuIcon';
 import { AppMenu, appMenuLabel } from './components/MenuNav/types';
 import { MenuNav } from './components/MenuNav';
 
 import { AppLayoutProps } from './types';
 import * as S from './styles';
-import { IconButton } from '../../common/IconButton';
-import { SmileySadIcon } from '../../../icons/SmileySadIcon';
-import { MenuIcon } from '../../../icons/MenuIcon';
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
