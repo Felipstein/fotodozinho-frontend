@@ -10,10 +10,11 @@ import { Logo } from '../../../../common/Logo';
 import { MenuButton } from '../../../../common/MenuButton';
 
 import * as S from './styles';
+import { MenuNavProps } from './types';
 
-export const MenuNav: React.FC = () => {
+export const MenuNav: React.FC<MenuNavProps> = ({ isOpened }) => {
   return (
-    <S.Container id='menu-nav'>
+    <S.Container id='menu-nav' isMenuOpened={isOpened}>
       <nav className="group">
         <Logo scale={0.3} />
 

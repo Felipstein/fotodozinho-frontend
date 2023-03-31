@@ -6,10 +6,15 @@ import { MenuNav } from './components/MenuNav';
 
 import { AppLayoutProps } from './types';
 import * as S from './styles';
+import { IconButton } from '../../common/IconButton';
+import { SmileySadIcon } from '../../../icons/SmileySadIcon';
+import { MenuIcon } from '../../../icons/MenuIcon';
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const { pathname } = useLocation();
   const [menuNavWidth, setMenuNavWidth] = useState(145);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   useEffect(() => {
     const menuNavElement = document.getElementById('menu-nav');
@@ -17,6 +22,14 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
     if(menuNavElement) {
       setMenuNavWidth(menuNavElement.offsetWidth);
     }
+
+    function handleResize() {
+      setScreenWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const params = pathname.match(/^\/app\/(.+)$/);
@@ -29,10 +42,18 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
 
   return (
     <S.Container>
-      <MenuNav />
+      <MenuNav isOpened={isMenuOpened} />
+
+      <div className="menu-button">
+        <IconButton
+          onClick={() => setIsMenuOpened(prevState => !prevState)}
+        >
+          <MenuIcon />
+        </IconButton>
+      </div>
 
       <S.MenuContent
-        headerWidth={menuNavWidth}
+        headerWidth={screenWidth > 768 ? menuNavWidth : 0}
       >
         <S.Header>
           {createElement(menu.icon, { size: 68 })}

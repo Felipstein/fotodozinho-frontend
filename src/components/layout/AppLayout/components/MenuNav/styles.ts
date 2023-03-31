@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.aside`
+export const Container = styled.aside<{ isMenuOpened: boolean }>`
   position: fixed;
 
   height: 100%;
@@ -23,5 +23,17 @@ export const Container = styled.aside`
     &.more-gap {
       gap: 3.2rem;
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    z-index: 10;
+
+    transform: translateX(-100%);
+
+    transition: transform ${({ theme }) => theme.animations.durations.md} ease;
+
+    ${({ isMenuOpened }) => isMenuOpened && css`
+      transform: translateX(0);
+    `}
   }
 `;

@@ -8,6 +8,10 @@ import { ShoppingCartIcon } from '../../../../../icons/ShoppingCartIcon';
 import { SignOutIcon } from '../../../../../icons/SignOutIcon';
 import { UserListIcon } from '../../../../../icons/UserListIcon';
 
+export interface MenuNavProps {
+  isOpened: boolean;
+}
+
 export type AppMenu = 'notifications' | 'print' | 'shop' | 'orders' | 'photography' | 'support' | 'profile' | 'logout';
 
 interface AppMenuProperties {
