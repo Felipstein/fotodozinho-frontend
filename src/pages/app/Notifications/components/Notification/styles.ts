@@ -78,4 +78,30 @@ export const Container = styled.div<{ read: boolean }>`
       color: ${({ theme, read }) => read ? theme.colors.gray[900] : theme.colors.blue[400]};
     }
   }
+
+  @media screen and (max-width: 474px) {
+    flex-direction: column;
+
+    .content {
+      text-align: center;
+    }
+
+    .data-info {
+      position: absolute;
+
+      flex-direction: row;
+      gap: 0.6rem;
+
+      left: 8px;
+      bottom: 8px;
+    }
+  }
+
+  @media screen and (max-width: 346px) {
+    .data-info {
+      span {
+        font-size: 1rem;
+      }
+    }
+  }
 `;
