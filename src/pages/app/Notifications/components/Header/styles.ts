@@ -49,7 +49,7 @@ export const Container = styled.header`
     }
   }
 
-  @media screen and (max-width: 618px) {
+  @media screen and (max-width: 506px) {
     .filters {
       align-items: flex-start;
 
@@ -58,7 +58,7 @@ export const Container = styled.header`
     }
   }
 
-  @media screen and (max-width: 589px) {
+  @media screen and (max-width: 440px) {
     .actions {
       align-items: flex-start;
       flex-direction: column;
