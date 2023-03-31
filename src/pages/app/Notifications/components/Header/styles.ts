@@ -35,6 +35,36 @@ export const Container = styled.header`
     align-items: center;
     gap: 2.4rem;
   }
+
+  @media screen and (max-width: 1208px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.4rem;
+
+    .filters {
+      width: 100%;
+
+      gap: 6.4rem;
+      flex-direction: row;
+    }
+  }
+
+  @media screen and (max-width: 618px) {
+    .filters {
+      align-items: flex-start;
+
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+  }
+
+  @media screen and (max-width: 589px) {
+    .actions {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
 `;
 
 export const TabSelecterStyled = styled(TabSelecter)`
