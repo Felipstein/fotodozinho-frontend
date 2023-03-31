@@ -27,6 +27,7 @@ export const Container = styled.aside<{ isMenuOpened: boolean }>`
 
   @media screen and (max-width: 768px) {
     z-index: 10;
+    overflow-y: scroll;
 
     transform: translateX(-100%);
 
