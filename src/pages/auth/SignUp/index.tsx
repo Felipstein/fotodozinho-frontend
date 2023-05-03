@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import { Button } from '../../../components/common/Button';
-import { FieldProps, validations } from '../../../components/logic/Form/Field/types';
-import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 import { LabelButton } from '../../../components/common/LabelButton';
 import { LayoutFooter } from '../../../components/layout/LayoutFooter';
+import { FieldProps, validations } from '../../../components/logic/Form/Field/types';
+import { FieldSpecificer } from '../../../components/logic/Form/FieldSpecifier';
 
 import { useAuth } from '../../../hooks/useAuth';
 import { useFormStatus } from '../../../hooks/useFormStatus';
@@ -13,8 +13,8 @@ import { formatPhone } from '../../../utils/formatPhone';
 
 import { TermsModal } from './components/modals/TermsModal';
 
-import * as S from './styles';
 import { HeaderOnlyLogo } from '../../../components/layout/HeaderOnlyLogo';
+import * as S from './styles';
 
 export const SignUp: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
